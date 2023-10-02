@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', function() {
             cartItems.appendChild(cartItem);
             
             total += productPrice;
-            cartTotal.textContent = total.toFixed(2);
+            cartTotal.textContent = `$${total.toFixed(2)}`;
         });
     });
 });
