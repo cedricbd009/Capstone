@@ -1,53 +1,95 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
-    <title>Home Appliances</title>
-</head>
-<body>
-    <header>
-        <h1>Home Appliances</h1>
-    </header>
-    <main>
-        <section class="product-list">
-            <div class="product">
-                <h2>Samsung 65" OLED TV</h2>
-                <p>Key Specs: Display Type
-                                LED
-                            Resolution
-                            4K (2160p)
-                        Screen Size Class
-                            55 inches
-                    High Dynamic Range (HDR)
-                                Yes
-                    High Dynamic Range Format
-        Dolby Vision, HDR 10+, HDR 10, Hybrid Log-Gamma (HLG)
-                    LED Panel Type
-                        QLED
-                </p>
-                <p>Price: $10</p>
-                <button class="add-to-cart">Add to Cart</button>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>
+            Coursefinder Webapp
+        </title>
+
+        <!-- Styles -->
+        <link rel="stylesheet" href="style_files\general.css">
+        <link rel="stylesheet" href="style_files\header.css">
+        <link rel="stylesheet" href="style_files\searchbar.css">
+        <link rel="stylesheet" href="style_files\list.css">
+
+        <!-- Scripts -->
+        <script src="scripts\list.js" defer></script>
+        
+    </head>
+    <body>
+        <!-- KSU Banner -->
+        <div class="floating_header">
+            <img class="header_image" src="resources\ksu_banner.png" alt="KSU Banner">
+            <a class="picture_button" title="Return to Top" href="#top">
+                <div class="picture_button_bg"></div>
+                <img class="picture_button_img" src="resources\return_to_top.webp" alt="Return To Top">
+            </a>
+        </div>
+
+        <!-- Search Bar -->
+        <div class="floating_searchbar">
+            <!-- Prefix, Track, and Number -->
+            <div class="prefix_number">
+                <div class="flex_row_div">
+                    <label class="search_lable space_after">Prefix:</label>
+                    <select id="prefix_selector" onchange="filter_results()" class="search_lable searchbar_height">
+                        <option value="All Prefixes" selected>All Prefixes</option>
+                        <option value="CSE">CSE</option>
+                        <option value="IT">IT</option>
+                    </select>
+                    <label class="search_lable space_after list_indent">Track:</label>
+                    <select id="track_selector" onchange="filter_results()" class="search_lable searchbar_height">
+                        <option value="All Tracks" selected>All Tracks</option>
+                        <option value="MSIT">MSIT</option>
+                    </select>
+                </div>
+                <div class="flex_row_div">
+                    <label class="search_lable space_after">Course Number:</label>
+                    <input id="search_bar" onchange="filter_results()" class="search_lable searchbar_height searchbar_deco" type="text" name="" placeholder="Course Number">
+                    <div onclick="filter_results()" class="picture_button searchbar_image_button" title="Search">
+                        <div class="picture_button_bg"></div>
+                        <img class="picture_button_img" src="resources\search.webp" alt="Search">
+                    </div>
+                </div>
             </div>
-            <div class="product">
-                <h2>Product 2</h2>
-                <p>Price: $20</p>
-                <button class="add-to-cart">Add to Cart</button>
+
+            <!-- Offered Semester and View -->
+            <div class="track_view">
+                <div class="flex_row_div">
+                    <label class="search_lable space_after">Offered:</label>
+                    <select id="offered_selector" onchange="filter_results()" class="search_lable searchbar_height">
+                        <option value="All Semesters" selected>All Semesters</option>
+                        <option value="fall_odd">Fall Odd</option>
+                        <option value="summer_odd">Summer Odd</option>
+                        <option value="spring_odd">Spring Odd</option>
+                        <option value="fall_even">Fall Even</option>
+                        <option value="summer_even">Summer Even</option>
+                        <option value="spring_even">Spring Even</option>
+                    </select>
+                </div>
+                <div class="flex_row_div">
+                    <div onclick="load_list_element()" class="picture_button searchbar_image_button space_after" title="List View">
+                        <div class="picture_button_bg"></div>
+                        <img class="picture_button_img" src="resources\list_view.webp " alt="List View">
+                    </div>
+                    <div onclick="load_list_element()" class="picture_button searchbar_image_button" title="Schedule View">
+                        <div class="picture_button_bg"></div>
+                        <img class="picture_button_img" src="resources\schedule_view.webp" alt="Schedule View">
+                    </div>
+                </div>
             </div>
-            <div class="product">
-                <h2>Product 3</h2>
-                <p>Price: $30</p>
-                <button class="add-to-cart">Add to Cart</button>
-            </div>
-        </section>
-        <section class="shopping-cart">
-            <h2>Shopping Cart</h2>
-            <ul id="cart-items">
-            </ul>
-            <p>Total: $<span id="cart-total">0</span></p>
-        </section>
-    </main>
-    <script src="script.js"></script>
-</body>
+        </div>
+
+        <!-- Main List -->
+        <div id="list_body" class="main_list">
+            
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+
+        </div>
+    </body>
 </html>

@@ -1,0 +1,15 @@
+.floating_header
+{
+    display: flex;
+    flex-direction: row;
+    height: 60px;
+    background-color: rgb(0, 0, 0);
+    position: sticky;
+    justify-content: space-between;
+    top: 0px;
+}
+
+.header_image
+{
+    margin: 6px;
+}

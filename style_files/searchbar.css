@@ -1,0 +1,68 @@
+.floating_searchbar
+{
+    height: 125px;
+    background-color: #eeeeee;
+    border-bottom: 2px;
+    border-bottom-style: solid;
+    border-bottom-color: rgb(190, 190, 190);
+    position: sticky;
+    top: 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.prefix_number
+{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 850px;
+    width: 100%;
+    margin: 10px;
+}
+
+.track_view
+{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 850px;
+    width: 100%;
+    margin: 10px;
+}
+
+.flex_row_div
+{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.space_after
+{
+    margin-right: 10px;
+}
+
+.search_lable
+{
+    font-size: 16px;
+}
+
+.searchbar_image_button
+{
+    height: 50px;
+}
+
+.searchbar_height
+{
+    height: 44px;
+}
+
+.searchbar_deco
+{
+    box-shadow: inset 10px 10px 8px rgba(0, 0, 0, 0.2);
+}
