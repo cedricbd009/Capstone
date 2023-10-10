@@ -1,87 +1,24 @@
-var desc_info_data = [{
-    "_id": {
-      "$oid": "64fa7e21138468174c1878c0"
-    },
-    "Prefix": "IT",
-    "Course_Number": "5413",
-    "Course_Name": "Software Design and Development",
-    "Credit_Hours": "3",
-    "Prerequisite": "None",
-    "Description": "In this course, students analyze and formulate software solutions appropriate for an IT organization. Foundational program constructs, software design and development are covered.",
-    "Course_Schedule": {
-      "Fall_Odd": "E/O",
-      "Summer_Odd": "-",
-      "Spring_Odd": "E/O",
-      "Fall_Even": "E/O",
-      "Summer_Even": "-",
-      "Spring_Even": "E/O"
-    },
-    "Memo": "None",
-    "Track": "MSIT"
-  },
-  {
-    "_id": {
-      "$oid": "64fb85a2c44643ee5af659be"
-    },
-    "Prefix": "CSE",
-    "Course_Number": "7983",
-    "Course_Name": "Graduate Internship",
-    "Credit_Hours": "3",
-    "Prerequisite": "9 CSE graduate credit hours and be in good academic standing",
-    "Description": "This course gives students the opportunity to apply knowledge of computing in a realistic practical project. Students are expected to write a research paper based on their experiences. 150+ hours per semester required at an internship site. The course can not be repeated for credit.",
-    "Course_Schedule": {
-      "Fall_Odd": "As Needed",
-      "Summer_Odd": "As Needed",
-      "Spring_Odd": "As Needed",
-      "Fall_Even": "As Needed",
-      "Summer_Even": "As Needed",
-      "Spring_Even": "As Needed"
-    },
-    "Memo": "None",
-    "Track": "CSE, MSIT"
-  },
-  {
-    "_id": {
-      "$oid": "64fba336c44643ee5af659bf"
-    },
-    "Prefix": "IT",
-    "Course_Number": "7900",
-    "Course_Name": "Special Topics in Information Technology",
-    "Credit_Hours": "1-3",
-    "Prerequisite": "None",
-    "Description": "Special topics selected by the Department Chair. Offered on a demand basis.",
-    "Course_Schedule": {
-      "Fall_Odd": "As Needed",
-      "Summer_Odd": "As Needed",
-      "Spring_Odd": "As Needed",
-      "Fall_Even": "As Needed",
-      "Summer_Even": "As Needed",
-      "Spring_Even": "As Needed"
-    },
-    "Memo": "None",
-    "Track": "MSIT"
-  }];
+fetch('https://us-east-1.aws.data.mongodb-api.com/app/database_requester-vbliq/endpoint/courses')
+    .then(res => {
+        if (res.ok == true)
+        {
+            console.log("We got the course data.")
+        }
+        else
+        {
+            console.log("Could not get course data.")
+        }
+        return res
+    })
+    .then(res => res.json())
+    .then(data => 
+    {
+        desc_info_data = data;
+    })
+    .catch(error => console.log(error));
+
+var desc_info_data = [];
 var coord_info_data = [{
-    "_id": {
-      "$oid": "65032e143c3af5702e399632"
-    },
-    "Course_Number": "CSE 7983",
-    "First_Name": "Darin",
-    "Last_Name": "Morrow",
-    "Email": "dmorro21@kennesaw.edu",
-    "D2L_Master_Link": "https://kennesaw.view.usg.edu/d2l/home/946796"
-  },
-  {
-    "_id": {
-      "$oid": "650b4c9549a0ccc43583685e"
-    },
-    "Course_Number": "IT 7900",
-    "First_Name": "Shirley",
-    "Last_Name": "Tian",
-    "Email": "xtian2@kennesaw.edu",
-    "D2L_Master_Link": "https://kennesaw.view.usg.edu/d2l/home/2329573"
-  },
-  {
     "_id": {
       "$oid": "650b4afa49a0ccc435836842"
     },
@@ -92,30 +29,6 @@ var coord_info_data = [{
     "D2L_Master_Link": "https://kennesaw.view.usg.edu/d2l/home/2805854"
   }];
 var ext_info_data = [{
-    "_id": {
-      "$oid": "650fa5d0af687038dd365286"
-    },
-    "Course_Number": "IT 7900",
-    "Syllabus_Link": "https://drive.google.com/file/d/12HApr3QU_-mUEJqp8kMffe6BsMW6E0Ko/view?usp=sharing",
-    "Course_Learning_Outcomes": [
-      "None"
-    ],
-    "Offering_History": {
-      "Fall_2023": "https://owlexpress.kennesaw.edu/prodban/bwckctlg.p_disp_listcrse?term_in=202308&subj_in=IT&crse_in=7900&schd_in=A",
-      "Summer_2023": "Not offered",
-      "Spring_2023": "Not offered",
-      "Fall_2022": "Not offered",
-      "Summer_2022": "Not offered",
-      "Spring_2022": "Not offered",
-      "Fall_2021": "Not offered",
-      "Summer_2021": "Not offered",
-      "Spring_2021": "Not offered"
-    },
-    "Course_Catalog_Link": "https://catalog.kennesaw.edu/preview_course.php?catoid=67&coid=104313",
-    "OwlExpress_Link": "https://owlexpress.kennesaw.edu/prodban/bwckctlg.p_disp_course_detail?cat_term_in=202308&subj_code_in=IT&crse_numb_in=7900",
-    "Curriculog_Link": "https://kennesaw.curriculog.com/proposal:12535/form"
-  },
-  {
     "_id": {
       "$oid": "650daf6df2a8e3746ec1b7e8"
     },
@@ -140,30 +53,6 @@ var ext_info_data = [{
     "Course_Catalog_Link": "https://catalog.kennesaw.edu/preview_course.php?catoid=67&coid=104084",
     "OwlExpress_Link": "https://owlexpress.kennesaw.edu/prodban/bwckctlg.p_disp_course_detail?cat_term_in=202308&subj_code_in=IT&crse_numb_in=5413",
     "Curriculog_Link": "https://kennesaw.curriculog.com/proposal:11270/form"
-  },
-  {
-    "_id": {
-      "$oid": "650da3aaf2a8e3746ec1b7e5"
-    },
-    "Course_Number": "CSE 7983",
-    "Syllabus_Link": "https://drive.google.com/file/d/1IF5imM_JSyq6RJxH-mA4FbkOO0PHRKWX/view?usp=sharing",
-    "Course_Learning_Outcomes": [
-      "None"
-    ],
-    "Offering_History": {
-      "Fall_2023": "https://owlexpress.kennesaw.edu/prodban/bwckctlg.p_disp_listcrse?term_in=202308&subj_in=CSE&crse_in=7983&schd_in=A",
-      "Summer_2023": "https://owlexpress.kennesaw.edu/prodban/bwckctlg.p_disp_listcrse?term_in=202305&subj_in=CSE&crse_in=7983&schd_in=A",
-      "Spring_2023": "https://owlexpress.kennesaw.edu/prodban/bwckctlg.p_disp_listcrse?term_in=202301&subj_in=CSE&crse_in=7983&schd_in=A",
-      "Fall_2022": "https://owlexpress.kennesaw.edu/prodban/bwckctlg.p_disp_listcrse?term_in=202208&subj_in=CSE&crse_in=7983&schd_in=A",
-      "Summer_2022": "https://owlexpress.kennesaw.edu/prodban/bwckctlg.p_disp_listcrse?term_in=202205&subj_in=CSE&crse_in=7983&schd_in=A",
-      "Spring_2022": "https://owlexpress.kennesaw.edu/prodban/bwckctlg.p_disp_listcrse?term_in=202201&subj_in=CSE&crse_in=7983&schd_in=A",
-      "Fall_2021": "https://owlexpress.kennesaw.edu/prodban/bwckctlg.p_disp_listcrse?term_in=202108&subj_in=CSE&crse_in=7983&schd_in=A",
-      "Summer_2021": "https://owlexpress.kennesaw.edu/prodban/bwckctlg.p_disp_listcrse?term_in=202105&subj_in=CSE&crse_in=7983&schd_in=A",
-      "Spring_2021": "https://owlexpress.kennesaw.edu/prodban/bwckctlg.p_disp_listcrse?term_in=202101&subj_in=CSE&crse_in=7983&schd_in=A"
-    },
-    "Course_Catalog_Link": "https://catalog.kennesaw.edu/preview_course.php?catoid=67&coid=104697",
-    "OwlExpress_Link": "https://owlexpress.kennesaw.edu/prodban/bwckctlg.p_disp_course_detail?cat_term_in=202308&subj_code_in=CSE&crse_numb_in=7983",
-    "Curriculog_Link": "https://kennesaw.curriculog.com/proposal:10878/form"
   }];
 var alg_info_data = [{
     "_id": {
@@ -175,30 +64,6 @@ var alg_info_data = [{
     "ALG_Developer": "Meng Han",
     "Latest_ALG_Round": "R21",
     "Latest_Developer": "Meng Han",
-    "Note": "None"
-  },
-  {
-    "_id": {
-      "$oid": "6503ae08e225f40fd02b3d4c"
-    },
-    "Course_Number": "CSE 7983",
-    "ALG_Eligible": "No",
-    "History_Round_And_Developer": "None",
-    "ALG_Developer": "None",
-    "Latest_ALG_Round": "None",
-    "Latest_Developer": "None",
-    "Note": "None"
-  },
-  {
-    "_id": {
-      "$oid": "65065613dbe0409a4f821ed8"
-    },
-    "Course_Number": "IT 7900",
-    "ALG_Eligible": "No",
-    "History_Round_And_Developer": "None",
-    "ALG_Developer": "None",
-    "Latest_ALG_Round": "None",
-    "Latest_Developer": "None",
     "Note": "None"
   }];
 
@@ -428,12 +293,12 @@ function sleep(miliseconds)
 
 function build_offering_history(semester, year)
 {
-    if (ext_info_data[i].Offering_History[semester + "_" + year].toLowerCase() == "not offered")
+    if (ext_info_data[0].Offering_History[semester + "_" + year].toLowerCase() == "not offered")
     {
         return `
         <div class=\"side_by_side\">
             <p class=\"list_indent list_pargraph_no_break\">` + semester + ` ` + year + `: </p>
-            <p class=\"list_paragraph_spacer\">` + ext_info_data[i].Offering_History[semester + "_" + year] + `</p>
+            <p class=\"list_paragraph_spacer\">` + ext_info_data[0].Offering_History[semester + "_" + year] + `</p>
         </div>`;
     }
     else
@@ -441,7 +306,7 @@ function build_offering_history(semester, year)
         return `
         <div class=\"side_by_side\">
             <p class=\"list_indent list_pargraph_no_break\">` + semester + ` ` + year + `: </p>
-            <a class=\"list_paragraph_spacer list_link\" href=\"` + ext_info_data[i].Offering_History[semester + "_" + year] + `\" onclick=\"event.stopPropagation();\" target=\"_blank\">` + ext_info_data[i].Offering_History[semester + "_" + year] + `</a>
+            <a class=\"list_paragraph_spacer list_link\" href=\"` + ext_info_data[0].Offering_History[semester + "_" + year] + `\" onclick=\"event.stopPropagation();\" target=\"_blank\">` + ext_info_data[0].Offering_History[semester + "_" + year] + `</a>
         </div>`;
     }
 }
@@ -462,21 +327,21 @@ function load_list_element()
         var learning_outcomes_list = ""
         var offering_history_list = ""
 
-        if (ext_info_data[i].Course_Learning_Outcomes[0] == "None")
+        if (ext_info_data[0].Course_Learning_Outcomes[0] == "None")
         {
             learning_outcomes_list = `
             <div class=\"side_by_side\">
-                <p class=\"list_paragraph_spacer list_indent\">` + ext_info_data[i].Course_Learning_Outcomes[0] + `</p>
+                <p class=\"list_paragraph_spacer list_indent\">` + ext_info_data[0].Course_Learning_Outcomes[0] + `</p>
             </div>`
         }
         else
         {
-            for (k = 0; k < ext_info_data[i].Course_Learning_Outcomes.length; k ++)
+            for (k = 0; k < ext_info_data[0].Course_Learning_Outcomes.length; k ++)
             {
                 learning_outcomes_list += `
                 <div class=\"side_by_side\">
                     <p class=\"list_indent\">` + (k + 1) + `. </p>
-                    <p class=\"list_paragraph_spacer\">` + ext_info_data[i].Course_Learning_Outcomes[k] + `</p>
+                    <p class=\"list_paragraph_spacer\">` + ext_info_data[0].Course_Learning_Outcomes[k] + `</p>
                 </div>`
             }
         }
@@ -582,28 +447,28 @@ function load_list_element()
                             <p></p>
                             <div class=\"side_by_side\">
                                 <p>Course Coordinator: </p>
-                                <p class=\"list_paragraph_spacer\">` + coord_info_data[i].First_Name + ` ` + coord_info_data[i].Last_Name + `</p>
+                                <p class=\"list_paragraph_spacer\">` + coord_info_data[0].First_Name + ` ` + coord_info_data[0].Last_Name + `</p>
                             </div>
                         </div>
                         <div id=\"coordinator_email` + i + `\">
                             <p></p>
                             <div class=\"side_by_side\">
                                 <p>Coordinator Email: </p>
-                                <p class=\"list_paragraph_spacer\">` + coord_info_data[i].Email + `</p>
+                                <p class=\"list_paragraph_spacer\">` + coord_info_data[0].Email + `</p>
                             </div>
                         </div>
                         <div id=\"d2l_master_link` + i + `\">
                             <p></p>
                             <div class=\"side_by_side\">
                                 <p>D2L Master Link: </p>
-                                <a class=\"list_paragraph_spacer list_link\" href=\"` + coord_info_data[i].D2L_Master_Link + `\" onclick=\"event.stopPropagation();\" target=\"_blank\">` + coord_info_data[i].D2L_Master_Link + `</a>
+                                <a class=\"list_paragraph_spacer list_link\" href=\"` + coord_info_data[0].D2L_Master_Link + `\" onclick=\"event.stopPropagation();\" target=\"_blank\">` + coord_info_data[0].D2L_Master_Link + `</a>
                             </div>
                         </div>
                         <div id=\"syllabus_link` + i + `\">
                             <p></p>
                             <div class=\"side_by_side\">
                                 <p>Syllabus Link: </p>
-                                <a class=\"list_paragraph_spacer list_link\" href=\"` + ext_info_data[i].Syllabus_Link + `\" onclick=\"event.stopPropagation();\" target=\"_blank\">` + ext_info_data[i].Syllabus_Link + `</a>
+                                <a class=\"list_paragraph_spacer list_link\" href=\"` + ext_info_data[0].Syllabus_Link + `\" onclick=\"event.stopPropagation();\" target=\"_blank\">` + ext_info_data[0].Syllabus_Link + `</a>
                             </div>
                         </div>
                         <div id=\"offering_history` + i + `\">
@@ -617,63 +482,63 @@ function load_list_element()
                             <p></p>
                             <div class=\"side_by_side\">
                                 <p>Course Catalog Link: </p>
-                                <a class=\"list_paragraph_spacer list_link\" href=\"` + ext_info_data[i].Course_Catalog_Link + `\" onclick=\"event.stopPropagation();\" target=\"_blank\">` + ext_info_data[i].Course_Catalog_Link + `</a>
+                                <a class=\"list_paragraph_spacer list_link\" href=\"` + ext_info_data[0].Course_Catalog_Link + `\" onclick=\"event.stopPropagation();\" target=\"_blank\">` + ext_info_data[0].Course_Catalog_Link + `</a>
                             </div>
                         </div>
                         <div id=\"owlexpress_link` + i + `\">
                             <p></p>
                             <div class=\"side_by_side\">
                                 <p class=\"list_pargraph_no_break\">OwlExpress Link: </p>
-                                <a class=\"list_paragraph_spacer list_link\" href=\"` + ext_info_data[i].OwlExpress_Link + `\" onclick=\"event.stopPropagation();\" target=\"_blank\">` + ext_info_data[i].OwlExpress_Link + `</a>
+                                <a class=\"list_paragraph_spacer list_link\" href=\"` + ext_info_data[0].OwlExpress_Link + `\" onclick=\"event.stopPropagation();\" target=\"_blank\">` + ext_info_data[0].OwlExpress_Link + `</a>
                             </div>
                         </div>
                         <div id=\"curriculog_link` + i + `\">
                             <p></p>                
                             <div class=\"side_by_side\">
                                 <p>Curriculog Link: </p>
-                                <a class=\"list_paragraph_spacer list_link\" href=\"` + ext_info_data[i].Curriculog_Link + `\" onclick=\"event.stopPropagation();\" target=\"_blank\">` + ext_info_data[i].Curriculog_Link + `</a>
+                                <a class=\"list_paragraph_spacer list_link\" href=\"` + ext_info_data[0].Curriculog_Link + `\" onclick=\"event.stopPropagation();\" target=\"_blank\">` + ext_info_data[0].Curriculog_Link + `</a>
                             </div>
                         </div>
                         <div id=\"alg_eligibility` + i + `\">
                             <p></p>
                             <div class=\"side_by_side\">
                                 <p>ALG Eligibility: </p>
-                                <p class=\"list_paragraph_spacer\">` + alg_info_data[i].ALG_Eligible + `</p>
+                                <p class=\"list_paragraph_spacer\">` + alg_info_data[0].ALG_Eligible + `</p>
                             </div>
                         </div>
                         <div id=\"alg_round_history` + i + `\">
                             <p></p>
                             <div class=\"side_by_side\">
                                 <p>ALG Round History: </p>
-                                <p class=\"list_paragraph_spacer\">` + alg_info_data[i].History_Round_And_Developer + `</p>
+                                <p class=\"list_paragraph_spacer\">` + alg_info_data[0].History_Round_And_Developer + `</p>
                             </div>
                         </div>
                         <div id=\"alg_developer` + i + `\">
                             <p></p>
                             <div class=\"side_by_side\">
                                 <p>ALG Developer: </p>
-                                <p class=\"list_paragraph_spacer\">` + alg_info_data[i].ALG_Developer + `</p>
+                                <p class=\"list_paragraph_spacer\">` + alg_info_data[0].ALG_Developer + `</p>
                             </div>
                         </div>
                         <div id=\"latest_alg_round` + i + `\">
                             <p></p>
                             <div class=\"side_by_side\">
                                 <p>Latest ALG Round: </p>
-                                <p class=\"list_paragraph_spacer\">` + alg_info_data[i].Latest_ALG_Round + `</p>
+                                <p class=\"list_paragraph_spacer\">` + alg_info_data[0].Latest_ALG_Round + `</p>
                             </div>
                         </div>
                         <div id=\"latest_alg_developer` + i + `\">
                             <p></p>
                             <div class=\"side_by_side\">
                                 <p>Latest ALG Developer: </p>
-                                <p class=\"list_paragraph_spacer\">` + alg_info_data[i].Latest_Developer + `</p>
+                                <p class=\"list_paragraph_spacer\">` + alg_info_data[0].Latest_Developer + `</p>
                             </div>
                         </div>
                         <div id=\"memo` + i + `\">
                             <p></p>
                             <div class=\"side_by_side\">
                                 <p>Memo: </p>
-                                <p class=\"list_paragraph_spacer\">` + desc_info_data[i].Memo + `</p>
+                                <p class=\"list_paragraph_spacer\">` + desc_info_data[0].Memo + `</p>
                             </div>
                         </div>
                     </div>
