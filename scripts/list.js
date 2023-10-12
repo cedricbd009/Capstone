@@ -122,6 +122,10 @@ async function swap_tab(switch_tab, id, animate)
     if (animate == true)
     {
         document.getElementById("course_body" + id).style.gridTemplateRows = "0fr";
+        if (document.getElementById("legend_table" + id).style.gridTemplateRows == "1fr")
+        {
+            open_legend(id);
+        }
         await sleep(500);
     }
 
