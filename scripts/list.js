@@ -465,7 +465,7 @@ function load_list_element()
         htmlObj.innerHTML = `
         <div>
             <div onclick=\"open_course(` + i + `)\" class=\"list_element\">  
-                <a id=\"course_number` + i + `\" class=\"bold list_link size_to_content\" href=\"./Viewer.html?course=` + all_course_data[i].Prefix + all_course_data[i].Course_Number + `\" onclick=\"event.stopPropagation();\" target=\"_blank\">` + all_course_data[i].Prefix + ` ` + all_course_data[i].Course_Number + `: ` + all_course_data[i].Course_Name + `</a>
+                <a id=\"course_number` + i + `\" class=\"bold list_link size_to_content\" href=\"./Viewer?course=` + all_course_data[i].Prefix + all_course_data[i].Course_Number + `\" onclick=\"event.stopPropagation();\" target=\"_blank\">` + all_course_data[i].Prefix + ` ` + all_course_data[i].Course_Number + `: ` + all_course_data[i].Course_Name + `</a>
                 <div id=\"course_body` + i + `\" class=\"animate_open\">
                     <div>
                         <div id=\"credit_hours` + i + `\" class=\"list_fade_element\">
