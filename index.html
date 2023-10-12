@@ -7,12 +7,13 @@
         <title>
             Coursefinder Webapp
         </title>
-        
+
         <!-- Styles -->
         <link rel="stylesheet" href="style_files\general.css">
         <link rel="stylesheet" href="style_files\header.css">
         <link rel="stylesheet" href="style_files\searchbar.css">
         <link rel="stylesheet" href="style_files\list.css">
+        <link rel="stylesheet" href="style_files\table.css">
 
         <!-- Scripts -->
         <script src="scripts\list.js" defer></script>
@@ -71,14 +72,8 @@
                     </select>
                 </div>
                 <div class="flex_row_div">
-                    <div onclick="load_list_element()" class="picture_button searchbar_image_button space_after" title="List View">
-                        <div class="picture_button_bg"></div>
-                        <img class="picture_button_img" src="resources\list_view.webp " alt="List View">
-                    </div>
-                    <div onclick="load_list_element()" class="picture_button searchbar_image_button" title="Schedule View">
-                        <div class="picture_button_bg"></div>
-                        <img class="picture_button_img" src="resources\schedule_view.webp" alt="Schedule View">
-                    </div>
+                    <label class="search_lable space_after">Coordinator Name:</label>
+                    <input id="filter_coodinator" onchange="filter_results()" class="search_lable searchbar_height pad_searchbar" type="text" name="" placeholder="Coordinator Name">
                 </div>
             </div>
         </div>

@@ -10,7 +10,7 @@ var desc_info_enum =
 
 var coord_info_enum = 
 [
-    "coordinator_name", "coordinator_email", "d2l_master_link"
+    "coordinator_table"
 ];
 
 var ext_info_enum = 
@@ -27,7 +27,6 @@ async function swap_tab(switch_tab, animate)
 {
     var tabs = document.getElementById("tabs_row").children;
     var body = document.getElementById("course_body").children[0].children;
-    var description = document.getElementById("description");
 
     for (j = 0; j < tabs.length; j ++)
     {
@@ -42,16 +41,20 @@ async function swap_tab(switch_tab, animate)
     if (animate == true)
     {
         document.getElementById("course_body").style.gridTemplateRows = "0fr";
+        if (document.getElementById("legend_table").style.gridTemplateRows == "1fr")
+        {
+            open_legend();
+        }
         await sleep(500);
     }
 
+    document.getElementById("coordinator_label").style.display = "block";
+
     if (switch_tab == "desc_info")
     {
-        description.style.display = "block";
-
         for (i = 0; i < body.length; i++)
         {
-            if (desc_info_enum.includes(body[i].getAttribute("id").replace(/[0-9]*$/g, ""))) 
+            if (desc_info_enum.includes(body[i].getAttribute("id"))) 
             {
                 body[i].style.display = "block";
             }
@@ -63,11 +66,11 @@ async function swap_tab(switch_tab, animate)
     }
     else if (switch_tab == "coord_info")
     {
-        description.style.display = "none";
-
+        document.getElementById("coordinator_label").style.display = "none";
+        
         for (i = 0; i < body.length; i++)
         {
-            if (coord_info_enum.includes(body[i].getAttribute("id").replace(/[0-9]*$/g, "")))
+            if (coord_info_enum.includes(body[i].getAttribute("id")))
             {
                 body[i].style.display = "block";
             }
@@ -79,11 +82,9 @@ async function swap_tab(switch_tab, animate)
     }
     else if (switch_tab == "ext_info")
     {
-        description.style.display = "none";
-
         for (i = 0; i < body.length; i++)
         {
-            if (ext_info_enum.includes(body[i].getAttribute("id").replace(/[0-9]*$/g, "")))
+            if (ext_info_enum.includes(body[i].getAttribute("id")))
             {
                 body[i].style.display = "block";
             }
@@ -95,11 +96,9 @@ async function swap_tab(switch_tab, animate)
     }
     else if (switch_tab == "alg_info")
     {
-        description.style.display = "none";
-
         for (i = 0; i < body.length; i++)
         {
-            if (alg_info_enum.includes(body[i].getAttribute("id").replace(/[0-9]*$/g, "")))
+            if (alg_info_enum.includes(body[i].getAttribute("id")))
             {
                 body[i].style.display = "block";
             }
@@ -111,8 +110,6 @@ async function swap_tab(switch_tab, animate)
     }
     else
     {
-        description.style.display = "block";
-
         for (i = 0; i < body.length; i++)
         {
             body[i].style.display = "block";
@@ -123,6 +120,22 @@ async function swap_tab(switch_tab, animate)
     {
         document.getElementById("course_body").style.gridTemplateRows = "1fr";
     }
+}
+
+
+
+function open_legend()
+{
+    if (document.getElementById("legend_table").style.gridTemplateRows == "1fr")
+    {
+        document.getElementById("legend_table").style.gridTemplateRows = "0fr";
+        document.getElementById("legend_button").innerHTML = "Open Legend";
+    }
+    else
+    {
+        document.getElementById("legend_table").style.gridTemplateRows = "1fr";
+        document.getElementById("legend_button").innerHTML = "Close Legend";
+    }    
 }
 
 
@@ -249,50 +262,58 @@ function load_page_element()
                     <div class=\"side_by_side\">
                         <p>Course Permanent Schedule:</p>
                     </div>
-                    <div class=\"side_by_side\">
-                        <p class=\"list_indent\">Fall Odd: </p>
-                        <p id=\"fall_odd_value\" class=\"list_paragraph_spacer\">` + course.Course_Schedule.Fall_Odd + `</p>
+                    <div class=\"schedule_table\">
+                        <p class=\"header_row table_data\">Fall Odd</p>
+                        <p class=\"header_row table_data\">Summer Odd</p>
+                        <p class=\"header_row table_data\">Spring Odd</p>
+                        <p class=\"header_row table_data\">Fall Even</p>
+                        <p class=\"header_row table_data\">Summer Even</p>
+                        <p class=\"header_row table_data\">Spring Even</p>
+                        <p class=\"data_row table_data\">` + course.Course_Schedule.Fall_Odd + `</p>
+                        <p class=\"data_row table_data\">` + course.Course_Schedule.Summer_Odd + `</p>
+                        <p class=\"data_row table_data\">` + course.Course_Schedule.Spring_Odd + `</p>
+                        <p class=\"data_row table_data\">` + course.Course_Schedule.Fall_Even + `</p>
+                        <p class=\"data_row table_data\">` + course.Course_Schedule.Summer_Even + `</p>
+                        <p class=\"data_row table_data\">` + course.Course_Schedule.Spring_Even + `</p>
                     </div>
-                    <div class=\"side_by_side\">
-                        <p class=\"list_indent\">Summer Odd: </p>
-                        <p id=\"summer_odd_value\" class=\"list_paragraph_spacer\">` + course.Course_Schedule.Summer_Odd + `</p>
+                    <button id=\"legend_button\" onclick=\"event.stopPropagation(); open_legend();\" class=\"legend_button\">Open Legend</button>
+                    <div id=\"legend_table\" class=\"animate_open\">
+                        <div>
+                            <div class=\"legend_table\">
+                                <p class=\"header_row table_data\">Symbol</p>
+                                <p class=\"header_row table_data\">Meaning</p>
+                                <p class=\"data_row table_data\">D</p>
+                                <p class=\"data_row table_data\">Offered during the day (8am-5pm)</p>
+                                <p class=\"data_row table_data\">E</p>
+                                <p class=\"data_row table_data\">Offered during the evening (5pm-10pm)</p>
+                                <p class=\"data_row table_data\">O</p>
+                                <p class=\"data_row table_data\">Offered online</p>
+                                <p class=\"data_row table_data\">XY</p>
+                                <p class=\"data_row table_data\">Offered both X and Y. E.g. "EO" means course is offered both evening and online</p>
+                                <p class=\"data_row table_data\">X/Y</p>
+                                <p class=\"data_row table_data\">Offered either X or Y with preference for X</p>
+                                <p class=\"data_row table_data\">+</p>
+                                <p class=\"data_row table_data\">Offered. Mode and time undetermined</p>
+                                <p class=\"data_row table_data\">-</p>
+                                <p class=\"data_row table_data\">Not guaranteed to be offered</p>
+                            </div>
+                        </div>
                     </div>
-                    <div class=\"side_by_side\">
-                        <p class=\"list_indent\">Spring Odd: </p>
-                        <p id=\"spring_odd_value\" class=\"list_paragraph_spacer\">` + course.Course_Schedule.Spring_Odd + `</p>
-                    </div>
-                    <div class=\"side_by_side\">
-                        <p class=\"list_indent\">Fall Even: </p>
-                        <p id=\"fall_even_value\" class=\"list_paragraph_spacer\">` + course.Course_Schedule.Fall_Even + `</p>
-                    </div>
-                    <div class=\"side_by_side\">
-                        <p class=\"list_indent\">Summer Even: </p>
-                        <p id=\"summer_even_value\" class=\"list_paragraph_spacer\">` + course.Course_Schedule.Summer_Even + `</p>
-                    </div>
-                    <div class=\"side_by_side\">
-                        <p class=\"list_indent\">Spring Even: </p>
-                        <p id=\"spring_even_value\" class=\"list_paragraph_spacer\">` + course.Course_Schedule.Spring_Even + `</p>
+                    <div class=\"table_padder\">
                     </div>
                 </div>
-                <div id=\"coordinator_name\">
+                <div id=\"coordinator_table\">
                     <p></p>
-                    <div class=\"side_by_side\">
-                        <p>Course Coordinator: </p>
-                        <p class=\"list_paragraph_spacer\">` + course.First_Name + ` ` + course.Last_Name + `</p>
+                    <div id=\"coordinator_label\" class=\"side_by_side\">
+                        <p>Course Coordinator:</p>
                     </div>
-                </div>
-                <div id=\"coordinator_email\">
-                    <p></p>
-                    <div class=\"side_by_side\">
-                        <p>Coordinator Email: </p>
-                        <p class=\"list_paragraph_spacer\">` + course.Email + `</p>
-                    </div>
-                </div>
-                <div id=\"d2l_master_link\">
-                    <p></p>
-                    <div class=\"side_by_side\">
-                        <p>D2L Master Link: </p>
-                        <a class=\"list_paragraph_spacer list_link\" href=\"` + course.D2L_Master_Link + `\" onclick=\"event.stopPropagation();\" target=\"_blank\">` + course.D2L_Master_Link + `</a>
+                    <div class=\"coordinator_table_deco\">
+                        <p class=\"header_row table_data\">Course Coordinator</p>
+                        <p class=\"header_row table_data\">Coordinator Email</p>
+                        <p class=\"header_row table_data\">D2L Master Link</p>
+                        <p class=\"data_row table_data\">` + course.First_Name + ` ` + course.Last_Name + `</p>
+                        <p class=\"data_row table_data\">` + course.Email + `</p>
+                        <a class=\"data_row table_data list_link\" href=\"` + course.D2L_Master_Link + `\" onclick=\"event.stopPropagation();\" target=\"_blank\">` + course.D2L_Master_Link + `</a>
                     </div>
                 </div>
                 <div id=\"syllabus_link\">
