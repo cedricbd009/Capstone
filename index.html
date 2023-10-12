@@ -7,7 +7,7 @@
         <title>
             Coursefinder Webapp
         </title>
-
+        
         <!-- Styles -->
         <link rel="stylesheet" href="style_files\general.css">
         <link rel="stylesheet" href="style_files\header.css">
@@ -42,12 +42,13 @@
                     <label class="search_lable space_after list_indent">Track:</label>
                     <select id="track_selector" onchange="filter_results()" class="search_lable searchbar_height">
                         <option value="All Tracks" selected>All Tracks</option>
+                        <option value="MSCSE">MSCSE</option>
                         <option value="MSIT">MSIT</option>
                     </select>
                 </div>
                 <div class="flex_row_div">
                     <label class="search_lable space_after">Course Number:</label>
-                    <input id="search_bar" onchange="filter_results()" class="search_lable searchbar_height searchbar_deco" type="text" name="" placeholder="Course Number">
+                    <input id="search_bar" onchange="filter_results()" class="search_lable searchbar_height" type="text" name="" placeholder="Course Number">
                     <div onclick="filter_results()" class="picture_button searchbar_image_button" title="Search">
                         <div class="picture_button_bg"></div>
                         <img class="picture_button_img" src="resources\search.webp" alt="Search">
@@ -61,12 +62,12 @@
                     <label class="search_lable space_after">Offered:</label>
                     <select id="offered_selector" onchange="filter_results()" class="search_lable searchbar_height">
                         <option value="All Semesters" selected>All Semesters</option>
-                        <option value="fall_odd">Fall Odd</option>
-                        <option value="summer_odd">Summer Odd</option>
-                        <option value="spring_odd">Spring Odd</option>
-                        <option value="fall_even">Fall Even</option>
-                        <option value="summer_even">Summer Even</option>
-                        <option value="spring_even">Spring Even</option>
+                        <option value="Fall_Odd">Fall Odd</option>
+                        <option value="Summer_Odd">Summer Odd</option>
+                        <option value="Spring_Odd">Spring Odd</option>
+                        <option value="Fall_Even">Fall Even</option>
+                        <option value="Summer_Even">Summer Even</option>
+                        <option value="Spring_Even">Spring Even</option>
                     </select>
                 </div>
                 <div class="flex_row_div">
@@ -85,11 +86,6 @@
         <!-- Main List -->
         <div id="list_body" class="main_list">
             
-        </div>
-
-        <!-- Footer -->
-        <div class="footer">
-
         </div>
     </body>
 </html>
