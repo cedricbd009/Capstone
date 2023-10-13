@@ -8,16 +8,15 @@
 .list_element
 {
     background-color: #eeeeee;
-    margin: 10px 40px;
-    padding: 20px;
+    margin: 1px;
     display: flex;
     flex-direction: column;
-    width: 800px;
+    width: 900px;
 }
 
-.show_pointer
+.list_size
 {
-    cursor: pointer;
+    width: 899px;
 }
 
 .animate_open

@@ -49,35 +49,18 @@ function sort_array_by_ind(array)
 
 
 
-async function open_course(id)
+
+function open_legend()
 {
-    if (document.getElementById("course_body" + id).style.gridTemplateRows == "1fr")
+    if (document.getElementById("legend_table").style.gridTemplateRows == "1fr")
     {
-        document.getElementById("course_body" + id).style.gridTemplateRows = "0fr";
-        document.getElementById("tabs" + id).style.gridTemplateRows = "0fr";
-        await sleep(500);
+        document.getElementById("legend_table").style.gridTemplateRows = "0fr";
+        document.getElementById("legend_button").innerHTML = "Open Legend";
     }
     else
     {
-        swap_tab('desc_info', id, false);
-        document.getElementById("course_body" + id).style.gridTemplateRows = "1fr";
-        document.getElementById("tabs" + id).style.gridTemplateRows = "1fr";
-    }    
-}
-
-
-
-function open_legend(id)
-{
-    if (document.getElementById("legend_table" + id).style.gridTemplateRows == "1fr")
-    {
-        document.getElementById("legend_table" + id).style.gridTemplateRows = "0fr";
-        document.getElementById("legend_button" + id).innerHTML = "Open Legend";
-    }
-    else
-    {
-        document.getElementById("legend_table" + id).style.gridTemplateRows = "1fr";
-        document.getElementById("legend_button" + id).innerHTML = "Close Legend";
+        document.getElementById("legend_table").style.gridTemplateRows = "1fr";
+        document.getElementById("legend_button").innerHTML = "Close Legend";
     }    
 }
 
@@ -90,7 +73,7 @@ function filter_results()
         if ((prefix_selector.value == "All Prefixes" || document.getElementById("course_number" + i).textContent.toLowerCase().includes(prefix_selector.value.toLowerCase() + " ") == true) &&
             (offered_selector.value == "All Semesters" ||  all_course_data[i].Course_Schedule[offered_selector.value].includes("-") == false) &&
             (search_bar.value == "" || document.getElementById("course_number" + i).textContent.includes(search_bar.value) == true) &&
-            (filter_coodinator.value == "" || (all_course_data[i].First_Name + " " + all_course_data[i].Last_Name).toLowerCase().includes(filter_coodinator.value.toLowerCase()) == true) &&
+            (filter_coodinator.value == "" || document.getElementById("coordinator_name" + i).textContent.toLowerCase().includes(filter_coodinator.value.toLowerCase()) == true) &&
             (track_selector.value == "All Tracks" || document.getElementById("course" + i).value.toLowerCase().includes(track_selector.value.toLowerCase()) == true))
         {
             document.getElementById("course" + i).style.gridTemplateRows = "1fr";
@@ -104,92 +87,146 @@ function filter_results()
 
 
 
-async function swap_tab(switch_tab, id, animate)
+function would_pass_filter(id)
 {
-    var tabs = document.getElementById("tabs_row" + id).children;
-    var body = document.getElementById("course_body" + id).children[0].children;
-
-    for (j = 0; j < tabs.length; j ++)
+    if ((prefix_selector.value == "All Prefixes" || document.getElementById("course_number" + id).textContent.toLowerCase().includes(prefix_selector.value.toLowerCase() + " ") == true) &&
+        (offered_selector.value == "All Semesters" ||  all_course_data[id].Course_Schedule[offered_selector.value].includes("-") == false) &&
+        (search_bar.value == "" || document.getElementById("course_number" + id).textContent.includes(search_bar.value) == true) &&
+        (filter_coodinator.value == "" || document.getElementById("coordinator_name" + id).textContent.toLowerCase().includes(filter_coodinator.value.toLowerCase()) == true) &&
+        (track_selector.value == "All Tracks" || document.getElementById("course" + id).value.toLowerCase().includes(track_selector.value.toLowerCase()) == true))
     {
-        tabs[j].className = tabs[j].className.replace(" tab_active", "");
-
-        if (tabs[j].getAttribute("id") == switch_tab)
-        {
-            tabs[j].className += " tab_active";
-        }
-    }
-
-    if (animate == true)
-    {
-        document.getElementById("course_body" + id).style.gridTemplateRows = "0fr";
-        if (document.getElementById("legend_table" + id).style.gridTemplateRows == "1fr")
-        {
-            open_legend(id);
-        }
-        await sleep(500);
-    }
-
-    if (switch_tab == "sched_info")
-    {
-        for (i = 0; i < body.length; i++)
-        {
-            if (sched_info_enum.includes(body[i].getAttribute("id").replace(/[0-9]*$/g, "")))
-            {
-                body[i].style.display = "block";
-            }
-            else
-            {
-                body[i].style.display = "none";
-            }
-        }
-    }
-    else if (switch_tab == "coord_info")
-    {
-        for (i = 0; i < body.length; i++)
-        {
-            if (coord_info_enum.includes(body[i].getAttribute("id").replace(/[0-9]*$/g, "")))
-            {
-                body[i].style.display = "block";
-            }
-            else
-            {
-                body[i].style.display = "none";
-            }
-        }
-    }
-    else if (switch_tab == "alg_info")
-    {
-        for (i = 0; i < body.length; i++)
-        {
-            if (alg_info_enum.includes(body[i].getAttribute("id").replace(/[0-9]*$/g, "")))
-            {
-                body[i].style.display = "block";
-            }
-            else
-            {
-                body[i].style.display = "none";
-            }
-        }
+        return true
     }
     else
     {
-        for (i = 0; i < body.length; i++)
+        return false
+    }    
+}
+
+
+
+async function swap_page(switch_tab, animate)
+{
+    for (id = 0; id < document.getElementById("list_body").children.length; id++)
+    {
+        if (animate == true)
         {
-            if (desc_info_enum.includes(body[i].getAttribute("id").replace(/[0-9]*$/g, ""))) 
-            {
-                body[i].style.display = "block";
-            }
-            else
-            {
-                body[i].style.display = "none";
-            }
+            document.getElementById("course" + id).style.gridTemplateRows = "0fr";
+            document.getElementById("schedule_header").style.gridTemplateRows = "0fr";
+            document.getElementById("coordinator_header").style.gridTemplateRows = "0fr";
+        }
+        else
+        {
+            document.getElementById("schedule_header").style.height = "0";
+            document.getElementById("coordinator_header").style.height = "0";
+        }
+
+        if (document.getElementById("legend_table").style.gridTemplateRows == "1fr")
+        {
+            open_legend();
         }
     }
 
     if (animate == true)
     {
-        document.getElementById("course_body" + id).style.gridTemplateRows = "1fr";
+        await sleep(500);
     }
+
+    for (id = 0; id < document.getElementById("list_body").children.length; id++)
+    {
+        var body = document.getElementById("course_body" + id).children;
+
+        document.getElementById("course_number_hider" + id).style.height = "auto";
+
+        if (switch_tab == "desc_info")
+        {
+            for (i = 0; i < body.length; i++)
+            {
+                if (desc_info_enum.includes(body[i].getAttribute("id").replace(/[0-9]*$/g, ""))) 
+                {
+                    body[i].style.height = "auto";
+                }
+                else
+                {
+                    body[i].style.height = "0";
+                }
+            }
+        }
+        else if (switch_tab == "sched_info")
+        {
+            document.getElementById("course_number_hider" + id).style.height = "0";
+            if (animate == true)
+            {
+                document.getElementById("schedule_header").style.gridTemplateRows = "1fr";
+            }
+            else
+            {
+                document.getElementById("schedule_header").style.height = "auto";
+            }
+
+            for (i = 0; i < body.length; i++)
+            {
+                if (sched_info_enum.includes(body[i].getAttribute("id").replace(/[0-9]*$/g, "")))
+                {
+                    body[i].style.height = "auto";
+                }
+                else
+                {
+                    body[i].style.height = "0";
+                }
+            }
+        }
+        else if (switch_tab == "coord_info")
+        {
+            document.getElementById("course_number_hider" + id).style.height = "0";
+            if (animate == true)
+            {
+                document.getElementById("coordinator_header").style.gridTemplateRows = "1fr";
+            }
+            else
+            {
+                document.getElementById("coordinator_header").style.height = "auto";
+            }
+
+            for (i = 0; i < body.length; i++)
+            {
+                if (coord_info_enum.includes(body[i].getAttribute("id").replace(/[0-9]*$/g, "")))
+                {
+                    body[i].style.height = "auto";
+                }
+                else
+                {
+                    body[i].style.height = "0";
+                }
+            }
+        }
+        else if (switch_tab == "alg_info")
+        {
+            for (i = 0; i < body.length; i++)
+            {
+                if (alg_info_enum.includes(body[i].getAttribute("id").replace(/[0-9]*$/g, "")))
+                {
+                    body[i].style.height = "auto";
+                }
+                else
+                {
+                    body[i].style.height = "0";
+                }
+            }
+        }
+        else
+        {
+            for (i = 0; i < body.length; i++)
+            {
+                body[i].style.height = "0";
+            }
+        }
+    
+        if (animate == true && would_pass_filter(id))
+        {
+            document.getElementById("course" + id).style.gridTemplateRows = "1fr";
+        }
+    }   
 }
 
 
@@ -241,137 +278,92 @@ function load_list_element()
 
         htmlObj.innerHTML = `
         <div>
-            <div onclick=\"open_course(` + i + `)\" class=\"list_element show_pointer\">  
-                <div id=\"tabs` + i + `\" class=\"animate_open\">
-                    <div>
-                        <div id=\"tabs_row` + i + `\" class=\"list_tabs\">
-                            <button id=\"desc_info\" onclick=\"event.stopPropagation(); swap_tab('desc_info', ` + i + `, true);\" class=\"tab_button tab_active\">Course Description</button>
-                            <button id=\"sched_info\" onclick=\"event.stopPropagation(); swap_tab('sched_info', ` + i + `, true);\" class=\"tab_button\">Schedule Information</button>
-                            <button id=\"coord_info\" onclick=\"event.stopPropagation(); swap_tab('coord_info', ` + i + `, true);\" class=\"tab_button\">Coordinator Information</button>
-                            <button id=\"alg_info\" onclick=\"event.stopPropagation(); swap_tab('alg_info', ` + i + `, true);\" class=\"tab_button\">ALG Information</button>
-                        </div>
-                        <p></p>
-                    </div>
+            <div class=\"list_element\">  
+                <div id=\"course_number_hider` + i + `\" class=\"hide_overflow\">
+                    <a id=\"course_number` + i + `\" class=\"bold list_link size_to_content\" href=\"./Viewer?course=` + all_course_data[i].Prefix + all_course_data[i].Course_Number + `\" target=\"_blank\">` + all_course_data[i].Prefix + ` ` + all_course_data[i].Course_Number + `: ` + all_course_data[i].Course_Name + `</a>
                 </div>
-                <a id=\"course_number` + i + `\" class=\"bold list_link size_to_content\" href=\"./Viewer?course=` + all_course_data[i].Prefix + all_course_data[i].Course_Number + `\" onclick=\"event.stopPropagation();\" target=\"_blank\">` + all_course_data[i].Prefix + ` ` + all_course_data[i].Course_Number + `: ` + all_course_data[i].Course_Name + `</a>
-                <div id=\"course_body` + i + `\" class=\"animate_open\">
-                    <div>
-                        <div id=\"credit_hours` + i + `\" class=\"list_fade_element\">
-                            <p></p>
-                            <div class=\"side_by_side\">
-                                <p>Credit Hours: </p>
-                                <p class=\"list_paragraph_spacer\">` + all_course_data[i].Credit_Hours + `</p>
-                            </div>
+                <div id=\"course_body` + i + `\">
+                    <div id=\"credit_hours` + i + `\" class=\"hide_overflow\">
+                        <p></p>
+                        <div class=\"side_by_side\">
+                            <p>Credit Hours: </p>
+                            <p class=\"list_paragraph_spacer\">` + all_course_data[i].Credit_Hours + `</p>
                         </div>
-                        <div id=\"prerequisite` + i + `\">
-                            <p></p>
-                            <div class=\"side_by_side\">
-                                <p>Prerequisite: </p>
-                                <p class=\"list_paragraph_spacer\">` + all_course_data[i].Prerequisite + `</p>
-                            </div>
+                    </div>
+                    <div id=\"prerequisite` + i + `\" class=\"hide_overflow\">
+                        <p></p>
+                        <div class=\"side_by_side\">
+                            <p>Prerequisite: </p>
+                            <p class=\"list_paragraph_spacer\">` + all_course_data[i].Prerequisite + `</p>
                         </div>
-                        <div id=\"description` + i +`\">
-                            <p></p>
-                            <div class=\"side_by_side\">
-                                <p>Description: </p>
-                                <p class=\"list_paragraph_spacer\">` + all_course_data[i].Description + `</p>
-                            </div>
+                    </div>
+                    <div id=\"description` + i +`\" class=\"hide_overflow\">
+                        <p></p>
+                        <div class=\"side_by_side\">
+                            <p>Description: </p>
+                            <p class=\"list_paragraph_spacer\">` + all_course_data[i].Description + `</p>
                         </div>
-                        <div id=\"learning_outcomes` + i + `\">
-                            <p></p>
-                            <div class=\"side_by_side\">
-                                <p>Learning Outcomes: </p>
-                            </div>
-                            ` + learning_outcomes_list + `
+                    </div>
+                    <div id=\"learning_outcomes` + i + `\" class=\"hide_overflow\">
+                        <p></p>
+                        <div class=\"side_by_side\">
+                            <p>Learning Outcomes: </p>
                         </div>
-                        <div id=\"schedule` + i + `\">
-                          <p></p>
-                          <div class=\"schedule_table\">
-                              <p class=\"header_row table_data\">Fall Odd</p>
-                              <p class=\"header_row table_data\">Summer Odd</p>
-                              <p class=\"header_row table_data\">Spring Odd</p>
-                              <p class=\"header_row table_data\">Fall Even</p>
-                              <p class=\"header_row table_data\">Summer Even</p>
-                              <p class=\"header_row table_data\">Spring Even</p>
-                              <p class=\"data_row table_data\">` + all_course_data[i].Course_Schedule.Fall_Odd + `</p>
-                              <p class=\"data_row table_data\">` + all_course_data[i].Course_Schedule.Summer_Odd + `</p>
-                              <p class=\"data_row table_data\">` + all_course_data[i].Course_Schedule.Spring_Odd + `</p>
-                              <p class=\"data_row table_data\">` + all_course_data[i].Course_Schedule.Fall_Even + `</p>
-                              <p class=\"data_row table_data\">` + all_course_data[i].Course_Schedule.Summer_Even + `</p>
-                              <p class=\"data_row table_data\">` + all_course_data[i].Course_Schedule.Spring_Even + `</p>
-                          </div>
-                          <button id=\"legend_button` + i + `\" onclick=\"event.stopPropagation(); open_legend(` + i + `);\" class=\"legend_button\">Open Legend</button>
-                          <div id=\"legend_table` + i + `\" class=\"animate_open\">
-                              <div>
-                                  <div class=\"legend_table\">
-                                      <p class=\"header_row table_data\">Symbol</p>
-                                      <p class=\"header_row table_data\">Meaning</p>
-                                      <p class=\"data_row table_data\">D</p>
-                                      <p class=\"data_row table_data\">Offered during the day (8am-5pm)</p>
-                                      <p class=\"data_row table_data\">E</p>
-                                      <p class=\"data_row table_data\">Offered during the evening (5pm-10pm)</p>
-                                      <p class=\"data_row table_data\">O</p>
-                                      <p class=\"data_row table_data\">Offered online</p>
-                                      <p class=\"data_row table_data\">XY</p>
-                                      <p class=\"data_row table_data\">Offered both X and Y. E.g. "EO" means course is offered both evening and online</p>
-                                      <p class=\"data_row table_data\">X/Y</p>
-                                      <p class=\"data_row table_data\">Offered either X or Y with preference for X</p>
-                                      <p class=\"data_row table_data\">+</p>
-                                      <p class=\"data_row table_data\">Offered. Mode and time undetermined</p>
-                                      <p class=\"data_row table_data\">-</p>
-                                      <p class=\"data_row table_data\">Not guaranteed to be offered</p>
-                                  </div>
-                              </div>
-                          </div>
-                          <div class=\"table_padder\">
-                          </div>
-                      </div>
-                      <div id=\"coordinator_table` + i + `\">
-                          <p></p>
-                          <div class=\"coordinator_table_deco\">
-                              <p class=\"header_row table_data\">Course Coordinator</p>
-                              <p class=\"header_row table_data\">Coordinator Email</p>
-                              <p class=\"header_row table_data\">D2L Master Link</p>
-                              <p class=\"data_row table_data\">` + all_course_data[i].First_Name + ` ` + all_course_data[i].Last_Name + `</p>
-                              <p class=\"data_row table_data\">` + all_course_data[i].Email + `</p>
-                              <a class=\"data_row table_data list_link\" href=\"` + all_course_data[i].D2L_Master_Link + `\" onclick=\"event.stopPropagation();\" target=\"_blank\">` + all_course_data[i].D2L_Master_Link + `</a>
-                          </div>
-                      </div>
-                      <div id=\"alg_eligibility` + i + `\">
-                          <p></p>
-                          <div class=\"side_by_side\">
-                              <p>ALG Eligibility: </p>
-                              <p class=\"list_paragraph_spacer\">` + all_course_data[i].ALG_Eligible + `</p>
-                          </div>
-                      </div>
-                      <div id=\"alg_round_history` + i + `\">
-                          <p></p>
-                          <div class=\"side_by_side\">
-                              <p>ALG Round History: </p>
-                              <p class=\"list_paragraph_spacer\">` + all_course_data[i].History_Round_And_Developer + `</p>
-                          </div>
-                      </div>
-                      <div id=\"alg_developer` + i + `\">
-                          <p></p>
-                          <div class=\"side_by_side\">
-                              <p>ALG Developer: </p>
-                              <p class=\"list_paragraph_spacer\">` + all_course_data[i].ALG_Developer + `</p>
-                          </div>
-                      </div>
-                      <div id=\"latest_alg_round` + i + `\">
-                          <p></p>
-                          <div class=\"side_by_side\">
-                              <p>Latest ALG Round: </p>
-                              <p class=\"list_paragraph_spacer\">` + all_course_data[i].Latest_ALG_Round + `</p>
-                          </div>
-                      </div>
-                      <div id=\"latest_alg_developer` + i + `\">
-                          <p></p>
-                          <div class=\"side_by_side\">
-                              <p>Latest ALG Developer: </p>
-                              <p class=\"list_paragraph_spacer\">` + all_course_data[i].Latest_Developer + `</p>
-                          </div>
-                      </div>
+                        ` + learning_outcomes_list + `
+                    </div>
+                    <div id=\"schedule` + i + `\" class=\"hide_overflow\">
+                        <div class=\"table_base seven_row\">
+                            <a class=\"data_row table_data\" href=\"./Viewer?course=` + all_course_data[i].Prefix + all_course_data[i].Course_Number + `\" target=\"_blank\">` + all_course_data[i].Prefix + ` ` + all_course_data[i].Course_Number + `</a>
+                            <p class=\"data_row table_data\">` + all_course_data[i].Course_Schedule.Fall_Odd + `</p>
+                            <p class=\"data_row table_data\">` + all_course_data[i].Course_Schedule.Summer_Odd + `</p>
+                            <p class=\"data_row table_data\">` + all_course_data[i].Course_Schedule.Spring_Odd + `</p>
+                            <p class=\"data_row table_data\">` + all_course_data[i].Course_Schedule.Fall_Even + `</p>
+                            <p class=\"data_row table_data\">` + all_course_data[i].Course_Schedule.Summer_Even + `</p>
+                            <p class=\"data_row table_data\">` + all_course_data[i].Course_Schedule.Spring_Even + `</p>
+                        </div>
+                    </div>
+                    <div id=\"coordinator_table` + i + `\" class=\"hide_overflow\">
+                        <div class=\"table_base four_row\">
+                            <a class=\"data_row table_data\" href=\"./Viewer?course=` + all_course_data[i].Prefix + all_course_data[i].Course_Number + `\" target=\"_blank\">` + all_course_data[i].Prefix + ` ` + all_course_data[i].Course_Number + `</a>
+                            <p id=\"coordinator_name` + i + `\" class=\"data_row table_data\">` + all_course_data[i].First_Name + ` ` + all_course_data[i].Last_Name + `</p>
+                            <p class=\"data_row table_data\">` + all_course_data[i].Email + `</p>
+                            <a class=\"data_row table_data list_link\" href=\"` + all_course_data[i].D2L_Master_Link + `\" target=\"_blank\">` + all_course_data[i].D2L_Master_Link + `</a>
+                        </div>
+                    </div>
+                    <div id=\"alg_eligibility` + i + `\" class=\"hide_overflow\">
+                        <p></p>
+                        <div class=\"side_by_side\">
+                            <p>ALG Eligibility: </p>
+                            <p class=\"list_paragraph_spacer\">` + all_course_data[i].ALG_Eligible + `</p>
+                        </div>
+                    </div>
+                    <div id=\"alg_round_history` + i + `\" class=\"hide_overflow\">
+                        <p></p>
+                        <div class=\"side_by_side\">
+                            <p>ALG Round History: </p>
+                            <p class=\"list_paragraph_spacer\">` + all_course_data[i].History_Round_And_Developer + `</p>
+                        </div>
+                    </div>
+                    <div id=\"alg_developer` + i + `\" class=\"hide_overflow\">
+                        <p></p>
+                        <div class=\"side_by_side\">
+                            <p>ALG Developer: </p>
+                            <p class=\"list_paragraph_spacer\">` + all_course_data[i].ALG_Developer + `</p>
+                        </div>
+                    </div>
+                    <div id=\"latest_alg_round` + i + `\" class=\"hide_overflow\">
+                        <p></p>
+                        <div class=\"side_by_side\">
+                            <p>Latest ALG Round: </p>
+                            <p class=\"list_paragraph_spacer\">` + all_course_data[i].Latest_ALG_Round + `</p>
+                        </div>
+                    </div>
+                    <div id=\"latest_alg_developer` + i + `\" class=\"hide_overflow\">
+                        <p></p>
+                        <div class=\"side_by_side\">
+                            <p>Latest ALG Developer: </p>
+                            <p class=\"list_paragraph_spacer\">` + all_course_data[i].Latest_Developer + `</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -379,6 +371,8 @@ function load_list_element()
 
         list_body.appendChild(htmlObj);
     }
+
+    swap_page("simple_list", false);
 }
 
 async function main()

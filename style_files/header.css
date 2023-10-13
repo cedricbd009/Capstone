@@ -9,7 +9,20 @@
     top: 0px;
 }
 
-.header_image
+.page_button
 {
-    margin: 6px;
+    font-size: 12pt;
+    font-weight: 600;
+    background-color: rgb(0, 0, 0);
+    border: none;
+    cursor: pointer;
+    height: 60px;
+    padding: 0px 20px;
+    color: white;
+    transition: background-color 0.25s;
+}
+
+.page_button:hover
+{
+    background-color: rgb(70, 70, 70);
 }

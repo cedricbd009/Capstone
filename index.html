@@ -23,10 +23,16 @@
         <!-- KSU Banner -->
         <div class="floating_header">
             <img class="header_image" src="resources\ksu_banner.png" alt="KSU Banner">
-            <a class="picture_button" title="Return to Top" href="#top">
-                <div class="picture_button_bg"></div>
-                <img class="picture_button_img" src="resources\return_to_top.webp" alt="Return To Top">
-            </a>
+            <div>
+                <div id="tabs_row" class="list_tabs">
+                    <button id="desc_info" onclick="event.stopPropagation(); swap_page('simple_list', false);" class="page_button">Course List</button>
+                    <button id="desc_info" onclick="event.stopPropagation(); swap_page('desc_info', false);" class="page_button">Course Description</button>
+                    <button id="sched_info" onclick="event.stopPropagation(); swap_page('sched_info', false);" class="page_button">Permanent Schedule</button>
+                    <button id="coord_info" onclick="event.stopPropagation(); swap_page('coord_info', false);" class="page_button">Course Coordinator </button>
+                    <button id="alg_info" onclick="event.stopPropagation(); swap_page('alg_info', false);" class="page_button">ALG Information</button>
+                </div>
+                <p></p>
+            </div>
         </div>
 
         <!-- Search Bar -->
@@ -77,6 +83,63 @@
                 </div>
             </div>
         </div>
+
+
+        <!-- Table Headers -->
+        <div class="main_list">
+            <div id="schedule_header" class="list_element animate_open_default hide_overflow zero_height">
+                <div>
+                    <div class="table_base seven_row">
+                        <p class="header_row table_data">Course Number</p>
+                        <p class="header_row table_data">Fall Odd</p>
+                        <p class="header_row table_data">Summer Odd</p>
+                        <p class="header_row table_data">Spring Odd</p>
+                        <p class="header_row table_data">Fall Even</p>
+                        <p class="header_row table_data">Summer Even</p>
+                        <p class="header_row table_data">Spring Even</p>
+                    </div>
+                    <div class="list_size">
+                        <button id="legend_button" onclick="event.stopPropagation(); open_legend();" class="legend_button">Open Legend</button>
+                        <div id="legend_table" class="animate_open">
+                            <div>
+                                <div class="table_base two_row">
+                                    <p class="header_row table_data">Symbol</p>
+                                    <p class="header_row table_data">Meaning</p>
+                                    <p class="data_row table_data">D</p>
+                                    <p class="data_row table_data">Offered during the day (8am-5pm)</p>
+                                    <p class="data_row table_data">E</p>
+                                    <p class="data_row table_data">Offered during the evening (5pm-10pm)</p>
+                                    <p class="data_row table_data">O</p>
+                                    <p class="data_row table_data">Offered online</p>
+                                    <p class="data_row table_data">XY</p>
+                                    <p class="data_row table_data">Offered both X and Y. E.g. "EO" means course is offered both evening and online</p>
+                                    <p class="data_row table_data">X/Y</p>
+                                    <p class="data_row table_data">Offered either X or Y with preference for X</p>
+                                    <p class="data_row table_data">+</p>
+                                    <p class="data_row table_data">Offered. Mode and time undetermined</p>
+                                    <p class="data_row table_data">-</p>
+                                    <p class="data_row table_data">Not guaranteed to be offered</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="main_list">
+            <div id="coordinator_header" class="list_element animate_open_default hide_overflow zero_height">
+                <div>
+                    <div class="table_base four_row">
+                        <p class="header_row table_data">Course Number</p>
+                        <p class="header_row table_data">Course Coordinator</p>
+                        <p class="header_row table_data">Coordinator Email</p>
+                        <p class="header_row table_data">D2L Master Link</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
 
         <!-- Main List -->
         <div id="list_body" class="main_list">

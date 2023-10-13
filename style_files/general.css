@@ -13,14 +13,20 @@ p
     margin-bottom: 10px;
 }
 
+.hide_overflow
+{
+    overflow-y: hidden;
+}
+
+
+.zero_height
+{
+    height: 0;
+}
+
 body
 {
     margin: 0px;
-}
-
-.paddertest
-{
-    height: 3000px;
 }
 
 .picture_button
