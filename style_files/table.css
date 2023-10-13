@@ -83,5 +83,5 @@
     border: 2px;
     border-style: solid;
     border-color: rgb(190, 190, 190);
-    min-width: fit-content;
+    overflow-wrap: break-word;
 }

@@ -83,8 +83,15 @@ function load_list_element()
         var htmlObj = document.createElement('div');
 
         htmlObj.innerHTML = `
-        <div id=\"course` + i + `\" class=\"list_element\">  
-            <a id=\"course_number` + i + `\" class=\"size_to_content title_size\" href=\"./Viewer?course=` + all_course_data[i].Prefix + all_course_data[i].Course_Number + `\" onclick=\"store_course(` + i + `);\">` + all_course_data[i].Prefix + ` ` + all_course_data[i].Course_Number + `: ` + all_course_data[i].Course_Name + `</a>
+        <div class=\"list_element_no_bg\">  
+            <div id=\"coordinator_table` + i + `\">
+                <div class=\"table_base four_row\">
+                    <a class=\"data_row table_data\" href=\"./Viewer?course=` + all_course_data[i].Prefix + all_course_data[i].Course_Number + `\" onclick=\"store_course();\">` + all_course_data[i].Prefix + ` ` + all_course_data[i].Course_Number + `</a>
+                    <p id=\"coordinator_name` + i + `\" class=\"data_row table_data\">` + all_course_data[i].First_Name + ` ` + all_course_data[i].Last_Name + `</p>
+                    <p class=\"data_row table_data\">` + all_course_data[i].Email + `</p>
+                    <a class=\"data_row table_data list_link\" href=\"` + all_course_data[i].D2L_Master_Link + `\" target=\"_blank\">` + all_course_data[i].D2L_Master_Link + `</a>
+                </div>
+            </div>
         </div>`;
 
         list_body.appendChild(htmlObj.children[0]);

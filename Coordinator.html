@@ -16,7 +16,7 @@
         <link rel="stylesheet" href="style_files\table.css">
 
         <!-- Scripts -->
-        <script src="scripts\list.js" defer></script>
+        <script src="scripts\coordinator.js" defer></script>
         <script src="scripts\data_getter.js" defer></script>
         
     </head>
@@ -93,6 +93,20 @@
                 <div class="flex_row_div">
                     <label class="search_lable space_after">Coordinator Name:</label>
                     <input id="filter_coodinator" onchange="filter_results()" class="search_lable searchbar_height pad_searchbar" type="text" name="" placeholder="Coordinator Name">
+                </div>
+            </div>
+        </div>
+
+        <!-- Table Header -->
+        <div class="main_list">
+            <div id="coordinator_header" class="list_element_no_bg">
+                <div>
+                    <div class="table_base four_row">
+                        <p class="header_row table_data">Course Number</p>
+                        <p class="header_row table_data">Course Coordinator</p>
+                        <p class="header_row table_data">Coordinator Email</p>
+                        <p class="header_row table_data">D2L Master Link</p>
+                    </div>
                 </div>
             </div>
         </div>

@@ -83,8 +83,43 @@ function load_list_element()
         var htmlObj = document.createElement('div');
 
         htmlObj.innerHTML = `
-        <div id=\"course` + i + `\" class=\"list_element\">  
-            <a id=\"course_number` + i + `\" class=\"size_to_content title_size\" href=\"./Viewer?course=` + all_course_data[i].Prefix + all_course_data[i].Course_Number + `\" onclick=\"store_course(` + i + `);\">` + all_course_data[i].Prefix + ` ` + all_course_data[i].Course_Number + `: ` + all_course_data[i].Course_Name + `</a>
+        <div class=\"list_element\">  
+            <a id=\"course_number` + i + `\" class=\"list_link size_to_content title_size\" href=\"./Viewer?course=` + all_course_data[i].Prefix + all_course_data[i].Course_Number + `\" onclick=\"store_course(` + i + `);\">` + all_course_data[i].Prefix + ` ` + all_course_data[i].Course_Number + `: ` + all_course_data[i].Course_Name + `</a>
+            <div id=\"alg_eligibility` + i + `\">
+                <p></p>
+                <div class=\"side_by_side\">
+                    <p class=\"bold\">ALG Eligibility: </p>
+                    <p class=\"list_paragraph_spacer\">` + all_course_data[i].ALG_Eligible + `</p>
+                </div>
+            </div>
+            <div id=\"alg_round_history` + i + `\">
+                <p></p>
+                <div class=\"side_by_side\">
+                    <p class=\"bold\">ALG Round History: </p>
+                    <p class=\"list_paragraph_spacer\">` + all_course_data[i].History_Round_And_Developer + `</p>
+                </div>
+            </div>
+            <div id=\"alg_developer` + i + `\">
+                <p></p>
+                <div class=\"side_by_side\">
+                    <p class=\"bold\">ALG Developer: </p>
+                    <p class=\"list_paragraph_spacer\">` + all_course_data[i].ALG_Developer + `</p>
+                </div>
+            </div>
+            <div id=\"latest_alg_round` + i + `\">
+                <p></p>
+                <div class=\"side_by_side\">
+                    <p class=\"bold\">Latest ALG Round: </p>
+                    <p class=\"list_paragraph_spacer\">` + all_course_data[i].Latest_ALG_Round + `</p>
+                </div>
+            </div>
+            <div id=\"latest_alg_developer` + i + `\">
+                <p></p>
+                <div class=\"side_by_side\">
+                    <p class=\"bold\">Latest ALG Developer: </p>
+                    <p class=\"list_paragraph_spacer\">` + all_course_data[i].Latest_Developer + `</p>
+                </div>
+            </div>
         </div>`;
 
         list_body.appendChild(htmlObj.children[0]);

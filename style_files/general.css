@@ -65,6 +65,10 @@ body
 .bold
 {
     font-weight: 700;
+}
+
+.title_size
+{
     font-size: 16pt;
 }
 
