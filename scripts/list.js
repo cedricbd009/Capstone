@@ -24,7 +24,7 @@ var prefix_selector = document.getElementById("prefix_selector");
 var offered_selector = document.getElementById("offered_selector");
 var search_bar = document.getElementById("search_bar");
 var filter_coodinator = document.getElementById("filter_coodinator");
-var track_selector = document.getElementById("track_selector");
+var degree_selector = document.getElementById("degree_selector");
 
 
 
@@ -74,7 +74,7 @@ function filter_results()
             (offered_selector.value == "All Semesters" ||  all_course_data[i].Course_Schedule[offered_selector.value].includes("-") == false) &&
             (search_bar.value == "" || document.getElementById("course_number" + i).textContent.includes(search_bar.value) == true) &&
             (filter_coodinator.value == "" || document.getElementById("coordinator_name" + i).textContent.toLowerCase().includes(filter_coodinator.value.toLowerCase()) == true) &&
-            (track_selector.value == "All Tracks" || document.getElementById("course" + i).value.toLowerCase().includes(track_selector.value.toLowerCase()) == true))
+            (degree_selector.value == "All Degrees" || all_course_data[i].Degree.toLowerCase().includes(degree_selector.value.toLowerCase()) == true))
         {
             document.getElementById("course" + i).style.gridTemplateRows = "1fr";
         }
@@ -93,7 +93,7 @@ function would_pass_filter(id)
         (offered_selector.value == "All Semesters" ||  all_course_data[id].Course_Schedule[offered_selector.value].includes("-") == false) &&
         (search_bar.value == "" || document.getElementById("course_number" + id).textContent.includes(search_bar.value) == true) &&
         (filter_coodinator.value == "" || document.getElementById("coordinator_name" + id).textContent.toLowerCase().includes(filter_coodinator.value.toLowerCase()) == true) &&
-        (track_selector.value == "All Tracks" || document.getElementById("course" + id).value.toLowerCase().includes(track_selector.value.toLowerCase()) == true))
+        (degree_selector.value == "All Degrees" || all_course_data[i].Degree.toLowerCase().includes(degree_selector.value.toLowerCase()) == true))
     {
         return true
     }
@@ -274,7 +274,6 @@ function load_list_element()
 
         htmlObj.classList.add("animate_open_default");
         htmlObj.id = "course" + i
-        htmlObj.value = all_course_data[i].Track
 
         htmlObj.innerHTML = `
         <div>

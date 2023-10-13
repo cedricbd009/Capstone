@@ -37,7 +37,7 @@
 
         <!-- Search Bar -->
         <div class="floating_searchbar">
-            <!-- Prefix, Track, and Number -->
+            <!-- Prefix, Degree, and Number -->
             <div class="prefix_number">
                 <div class="flex_row_div">
                     <label class="search_lable space_after">Prefix:</label>
@@ -46,9 +46,9 @@
                         <option value="CSE">CSE</option>
                         <option value="IT">IT</option>
                     </select>
-                    <label class="search_lable space_after list_indent">Track:</label>
-                    <select id="track_selector" onchange="filter_results()" class="search_lable searchbar_height">
-                        <option value="All Tracks" selected>All Tracks</option>
+                    <label class="search_lable space_after list_indent">Degree:</label>
+                    <select id="degree_selector" onchange="filter_results()" class="search_lable searchbar_height">
+                        <option value="All Degrees" selected>All Degrees</option>
                         <option value="MSCSE">MSCSE</option>
                         <option value="MSIT">MSIT</option>
                     </select>
@@ -64,7 +64,7 @@
             </div>
 
             <!-- Offered Semester and View -->
-            <div class="track_view">
+            <div class="degree_view">
                 <div class="flex_row_div">
                     <label class="search_lable space_after">Offered:</label>
                     <select id="offered_selector" onchange="filter_results()" class="search_lable searchbar_height">

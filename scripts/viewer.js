@@ -211,7 +211,6 @@ function load_page_element()
     var htmlObj = document.createElement('div');
 
     htmlObj.id = "course"
-    htmlObj.value = course.Track
     
     htmlObj.innerHTML = `
     <div class=\"list_element\">
