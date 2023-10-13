@@ -86,7 +86,7 @@ function load_list_element()
         <div id=\"course` + i + `\" class=\"list_element_no_bg\">  
             <div id=\"schedule` + i + `\">
                 <div class=\"table_base seven_row\">
-                    <a class=\"data_row table_data\" href=\"./Viewer?course=` + all_course_data[i].Prefix + all_course_data[i].Course_Number + `\" onclick=\"store_course();\">` + all_course_data[i].Prefix + ` ` + all_course_data[i].Course_Number + `</a>
+                    <a class=\"data_row table_data\" href=\"./Viewer?course=` + all_course_data[i].Prefix + all_course_data[i].Course_Number + `\" onclick=\"store_course(` + i + `);\">` + all_course_data[i].Prefix + ` ` + all_course_data[i].Course_Number + `</a>
                     <p class=\"data_row table_data\">` + all_course_data[i].Course_Schedule.Fall_Odd + `</p>
                     <p class=\"data_row table_data\">` + all_course_data[i].Course_Schedule.Summer_Odd + `</p>
                     <p class=\"data_row table_data\">` + all_course_data[i].Course_Schedule.Spring_Odd + `</p>
