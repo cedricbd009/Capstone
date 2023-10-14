@@ -16,6 +16,7 @@
         <link rel="stylesheet" href="style_files\table.css">
 
         <!-- Scripts -->
+        <script src="scripts\banner.js" defer></script>
         <script src="scripts\schedule.js" defer></script>
         <script src="scripts\data_getter.js" defer></script>
         
@@ -24,61 +25,25 @@
     </head>
     <body>
         <!-- KSU Banner -->
-        <div class="floating_header">
-            <img class="page_image" src="resources\ksu_banner.png" alt="KSU Banner">
-            <p class="page_title_text">IT Curriculum Portal</p>
-            <div>
-                <div class="list_tabs">
-                    <a href="./index">
-                        <button id="desc_info" class="page_button">Course List</button>
-                    </a>
-                    <a href="./Description">
-                        <button id="desc_info" class="page_button">Course Description</button>
-                    </a>
-                    <a href="./Schedule">
-                        <button id="sched_info" class="page_button">Permanent Schedule</button>
-                    </a>
-                    <a href="./Coordinator">
-                        <button id="coord_info" class="page_button">Course Coordinator </button>
-                    </a>
-                    <a href="./ALG">
-                        <button id="alg_info" class="page_button">ALG Information</button>
-                    </a>
-                </div>
-            </div>
-        </div>
+        <div id="banner_container" class="floating_header"></div>
 
         <!-- Search Bar -->
         <div class="floating_searchbar">
             <!-- Prefix, Degree, and Number -->
-            <div class="prefix_number">
+            <div class="prefix_number wider">
                 <div class="flex_row_div">
                     <label class="search_lable space_after">Prefix:</label>
-                    <select id="prefix_selector" onchange="filter_results()" class="search_lable searchbar_height">
+                    <select id="prefix_selector" onchange="filter_results()" class="search_lable searchbar_height space_after">
                         <option value="All Prefixes" selected>All Prefixes</option>
                         <option value="CSE">CSE</option>
                         <option value="IT">IT</option>
                     </select>
-                    <label class="search_lable space_after list_indent">Degree:</label>
-                    <select id="degree_selector" onchange="filter_results()" class="search_lable searchbar_height">
+                    <label class="search_lable space_after">Degree:</label>
+                    <select id="degree_selector" onchange="filter_results()" class="search_lable searchbar_height space_after">
                         <option value="All Degrees" selected>All Degrees</option>
                         <option value="MSCSE">MSCSE</option>
                         <option value="MSIT">MSIT</option>
                     </select>
-                </div>
-                <div class="flex_row_div">
-                    <label class="search_lable space_after">Course Number:</label>
-                    <input id="search_bar" onchange="filter_results()" class="search_lable searchbar_height" type="text" name="" placeholder="Course Number">
-                    <div onclick="filter_results()" class="picture_button searchbar_image_button" title="Search">
-                        <div class="picture_button_bg"></div>
-                        <img class="picture_button_img" src="resources\search.webp" alt="Search">
-                    </div>
-                </div>
-            </div>
-
-            <!-- Offered Semester and View -->
-            <div class="degree_view">
-                <div class="flex_row_div">
                     <label class="search_lable space_after">Offered:</label>
                     <select id="offered_selector" onchange="filter_results()" class="search_lable searchbar_height">
                         <option value="All Semesters" selected>All Semesters</option>
@@ -91,49 +56,11 @@
                     </select>
                 </div>
                 <div class="flex_row_div">
-                    <label class="search_lable space_after">Coordinator Name:</label>
-                    <input id="filter_coodinator" onchange="filter_results()" class="search_lable searchbar_height pad_searchbar" type="text" name="" placeholder="Coordinator Name">
-                </div>
-            </div>
-        </div>
-
-        <!-- Table Headers -->
-        <div class="main_list">
-            <div id="schedule_header" class="list_element_no_bg">
-                <div>
-                    <div class="table_base seven_row">
-                        <p class="header_row table_data">Course Number</p>
-                        <p class="header_row table_data">Fall Odd</p>
-                        <p class="header_row table_data">Summer Odd</p>
-                        <p class="header_row table_data">Spring Odd</p>
-                        <p class="header_row table_data">Fall Even</p>
-                        <p class="header_row table_data">Summer Even</p>
-                        <p class="header_row table_data">Spring Even</p>
-                    </div>
-                    <div class="list_size">
-                        <button id="legend_button" onclick="event.stopPropagation(); open_legend();" class="legend_button">Open Legend</button>
-                        <div id="legend_table" class="animate_open">
-                            <div>
-                                <div class="table_base two_row">
-                                    <p class="header_row table_data">Symbol</p>
-                                    <p class="header_row table_data">Meaning</p>
-                                    <p class="data_row table_data">D</p>
-                                    <p class="data_row table_data">Offered during the day (8am-5pm)</p>
-                                    <p class="data_row table_data">E</p>
-                                    <p class="data_row table_data">Offered during the evening (5pm-10pm)</p>
-                                    <p class="data_row table_data">O</p>
-                                    <p class="data_row table_data">Offered online</p>
-                                    <p class="data_row table_data">XY</p>
-                                    <p class="data_row table_data">Offered both X and Y. E.g. "EO" means course is offered both evening and online</p>
-                                    <p class="data_row table_data">X/Y</p>
-                                    <p class="data_row table_data">Offered either X or Y with preference for X</p>
-                                    <p class="data_row table_data">+</p>
-                                    <p class="data_row table_data">Offered. Mode and time undetermined</p>
-                                    <p class="data_row table_data">-</p>
-                                    <p class="data_row table_data">Not guaranteed to be offered</p>
-                                </div>
-                            </div>
-                        </div>
+                    <label class="search_lable space_after">Course Number:</label>
+                    <input id="search_bar" onchange="filter_results()" class="search_lable searchbar_height" type="text" name="" placeholder="Course Number">
+                    <div onclick="filter_results()" class="picture_button searchbar_image_button" title="Search">
+                        <div class="picture_button_bg"></div>
+                        <img class="picture_button_img" src="resources\search.webp" alt="Search">
                     </div>
                 </div>
             </div>

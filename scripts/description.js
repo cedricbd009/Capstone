@@ -48,10 +48,10 @@ function filter_results()
 {
     for (i = 0; i < document.getElementById("list_body").children.length; i++)
     {
-        if ((prefix_selector.value == "All Prefixes" || document.getElementById("course_number" + i).textContent.toLowerCase().includes(prefix_selector.value.toLowerCase() + " ") == true) &&
+        if ((prefix_selector.value == "All Prefixes" || all_course_data[i].Prefix.toLowerCase().includes(prefix_selector.value.toLowerCase()) == true) &&
             (offered_selector.value == "All Semesters" ||  all_course_data[i].Course_Schedule[offered_selector.value].includes("-") == false) &&
-            (search_bar.value == "" || document.getElementById("course_number" + i).textContent.includes(search_bar.value) == true) &&
-            (filter_coodinator.value == "" || document.getElementById("coordinator_name" + i).textContent.toLowerCase().includes(filter_coodinator.value.toLowerCase()) == true) &&
+            (search_bar.value == "" || all_course_data[i].Course_Number.includes(search_bar.value) == true) &&
+            (filter_coodinator.value == "" || (all_course_data[i].First_Name.toLowerCase()  + " " + all_course_data[i].Last_Name.toLowerCase()).includes(filter_coodinator.value.toLowerCase()) == true) &&
             (degree_selector.value == "All Degrees" || all_course_data[i].Degree.toLowerCase().includes(degree_selector.value.toLowerCase()) == true))
         {
             document.getElementById("course" + i).style.gridTemplateRows = "1fr";
@@ -77,8 +77,6 @@ function load_list_element()
     var list_body = document.getElementById("list_body");
     var learning_outcomes_list = ""
 
-    sort_array_by_id(all_course_data);
-
     for (i = 0; i < all_course_data.length; i++)
     {
         var learning_outcomes_list = ""
@@ -103,40 +101,45 @@ function load_list_element()
 
         var htmlObj = document.createElement('div');
 
+        htmlObj.classList.add("animate_open_default");
+        htmlObj.id = "course" + i;
+
         htmlObj.innerHTML = `
-        <div id=\"course` + i + `\" class=\"list_element\"> 
-            <a id=\"course_number` + i + `\" class=\"list_link size_to_content title_size\" href=\"./Viewer?course=` + all_course_data[i].Prefix + all_course_data[i].Course_Number + `\" onclick=\"store_course(` + i + `);\">` + all_course_data[i].Prefix + ` ` + all_course_data[i].Course_Number + `: ` + all_course_data[i].Course_Name + `</a>
-            <div id=\"credit_hours` + i + `\">
-                <p></p>
-                <div class=\"side_by_side\">
-                    <p class=\"bold\">Credit Hours: </p>
-                    <p class=\"list_paragraph_spacer\">` + all_course_data[i].Credit_Hours + `</p>
+        <div>
+            <div class=\"list_element\"> 
+                <a id=\"course_number` + i + `\" class=\"list_link size_to_content title_size\" href=\"./Viewer?course=` + all_course_data[i].Prefix + all_course_data[i].Course_Number + `\" onclick=\"store_course(` + i + `);\">` + all_course_data[i].Prefix + ` ` + all_course_data[i].Course_Number + `: ` + all_course_data[i].Course_Name + `</a>
+                <div id=\"credit_hours` + i + `\">
+                    <p></p>
+                    <div class=\"side_by_side\">
+                        <p class=\"bold\">Credit Hours: </p>
+                        <p class=\"list_paragraph_spacer\">` + all_course_data[i].Credit_Hours + `</p>
+                    </div>
                 </div>
-            </div>
-            <div id=\"prerequisite` + i + `\">
-                <p></p>
-                <div class=\"side_by_side\">
-                    <p class=\"bold\">Prerequisite: </p>
-                    <p class=\"list_paragraph_spacer\">` + all_course_data[i].Prerequisite + `</p>
+                <div id=\"prerequisite` + i + `\">
+                    <p></p>
+                    <div class=\"side_by_side\">
+                        <p class=\"bold\">Prerequisite: </p>
+                        <p class=\"list_paragraph_spacer\">` + all_course_data[i].Prerequisite + `</p>
+                    </div>
                 </div>
-            </div>
-            <div id=\"description` + i +`\">
-                <p></p>
-                <div class=\"side_by_side\">
-                    <p class=\"bold\">Description: </p>
-                    <p class=\"list_paragraph_spacer\">` + all_course_data[i].Description + `</p>
+                <div id=\"description` + i +`\">
+                    <p></p>
+                    <div class=\"side_by_side\">
+                        <p class=\"bold\">Description: </p>
+                        <p class=\"list_paragraph_spacer\">` + all_course_data[i].Description + `</p>
+                    </div>
                 </div>
-            </div>
-            <div id=\"learning_outcomes` + i + `\">
-                <p></p>
-                <div class=\"side_by_side\">
-                    <p class=\"bold\">Learning Outcomes: </p>
+                <div id=\"learning_outcomes` + i + `\">
+                    <p></p>
+                    <div class=\"side_by_side\">
+                        <p class=\"bold\">Learning Outcomes: </p>
+                    </div>
+                    ` + learning_outcomes_list + `
                 </div>
-                ` + learning_outcomes_list + `
             </div>
         </div>`;
 
-        list_body.appendChild(htmlObj.children[0]);
+        list_body.appendChild(htmlObj);
     }
 }
 
@@ -145,5 +148,7 @@ function load_list_element()
 // The data_getter file has to have the SAME or lower load priority than this file. If this file is DEFER, data_getter MUST be DEFER.
 function load_page()
 {
+    sort_array_by_id(all_course_data);
+
     load_list_element();
 }

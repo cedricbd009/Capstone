@@ -24,6 +24,11 @@
     margin: 10px;
 }
 
+.prefix_number.wider
+{
+    max-width: 950px;
+}
+
 .degree_view
 {
     display: flex;
@@ -45,6 +50,11 @@
 .space_after
 {
     margin-right: 10px;
+}
+
+.space_before
+{
+    margin-left: 10px;
 }
 
 .search_lable

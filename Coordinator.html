@@ -16,6 +16,7 @@
         <link rel="stylesheet" href="style_files\table.css">
 
         <!-- Scripts -->
+        <script src="scripts\banner.js" defer></script>
         <script src="scripts\coordinator.js" defer></script>
         <script src="scripts\data_getter.js" defer></script>
         
@@ -24,29 +25,7 @@
     </head>
     <body>
         <!-- KSU Banner -->
-        <div class="floating_header">
-            <img class="page_image" src="resources\ksu_banner.png" alt="KSU Banner">
-            <p class="page_title_text">IT Curriculum Portal</p>
-            <div>
-                <div class="list_tabs">
-                    <a href="./index">
-                        <button id="desc_info" class="page_button">Course List</button>
-                    </a>
-                    <a href="./Description">
-                        <button id="desc_info" class="page_button">Course Description</button>
-                    </a>
-                    <a href="./Schedule">
-                        <button id="sched_info" class="page_button">Permanent Schedule</button>
-                    </a>
-                    <a href="./Coordinator">
-                        <button id="coord_info" class="page_button">Course Coordinator </button>
-                    </a>
-                    <a href="./ALG">
-                        <button id="alg_info" class="page_button">ALG Information</button>
-                    </a>
-                </div>
-            </div>
-        </div>
+        <div id="banner_container" class="floating_header"></div>
 
         <!-- Search Bar -->
         <div class="floating_searchbar">
@@ -88,6 +67,11 @@
                         <option value="Fall_Even">Fall Even</option>
                         <option value="Summer_Even">Summer Even</option>
                         <option value="Spring_Even">Spring Even</option>
+                    </select>
+                    <label class="search_lable space_after list_indent">Order By:</label>
+                    <select id="order_by_selector" onchange="order_by()" class="search_lable searchbar_height">
+                        <option value="Course Number">Course Number</option>
+                        <option value="Coordinator">Coordinator</option>
                     </select>
                 </div>
                 <div class="flex_row_div">
