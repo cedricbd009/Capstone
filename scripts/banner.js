@@ -5,19 +5,19 @@ function main()
     <p class=\"page_title_text\">IT Curriculum Portal</p>
     <div>
         <div class=\"list_tabs\">
-            <a href=\"./index.html\">
+            <a href=\"./\">
                 <button id=\"desc_info\" class=\"page_button\">Course List</button>
             </a>
-            <a href=\"./Description.html\">
+            <a href=\"./Description\">
                 <button id=\"desc_info\" class=\"page_button\">Course Description</button>
             </a>
-            <a href=\"./Schedule.html\">
+            <a href=\"./Schedule\">
                 <button id=\"sched_info\" class=\"page_button\">Permanent Schedule</button>
             </a>
-            <a href=\"./Coordinator.html\">
+            <a href=\"./Coordinator\">
                 <button id=\"coord_info\" class=\"page_button\">Course Coordinator </button>
             </a>
-            <a href=\"./ALG.html\">
+            <a href=\"./ALG\">
                 <button id=\"alg_info\" class=\"page_button\">ALG Information</button>
             </a>
         </div>
