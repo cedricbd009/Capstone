@@ -2,6 +2,9 @@ var query = new URLSearchParams(window.location.search);
 var query_prefix = ""
 var query_course = ""
 var course = ""
+var course_page = document.getElementById("course_page");
+var tabs = document.getElementById("tabs_row").children;
+var course_selector = document.getElementById("course_selector");
 
 var desc_info_enum = 
 [
@@ -23,9 +26,37 @@ var alg_info_enum =
     "alg_eligibility", "alg_round_history", "alg_developer", "latest_alg_round", "latest_alg_developer"
 ];
 
+
+
+function load_course_quick_select()
+{
+    var course_select_html = "<option value=\"none\" disabled selected>Select an Item</option>"
+
+    for (i = 0; i < all_course_data.length; i++)
+    {
+        course_select_html += "<option value=\"" + i + "\">" + all_course_data[i].Prefix + " " + all_course_data[i].Course_Number + "</option>"
+    }
+
+    course_selector.innerHTML = course_select_html
+}
+
+
+
+function select_course()
+{
+    course_page.innerHTML = "";
+
+    course = all_course_data[course_selector.value];
+
+    window.history.replaceState(null, null, "?course=" + course.Prefix + course.Course_Number);
+    
+    load_page_element();
+}
+
+
+
 async function swap_tab(switch_tab, animate)
 {
-    var tabs = document.getElementById("tabs_row").children;
     var body = document.getElementById("course_body").children[0].children;
 
     for (j = 0; j < tabs.length; j ++)
@@ -197,7 +228,6 @@ function sleep(miliseconds)
 
 function load_page_element()
 {
-    var course_page = document.getElementById("course_page");
     var learning_outcomes_list = ""
     var offering_history_list = ""
 
@@ -230,18 +260,6 @@ function load_page_element()
     
     htmlObj.innerHTML = `
     <div class=\"list_element\">
-        <div id=\"tabs\" class=\"animate_open_default\">
-            <div>
-                <div id=\"tabs_row\" class=\"list_tabs\">
-                    <button id=\"all_info\" onclick=\"swap_tab('all_info', true);\" class=\"tab_button tab_active\">All Information</button>
-                    <button id=\"desc_info\" onclick=\"swap_tab('desc_info', true);\" class=\"tab_button\">Course Description</button>
-                    <button id=\"coord_info\" onclick=\"swap_tab('coord_info', true);\" class=\"tab_button\">Coordinator</button>
-                    <button id=\"ext_info\" onclick=\"swap_tab('ext_info', true);\" class=\"tab_button\">External Resources</button>
-                    <button id=\"alg_info\" onclick=\"swap_tab('alg_info', true);\" class=\"tab_button\">ALG Information</button>
-                </div>
-                <p></p>
-            </div>
-        </div>
         <p id=\"course_number\" class=\"bold title_size\">` + course.Prefix + ` ` + course.Course_Number + `: ` + course.Course_Name + `</p>
         <div id=\"course_body\" class=\"animate_open_default\">
             <div>
@@ -422,11 +440,15 @@ function load_page_element()
     course_page.appendChild(htmlObj);
 }
 
+
+
 // This only works if this file is loaded before the data_getter file.
 // MAKE SURE that this file is listed ABOVE the data_getter file in the script block.
 // The data_getter file has to have the SAME or lower load priority than this file. If this file is DEFER, data_getter MUST be DEFER.
 function load_page()
 {
+    sort_array_by_id(all_course_data);
+
     query_prefix = query.get("course").replace(/[0-9]*/g, "");
     query_course = query.get("course").replace(/[A-Z]*/g, "");
 
@@ -445,4 +467,6 @@ function load_page()
     course = JSON.parse(sessionStorage.getItem("stored_course"));
 
     load_page_element();
+
+    load_course_quick_select()
 }

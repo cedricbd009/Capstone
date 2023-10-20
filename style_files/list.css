@@ -59,6 +59,36 @@
     align-items: center;
 }
 
+.floating_sidebar
+{
+    position: fixed;
+    top: 80px;
+    left: 20px;
+    background-color: #eeeeee;
+    padding: 10px;
+}
+
+.course_selector
+{
+    height: 60px;
+    width: 250px;
+    font-size: 12pt;
+    border-radius: 0px;
+    border-style: solid;
+    border-width: 4px;
+    border-color: rgb(190, 190, 190);
+    background-color: white;
+    margin-bottom: 20px;
+}
+
+.floating_tabs
+{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
 .tab_button
 {
     font-size: 12pt;
@@ -69,6 +99,7 @@
     border-color: #ffc629;
     cursor: pointer;
     height: 60px;
+    width: 250px;
     padding: 0px 20px;
     transition: background-color 0.25s;
 }
