@@ -9,11 +9,11 @@
         </title>
 
         <!-- Styles -->
-        <link rel="stylesheet" href="style_files\general.css">
-        <link rel="stylesheet" href="style_files\header.css">
-        <link rel="stylesheet" href="style_files\searchbar.css">
-        <link rel="stylesheet" href="style_files\list.css">
-        <link rel="stylesheet" href="style_files\table.css">
+        <link rel="stylesheet" href="style_files\general_styles.css">
+        <link rel="stylesheet" href="style_files\banner_styles.css">
+        <link rel="stylesheet" href="style_files\body_styles.css">
+        <link rel="stylesheet" href="style_files\searchbar_styles.css">
+        <link rel="stylesheet" href="style_files\table_styles.css">
 
         <!-- Scripts -->
         <script src="scripts\banner.js" defer></script>
@@ -27,54 +27,44 @@
     <body>
         <!-- KSU Banner -->
         <div id="banner_container" class="floating_header"></div>
+        <div class="floating_title bold">Course List</div>
 
-        <!-- Search Bar -->
-        <div class="floating_searchbar">
-            <!-- Prefix, Degree, and Number -->
-            <div class="prefix_number">
-                <div class="flex_row_div">
-                    <label class="search_lable space_after">Prefix:</label>
-                    <select id="prefix_selector" onchange="filter_results()" class="search_lable searchbar_height">
+        <!-- Left Floating Sidebar -->
+        <div id="left_sidebar" class="floating_sidebar_left">
+            <div class="sidebar_width background_color background_padding">
+                <button onclick="reset_filters();" class="tab_button">Reset Filters</button>
+                <p></p>
+                <div class="filter_table table_base">
+                    <label class="center_text_verticle">Keywords:</label>
+                    <div class="side_by_side">
+                        <input id="search_bar" onchange="filter_results()" class="searchbar_height searchbar_width" type="text" name="" placeholder="Keywords">
+                        <div onclick="filter_results()" class="picture_button search_button_size" title="Search">
+                            <div class="picture_button_bg"></div>
+                            <img class="picture_button_img" src="resources\search.webp" alt="Search">
+                        </div>
+                    </div>
+                    <label class="center_text_verticle">Prefix:</label>
+                    <select id="prefix_selector" onchange="filter_results()" class="searchbar_height">
                         <option value="All Prefixes" selected>All Prefixes</option>
                         <option value="CSE">CSE</option>
                         <option value="IT">IT</option>
                     </select>
-                    <label class="search_lable space_after list_indent">Degree:</label>
-                    <select id="degree_selector" onchange="filter_results()" class="search_lable searchbar_height">
+                    <label class="center_text_verticle">Degree:</label>
+                    <select id="degree_selector" onchange="filter_results()" class="searchbar_height">
                         <option value="All Degrees" selected>All Degrees</option>
                         <option value="MSCSE">MSCSE</option>
                         <option value="MSIT">MSIT</option>
                     </select>
-                </div>
-                <div class="flex_row_div">
-                    <label class="search_lable space_after">Course Number:</label>
-                    <input id="search_bar" onchange="filter_results()" class="search_lable searchbar_height" type="text" name="" placeholder="Course Number">
-                    <div onclick="filter_results()" class="picture_button searchbar_image_button" title="Search">
-                        <div class="picture_button_bg"></div>
-                        <img class="picture_button_img" src="resources\search.webp" alt="Search">
-                    </div>
-                </div>
-            </div>
-
-            <!-- Offered Semester and View -->
-            <div class="degree_view">
-                <div class="flex_row_div">
-                    <label class="search_lable space_after">Offered:</label>
-                    <select id="offered_selector" onchange="filter_results()" class="search_lable searchbar_height">
-                        <option value="All Semesters" selected>All Semesters</option>
-                        <option value="Fall_Odd">Fall Odd</option>
-                        <option value="Summer_Odd">Summer Odd</option>
-                        <option value="Spring_Odd">Spring Odd</option>
-                        <option value="Fall_Even">Fall Even</option>
-                        <option value="Summer_Even">Summer Even</option>
-                        <option value="Spring_Even">Spring Even</option>
+                    <label class="center_text_verticle">Group By:</label>
+                    <select id="group_selector" onchange="group_by()" class="searchbar_height">
+                        <option value="Track" selected>Track</option>
+                        <option value="No Grouping">No Grouping</option>
                     </select>
                 </div>
-                <div class="flex_row_div">
-                    <label class="search_lable space_after">Coordinator Name:</label>
-                    <input id="filter_coodinator" onchange="filter_results()" class="search_lable searchbar_height pad_searchbar" type="text" name="" placeholder="Coordinator Name">
-                </div>
             </div>
+            <button class="sidebar_button" onclick="hide_sidebar('left',  '340');">
+                Info Tabs
+            </button>
         </div>
 
         <!-- Main List -->

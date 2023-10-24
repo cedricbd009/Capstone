@@ -4,7 +4,10 @@ var search_bar = document.getElementById("search_bar");
 var filter_coodinator = document.getElementById("filter_coodinator");
 var degree_selector = document.getElementById("degree_selector");
 var order_by_selector = document.getElementById("order_by_selector");
+var group_selector = document.getElementById("group_selector");
 var list_body = document.getElementById("list_body");
+var left_sidebar = document.getElementById("left_sidebar");
+var right_sidebar = document.getElementById("right_sidebar");
 
 var tracks = 
     ["IT Foundation Courses", "Required Core Courses", "Common Electives",
@@ -16,6 +19,35 @@ var tracks =
 function store_course(id)
 {
     sessionStorage.setItem("stored_course", JSON.stringify(all_course_data[id]))
+}
+
+
+
+function hide_sidebar(side, displacement)
+{
+    if (side == "left")
+    {
+        if (left_sidebar.style.left >= "0px" || left_sidebar.style.left == "")
+        {
+            left_sidebar.style.left = "-" + displacement + "px";
+        }
+        else
+        {
+            left_sidebar.style.left = "0px";
+        }
+    }
+    
+    if (side == "right")
+    {
+        if (right_sidebar.style.right >= "0px" || right_sidebar.style.right == "")
+        {
+            right_sidebar.style.right = "-" + displacement + "px";
+        }
+        else
+        {
+            right_sidebar.style.right = "0px";
+        }
+    }
 }
 
 
@@ -65,6 +97,63 @@ function order_by()
 
 
 
+function group_by()
+{
+    list_body.innerHTML = ""
+
+    if (group_selector.value == "Track")
+    {
+        create_groups();
+        load_list_element();
+    }
+    else
+    {
+        load_list_element();
+    }
+}
+
+
+
+function reset_filters()
+{
+    if (prefix_selector != null)
+    {
+        prefix_selector.selectedIndex = 0;
+    }
+
+    if (offered_selector != null)
+    {
+        offered_selector.selectedIndex = 0;
+    }
+
+    if (search_bar != null)
+    {
+        search_bar.value = "";
+    }
+
+    if (filter_coodinator != null)
+    {
+        filter_coodinator.value = "";
+    }
+
+    if (degree_selector != null)
+    {
+        degree_selector.selectedIndex = 0;
+    }
+
+    if (order_by_selector != null && order_by_selector.selectedIndex != 0)
+    {
+        order_by_selector.selectedIndex = 0;
+        order_by();
+    }
+    else
+    {
+        filter_results();
+    }
+}
+
+
+
 function filter_results()
 {
     for (i = 0; i < all_course_data.length; i++)
@@ -72,7 +161,7 @@ function filter_results()
         if ((prefix_selector == null || prefix_selector.value == "All Prefixes" || all_course_data[i].Prefix.toLowerCase().includes(prefix_selector.value.toLowerCase()) == true) &&
             (offered_selector == null || offered_selector.value == "All Semesters" ||  all_course_data[i].Course_Schedule[offered_selector.value].includes("-") == false) &&
             (search_bar == null || search_bar.value == "" || all_course_data[i].Course_Number.includes(search_bar.value) == true) &&
-            (filter_coodinator == null || filter_coodinator.value == "" || (all_course_data[i].First_Name.toLowerCase()  + " " + all_course_data[i].Last_Name.toLowerCase()).includes(filter_coodinator.value.toLowerCase()) == true) &&
+            (filter_coodinator == null || filter_coodinator.value == "" || (all_course_data[i].Coordinator_Name.toLowerCase()  + " " + all_course_data[i].Co_Coordinator_Name.toLowerCase()).includes(filter_coodinator.value.toLowerCase()) == true) &&
             (degree_selector == null || degree_selector.value == "All Degrees" || all_course_data[i].Degree.toLowerCase().includes(degree_selector.value.toLowerCase()) == true))
         {
             document.getElementById("course" + i).style.gridTemplateRows = "1fr";

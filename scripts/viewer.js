@@ -27,14 +27,13 @@ var alg_info_enum =
 ];
 
 
-
 function load_course_quick_select()
 {
     var course_select_html = "<option value=\"none\" disabled selected>Select an Item</option>"
 
     for (i = 0; i < all_course_data.length; i++)
     {
-        course_select_html += "<option value=\"" + i + "\">" + all_course_data[i].Prefix + " " + all_course_data[i].Course_Number + "</option>"
+        course_select_html += "<option value=\"" + i + "\">" + all_course_data[i].Prefix + " " + all_course_data[i].Course_Number + ": " + all_course_data[i].Course_Name + "</option>"
     }
 
     course_selector.innerHTML = course_select_html
@@ -67,11 +66,6 @@ async function swap_tab(switch_tab, animate)
         {
             tabs[j].className += " tab_active";
         }
-    }
-
-    if (document.getElementById("legend_table").style.gridTemplateRows == "1fr")
-    {
-        open_legend();
     }
 
     if (animate == true)
@@ -156,22 +150,6 @@ async function swap_tab(switch_tab, animate)
 
 
 
-function open_legend()
-{
-    if (document.getElementById("legend_table").style.gridTemplateRows == "1fr")
-    {
-        document.getElementById("legend_table").style.gridTemplateRows = "0fr";
-        document.getElementById("legend_button").innerHTML = "Open Legend";
-    }
-    else
-    {
-        document.getElementById("legend_table").style.gridTemplateRows = "1fr";
-        document.getElementById("legend_button").innerHTML = "Close Legend";
-    }    
-}
-
-
-
 function build_offering_history(year)
 {
     var offering_history_fall
@@ -184,7 +162,7 @@ function build_offering_history(year)
     }
     else
     {
-        offering_history_fall = `<a class=\"list_paragraph_spacer list_link\" href=\"` + course.Offering_History["Fall_" + year] + `\" target=\"_blank\">Fall ` + year + `</a>`;
+        offering_history_fall = `<a class=\"list_paragraph_spacer list_link center_text_verticle\" href=\"` + course.Offering_History["Fall_" + year] + `\" target=\"_blank\">Fall ` + year + `</a>`;
     }
 
     if (course.Offering_History["Summer_" + year].toLowerCase() == "not offered")
@@ -193,7 +171,7 @@ function build_offering_history(year)
     }
     else
     {
-        offering_history_summer = `<a class=\"list_paragraph_spacer list_link\" href=\"` + course.Offering_History["Summer_" + year] + `\" target=\"_blank\">Summer ` + year + `,</a>`;
+        offering_history_summer = `<a class=\"list_paragraph_spacer list_link center_text_verticle\" href=\"` + course.Offering_History["Summer_" + year] + `\" target=\"_blank\">Summer ` + year + `,</a>`;
     }
 
     if (course.Offering_History["Spring_" + year].toLowerCase() == "not offered")
@@ -202,7 +180,7 @@ function build_offering_history(year)
     }
     else
     {
-        offering_history_spring = `<a class=\"list_paragraph_spacer list_link\" href=\"` + course.Offering_History["Spring_" + year] + `\" target=\"_blank\">Spring ` + year + `,</a>`;
+        offering_history_spring = `<a class=\"list_paragraph_spacer list_link center_text_verticle\" href=\"` + course.Offering_History["Spring_" + year] + `\" target=\"_blank\">Spring ` + year + `,</a>`;
     }
 
     return `
@@ -259,9 +237,9 @@ function load_page_element()
     htmlObj.id = "course"
     
     htmlObj.innerHTML = `
-    <div class=\"list_element\">
+    <div class=\"list_element background_color\">
         <p id=\"course_number\" class=\"bold title_size\">` + course.Prefix + ` ` + course.Course_Number + `: ` + course.Course_Name + `</p>
-        <div id=\"course_body\" class=\"animate_open_default\">
+        <div id=\"course_body\" class=\"animate_open_default contained\">
             <div>
                 <div id=\"credit_hours\" class=\"hide_overflow\">
                     <p></p>
@@ -312,29 +290,6 @@ function load_page_element()
                         <p class=\"data_row table_data\">` + course.Course_Schedule.Summer_Even + `</p>
                         <p class=\"data_row table_data\">` + course.Course_Schedule.Spring_Even + `</p>
                     </div>
-                    <button id=\"legend_button\" onclick=\"open_legend();\" class=\"legend_button\">Open Legend</button>
-                    <div id=\"legend_table\" class=\"animate_open\">
-                        <div>
-                            <div class=\"table_base two_row\">
-                                <p class=\"header_row table_data\">Symbol</p>
-                                <p class=\"header_row table_data\">Meaning</p>
-                                <p class=\"data_row table_data\">D</p>
-                                <p class=\"data_row table_data\">Offered during the day (8am-5pm)</p>
-                                <p class=\"data_row table_data\">E</p>
-                                <p class=\"data_row table_data\">Offered during the evening (5pm-10pm)</p>
-                                <p class=\"data_row table_data\">O</p>
-                                <p class=\"data_row table_data\">Offered online</p>
-                                <p class=\"data_row table_data\">XY</p>
-                                <p class=\"data_row table_data\">Offered both X and Y. E.g. "EO" means course is offered both evening and online</p>
-                                <p class=\"data_row table_data\">X/Y</p>
-                                <p class=\"data_row table_data\">Offered either X or Y with preference for X</p>
-                                <p class=\"data_row table_data\">+</p>
-                                <p class=\"data_row table_data\">Offered. Mode and time undetermined</p>
-                                <p class=\"data_row table_data\">-</p>
-                                <p class=\"data_row table_data\">Not guaranteed to be offered</p>
-                            </div>
-                        </div>
-                    </div>
                     <div class=\"table_padder_bottom\">
                     </div>
                 </div>
@@ -345,13 +300,15 @@ function load_page_element()
                     </div>
                     <div class=\"table_padder_top\">
                     </div>
-                    <div class=\"table_base three_row\">
+                    <div class=\"table_base four_row\">
                         <p class=\"header_row table_data\">Course Coordinator</p>
+                        <p class=\"header_row table_data\">Co-Coordinator</p>
                         <p class=\"header_row table_data\">Coordinator Email</p>
                         <p class=\"header_row table_data\">D2L Master Link</p>
-                        <p class=\"data_row table_data\">` + course.First_Name + ` ` + course.Last_Name + `</p>
+                        <p class=\"data_row table_data\">` + course.Coordinator_Name + `</p>
+                        <p class=\"data_row table_data\">` + course.Co_Coordinator_Name + `</p>
                         <p class=\"data_row table_data\">` + course.Email + `</p>
-                        <a class=\"data_row table_data list_link\" href=\"` + course.D2L_Master_Link + `\" target=\"_blank\">` + course.D2L_Master_Link + `</a>
+                        <a class=\"data_row table_data list_link center_text_verticle\" href=\"` + course.D2L_Master_Link + `\" target=\"_blank\">` + course.D2L_Master_Link + `</a>
                     </div>
                     <div class=\"table_padder_bottom\">
                     </div>
@@ -360,7 +317,7 @@ function load_page_element()
                     <p></p>
                     <div class=\"side_by_side\">
                         <p class=\"bold\">Syllabus Link: </p>
-                        <a class=\"list_paragraph_spacer list_link\" href=\"` + course.Syllabus_Link + `\" target=\"_blank\">` + course.Syllabus_Link + `</a>
+                        <a class=\"list_paragraph_spacer list_link center_text_verticle\" href=\"` + course.Syllabus_Link + `\" target=\"_blank\">` + course.Syllabus_Link + `</a>
                     </div>
                 </div>
                 <div id=\"offering_history\" class=\"hide_overflow\">
@@ -374,21 +331,21 @@ function load_page_element()
                     <p></p>
                     <div class=\"side_by_side\">
                         <p class=\"bold\">Course Catalog Link: </p>
-                        <a class=\"list_paragraph_spacer list_link\" href=\"` + course.Course_Catalog_Link + `\" target=\"_blank\">` + course.Course_Catalog_Link + `</a>
+                        <a class=\"list_paragraph_spacer list_link center_text_verticle\" href=\"` + course.Course_Catalog_Link + `\" target=\"_blank\">` + course.Course_Catalog_Link + `</a>
                     </div>
                 </div>
                 <div id=\"owlexpress_link\" class=\"hide_overflow\">
                     <p></p>
                     <div class=\"side_by_side\">
                         <p class=\"list_pargraph_no_break bold\">OwlExpress Link: </p>
-                        <a class=\"list_paragraph_spacer list_link\" href=\"` + course.OwlExpress_Link + `\" target=\"_blank\">` + course.OwlExpress_Link + `</a>
+                        <a class=\"list_paragraph_spacer list_link center_text_verticle\" href=\"` + course.OwlExpress_Link + `\" target=\"_blank\">` + course.OwlExpress_Link + `</a>
                     </div>
                 </div>
                 <div id=\"curriculog_link\" class=\"hide_overflow\">
                     <p></p>                
                     <div class=\"side_by_side\">
                         <p class=\"bold\">Curriculog Link: </p>
-                        <a class=\"list_paragraph_spacer list_link\" href=\"` + course.Curriculog_Link + `\" target=\"_blank\">` + course.Curriculog_Link + `</a>
+                        <a class=\"list_paragraph_spacer list_link center_text_verticle\" href=\"` + course.Curriculog_Link + `\" target=\"_blank\">` + course.Curriculog_Link + `</a>
                     </div>
                 </div>
                 <div id=\"alg_eligibility\" class=\"hide_overflow\">

@@ -10,11 +10,19 @@ function load_list_element()
         htmlObj.innerHTML = `
         <div>
             <div class=\"list_element\">
-                <a id=\"course_number` + i + `\" class=\"size_to_content title_size space_before\" href=\"./Viewer?course=` + all_course_data[i].Prefix + all_course_data[i].Course_Number + `\" onclick=\"store_course(` + i + `);\">` + all_course_data[i].Prefix + ` ` + all_course_data[i].Course_Number + `: ` + all_course_data[i].Course_Name + `</a>
+                <a id=\"course_number` + i + `\" class=\"title_size space_before\" href=\"./Viewer.html?course=` + all_course_data[i].Prefix + all_course_data[i].Course_Number + `\" onclick=\"store_course(` + i + `);\">` + all_course_data[i].Prefix + ` ` + all_course_data[i].Course_Number + `: ` + all_course_data[i].Course_Name + `</a>
             </div>        
         </div>`;
 
-        document.getElementById(all_course_data[i].Track).appendChild(htmlObj);
+        if (document.getElementById(all_course_data[0].Track) != null)
+        {    
+            document.getElementById(all_course_data[i].Track).appendChild(htmlObj);
+        }
+        else
+        {
+            htmlObj.classList.add("background_color");
+            list_body.appendChild(htmlObj);
+        }
     }
 }
 
@@ -30,7 +38,7 @@ function create_groups()
 
         htmlObj.innerHTML = `
         <div>
-            <div class=\"list_element\">  
+            <div class=\"list_element background_color\">  
                 <p class=\"title_size bold\">` + tracks[i] + `:</p>
                 <div id=\"` + tracks[i] + `\"></div>
             </div>

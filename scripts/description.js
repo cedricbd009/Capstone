@@ -9,7 +9,7 @@ function load_list_element()
         {
             learning_outcomes_list = `
             <div class=\"side_by_side\">
-                <p class=\"list_paragraph_spacer list_indent\">` + all_course_data[i].Course_Learning_Outcomes[0] + `</p>
+                <p class=\"list_indent\">` + all_course_data[i].Course_Learning_Outcomes[0] + `</p>
             </div>`
         }
         else
@@ -31,8 +31,8 @@ function load_list_element()
 
         htmlObj.innerHTML = `
         <div>
-            <div class=\"list_element\"> 
-                <a id=\"course_number` + i + `\" class=\"list_link size_to_content title_size\" href=\"./Viewer?course=` + all_course_data[i].Prefix + all_course_data[i].Course_Number + `\" onclick=\"store_course(` + i + `);\">` + all_course_data[i].Prefix + ` ` + all_course_data[i].Course_Number + `: ` + all_course_data[i].Course_Name + `</a>
+            <div class=\"list_element background_color\"> 
+                <a id=\"course_number` + i + `\" class=\"list_link center_text_verticle title_size\" href=\"./Viewer.html?course=` + all_course_data[i].Prefix + all_course_data[i].Course_Number + `\" onclick=\"store_course(` + i + `);\">` + all_course_data[i].Prefix + ` ` + all_course_data[i].Course_Number + `: ` + all_course_data[i].Course_Name + `</a>
                 <div id=\"credit_hours` + i + `\">
                     <p></p>
                     <div class=\"side_by_side\">

@@ -30,8 +30,8 @@ function load_list_element()
 
         htmlObj.innerHTML = `
         <div>
-            <div class=\"list_element\">  
-                <a id=\"course_number` + i + `\" class=\"list_link size_to_content title_size\" href=\"./Viewer?course=` + all_course_data[i].Prefix + all_course_data[i].Course_Number + `\" onclick=\"store_course(` + i + `);\">` + all_course_data[i].Prefix + ` ` + all_course_data[i].Course_Number + `: ` + all_course_data[i].Course_Name + `</a>
+            <div class=\"list_element background_color\">  
+                <a id=\"course_number` + i + `\" class=\"list_link center_text_verticle title_size\" href=\"./Viewer.html?course=` + all_course_data[i].Prefix + all_course_data[i].Course_Number + `\" onclick=\"store_course(` + i + `);\">` + all_course_data[i].Prefix + ` ` + all_course_data[i].Course_Number + `: ` + all_course_data[i].Course_Name + `</a>
                 <div id=\"alg_eligibility` + i + `\">
                     <p></p>
                     <div class=\"side_by_side\">

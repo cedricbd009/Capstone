@@ -1,0 +1,99 @@
+p,
+label,
+div,
+a,
+button,
+select,
+input
+{
+    font-size: 1rem;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body
+{
+    margin: 0px;
+}
+
+.bold
+{
+    font-weight: 700;
+}
+
+.title_size
+{
+    font-size: 1.3rem;
+}
+
+.space_after
+{
+    margin-right: 10px;
+}
+
+.space_before
+{
+    margin-left: 10px;
+}
+
+.list_pargraph_no_break
+{
+    white-space: nowrap;
+}
+
+.center_text
+{
+    display: flex;
+    text-align: center;
+    align-items: center;
+}
+
+.center_text_verticle
+{
+    display: flex;
+    align-items: center;
+}
+
+.picture_button
+{
+    cursor: pointer;
+    aspect-ratio: 1/1;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.picture_button_img
+{
+    width: 75%;
+    height: 75%;
+    z-index: 10;
+}
+
+.picture_button .picture_button_bg
+{
+    height: 100%;
+    width: 100%;
+    background-color: #ffc629;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    transition: opacity 0.25s;
+}
+
+.picture_button:hover .picture_button_bg
+{
+    opacity: 0.6; 
+}
+
+.side_by_side
+{
+    display: flex;
+    flex-direction: row;
+    vertical-align: top;
+}
+
+.hide_overflow
+{
+    overflow-y: hidden;
+}
