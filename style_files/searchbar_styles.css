@@ -1,0 +1,75 @@
+.floating_sidebar_left
+{
+    position: fixed;
+    display: flex;
+    flex-direction: row;
+    top: 122px;
+    left: 0px;
+    transition: left 0.5s;
+}
+
+.floating_sidebar_right
+{
+    position: fixed;
+    display: flex;
+    flex-direction: row;
+    top: 122px;
+    right: 0px;
+    transition: right 0.5s;
+}
+
+.sidebar_width
+{
+    width: 320px;
+}
+
+.searchbar_height
+{
+    height: 44px;
+}
+
+.searchbar_width
+{
+    width: 100%;
+}
+
+.table_base.filter_table
+{
+    display: grid;
+    grid-template-columns: 1fr 2.5fr;
+    row-gap: 10px;
+}
+
+.sidebar_button
+{
+    background-color: #ffc629;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+    height: 60px;
+    width: 60px;
+    transition: background-color 0.25s;
+}
+
+.sidebar_button:hover
+{
+    background-color: #ffdc7b;
+}
+
+.search_button_size
+{
+    height: 50px;
+    width: 50px;
+}
+
+.course_selector
+{
+    height: 60px;
+    width: 100%;
+    border-radius: 0px;
+    border-style: solid;
+    border-width: 4px;
+    border-color: rgb(190, 190, 190);
+    background-color: white;
+    margin-bottom: 20px;
+}
