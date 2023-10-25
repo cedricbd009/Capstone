@@ -19,6 +19,9 @@ function main()
         <a href=\"./ALG.html\" class=\"page_button center_text\">
             ALG Information
         </a>
+        <a href=\"./Curriculum.html\" class=\"page_button center_text\">
+            Curriculum Resources
+        </a>
     </div>`;
 }
 

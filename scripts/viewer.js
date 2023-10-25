@@ -6,25 +6,21 @@ var course_page = document.getElementById("course_page");
 var tabs = document.getElementById("tabs_row").children;
 var course_selector = document.getElementById("course_selector");
 
-var desc_info_enum = 
+var essential_info_enum = 
 [
-    "description", "credit_hours", "prerequisite", "learning_outcomes", "schedule", "memo"
+    "description", "credit_hours", "prerequisite", "learning_outcomes", "syllabus_link", "catalog_link", "memo"
 ];
 
-var coord_info_enum = 
+var offering_info_enum = 
 [
-    "coordinator_table"
+    "schedule", "offering_history", "owlexpress_link"
 ];
 
-var ext_info_enum = 
+var development_info_enum = 
 [
-    "syllabus_link", "offering_history", "catalog_link", "owlexpress_link", "curriculog_link"
+    "coordinator_table", "curriculog_link", "alg_eligibility", "alg_round_history", "alg_developer", "latest_alg_round", "latest_alg_developer"
 ];
 
-var alg_info_enum = 
-[
-    "alg_eligibility", "alg_round_history", "alg_developer", "latest_alg_round", "latest_alg_developer"
-];
 
 
 function load_course_quick_select()
@@ -74,13 +70,12 @@ async function swap_tab(switch_tab, animate)
         await sleep(500);
     }
 
-    document.getElementById("coordinator_label").style.height = "auto";
 
-    if (switch_tab == "desc_info")
+    if (switch_tab == "essential_info")
     {
         for (i = 0; i < body.length; i++)
         {
-            if (desc_info_enum.includes(body[i].getAttribute("id"))) 
+            if (essential_info_enum.includes(body[i].getAttribute("id"))) 
             {
                 body[i].style.height = "auto";
             }
@@ -90,13 +85,11 @@ async function swap_tab(switch_tab, animate)
             }
         }
     }
-    else if (switch_tab == "coord_info")
+    else if (switch_tab == "offering_info")
     {
-        document.getElementById("coordinator_label").style.height = "0";
-        
         for (i = 0; i < body.length; i++)
         {
-            if (coord_info_enum.includes(body[i].getAttribute("id")))
+            if (offering_info_enum.includes(body[i].getAttribute("id")))
             {
                 body[i].style.height = "auto";
             }
@@ -106,25 +99,11 @@ async function swap_tab(switch_tab, animate)
             }
         }
     }
-    else if (switch_tab == "ext_info")
+    else if (switch_tab == "development_info")
     {
         for (i = 0; i < body.length; i++)
         {
-            if (ext_info_enum.includes(body[i].getAttribute("id")))
-            {
-                body[i].style.height = "auto";
-            }
-            else
-            {
-                body[i].style.height = "0";
-            }
-        }
-    }
-    else if (switch_tab == "alg_info")
-    {
-        for (i = 0; i < body.length; i++)
-        {
-            if (alg_info_enum.includes(body[i].getAttribute("id")))
+            if (development_info_enum.includes(body[i].getAttribute("id")))
             {
                 body[i].style.height = "auto";
             }
@@ -234,6 +213,8 @@ function load_page_element()
 
     var htmlObj = document.createElement('div');
 
+    htmlObj.classList.add("animate_open_default");
+
     htmlObj.id = "course"
     
     htmlObj.innerHTML = `
@@ -269,6 +250,27 @@ function load_page_element()
                     </div>
                     ` + learning_outcomes_list + `
                 </div>
+                <div id=\"syllabus_link\" class=\"hide_overflow\">
+                    <p></p>
+                    <div class=\"side_by_side\">
+                        <p class=\"bold\">Syllabus Link: </p>
+                        <a class=\"list_paragraph_spacer list_link center_text_verticle\" href=\"` + course.Syllabus_Link + `\" target=\"_blank\">` + course.Syllabus_Link + `</a>
+                    </div>
+                </div>
+                <div id=\"catalog_link\" class=\"hide_overflow\">
+                    <p></p>
+                    <div class=\"side_by_side\">
+                        <p class=\"bold\">Course Catalog Link: </p>
+                        <a class=\"list_paragraph_spacer list_link center_text_verticle\" href=\"` + course.Course_Catalog_Link + `\" target=\"_blank\">` + course.Course_Catalog_Link + `</a>
+                    </div>
+                </div>
+                <div id=\"memo\" class=\"hide_overflow\">
+                    <p></p>
+                    <div class=\"side_by_side\">
+                        <p class=\"bold\">Memo: </p>
+                        <p class=\"list_paragraph_spacer\">` + course.Memo + `</p>
+                    </div>
+                </div>
                 <div id=\"schedule\" class=\"hide_overflow\">
                     <p></p>
                     <div class=\"side_by_side\">
@@ -293,6 +295,20 @@ function load_page_element()
                     <div class=\"table_padder_bottom\">
                     </div>
                 </div>
+                <div id=\"offering_history\" class=\"hide_overflow\">
+                    <p></p>
+                    <div class=\"side_by_side\">
+                        <p class=\"bold\">Offering History: </p>
+                    </div>
+                    ` + offering_history_list + `
+                </div>
+                <div id=\"owlexpress_link\" class=\"hide_overflow\">
+                    <p></p>
+                    <div class=\"side_by_side\">
+                        <p class=\"list_pargraph_no_break bold\">OwlExpress Link: </p>
+                        <a class=\"list_paragraph_spacer list_link center_text_verticle\" href=\"` + course.OwlExpress_Link + `\" target=\"_blank\">` + course.OwlExpress_Link + `</a>
+                    </div>
+                </div>
                 <div id=\"coordinator_table\" class=\"hide_overflow\">
                     <p></p>
                     <div id=\"coordinator_label\" class=\"side_by_side\">
@@ -311,34 +327,6 @@ function load_page_element()
                         <a class=\"data_row table_data list_link center_text_verticle\" href=\"` + course.D2L_Master_Link + `\" target=\"_blank\">` + course.D2L_Master_Link + `</a>
                     </div>
                     <div class=\"table_padder_bottom\">
-                    </div>
-                </div>
-                <div id=\"syllabus_link\" class=\"hide_overflow\">
-                    <p></p>
-                    <div class=\"side_by_side\">
-                        <p class=\"bold\">Syllabus Link: </p>
-                        <a class=\"list_paragraph_spacer list_link center_text_verticle\" href=\"` + course.Syllabus_Link + `\" target=\"_blank\">` + course.Syllabus_Link + `</a>
-                    </div>
-                </div>
-                <div id=\"offering_history\" class=\"hide_overflow\">
-                    <p></p>
-                    <div class=\"side_by_side\">
-                        <p class=\"bold\">Offering History: </p>
-                    </div>
-                    ` + offering_history_list + `
-                </div>
-                <div id=\"catalog_link\" class=\"hide_overflow\">
-                    <p></p>
-                    <div class=\"side_by_side\">
-                        <p class=\"bold\">Course Catalog Link: </p>
-                        <a class=\"list_paragraph_spacer list_link center_text_verticle\" href=\"` + course.Course_Catalog_Link + `\" target=\"_blank\">` + course.Course_Catalog_Link + `</a>
-                    </div>
-                </div>
-                <div id=\"owlexpress_link\" class=\"hide_overflow\">
-                    <p></p>
-                    <div class=\"side_by_side\">
-                        <p class=\"list_pargraph_no_break bold\">OwlExpress Link: </p>
-                        <a class=\"list_paragraph_spacer list_link center_text_verticle\" href=\"` + course.OwlExpress_Link + `\" target=\"_blank\">` + course.OwlExpress_Link + `</a>
                     </div>
                 </div>
                 <div id=\"curriculog_link\" class=\"hide_overflow\">
@@ -381,13 +369,6 @@ function load_page_element()
                     <div class=\"side_by_side\">
                         <p class=\"bold\">Latest ALG Developer: </p>
                         <p class=\"list_paragraph_spacer\">` + course.Latest_Developer + `</p>
-                    </div>
-                </div>
-                <div id=\"memo\" class=\"hide_overflow\">
-                    <p></p>
-                    <div class=\"side_by_side\">
-                        <p class=\"bold\">Memo: </p>
-                        <p class=\"list_paragraph_spacer\">` + course.Memo + `</p>
                     </div>
                 </div>
             </div>

@@ -105,10 +105,12 @@ function group_by()
     {
         create_groups();
         load_list_element();
+        filter_results();
     }
     else
     {
         load_list_element();
+        filter_results();
     }
 }
 
@@ -141,6 +143,12 @@ function reset_filters()
         degree_selector.selectedIndex = 0;
     }
 
+    if (group_selector != null && group_selector.selectedIndex != 0)
+    {
+        group_selector.selectedIndex = 0;
+        group_by();
+    }
+
     if (order_by_selector != null && order_by_selector.selectedIndex != 0)
     {
         order_by_selector.selectedIndex = 0;
@@ -160,7 +168,9 @@ function filter_results()
     {
         if ((prefix_selector == null || prefix_selector.value == "All Prefixes" || all_course_data[i].Prefix.toLowerCase().includes(prefix_selector.value.toLowerCase()) == true) &&
             (offered_selector == null || offered_selector.value == "All Semesters" ||  all_course_data[i].Course_Schedule[offered_selector.value].includes("-") == false) &&
-            (search_bar == null || search_bar.value == "" || all_course_data[i].Course_Number.includes(search_bar.value) == true) &&
+            (search_bar == null || search_bar.value == "" || all_course_data[i].Course_Number.toLowerCase().includes(search_bar.value.toLowerCase()) == true ||
+            all_course_data[i].Course_Name.toLowerCase().includes(search_bar.value.toLowerCase()) == true || all_course_data[i].Description.toLowerCase().includes(search_bar.value.toLowerCase()) == true ||
+            all_course_data[i].Course_Learning_Outcomes.includes(search_bar.value.toLowerCase()) == true) &&
             (filter_coodinator == null || filter_coodinator.value == "" || (all_course_data[i].Coordinator_Name.toLowerCase()  + " " + all_course_data[i].Co_Coordinator_Name.toLowerCase()).includes(filter_coodinator.value.toLowerCase()) == true) &&
             (degree_selector == null || degree_selector.value == "All Degrees" || all_course_data[i].Degree.toLowerCase().includes(degree_selector.value.toLowerCase()) == true))
         {
