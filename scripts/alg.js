@@ -23,54 +23,26 @@ function load_list_element()
 {
     for (i = 0; i < all_course_data.length; i++)
     {
-        var htmlObj = document.createElement('div');
+        var html_obj = document.createElement('div');
 
-        htmlObj.classList.add("animate_open_default");
-        htmlObj.id = "course" + i;
+        html_obj.classList.add("animate_open_default");
+        html_obj.id = "course" + i;
 
-        htmlObj.innerHTML = `
+        html_obj.innerHTML = `
         <div>
-            <div class=\"list_element background_color\">  
-                <a id=\"course_number` + i + `\" class=\"list_link center_text_verticle title_size\" href=\"./Viewer.html?course=` + all_course_data[i].Prefix + all_course_data[i].Course_Number + `\" onclick=\"store_course(` + i + `);\">` + all_course_data[i].Prefix + ` ` + all_course_data[i].Course_Number + `: ` + all_course_data[i].Course_Name + `</a>
-                <div id=\"alg_eligibility` + i + `\">
-                    <p></p>
-                    <div class=\"side_by_side\">
-                        <p class=\"bold\">ALG Eligibility: </p>
-                        <p class=\"list_paragraph_spacer\">` + all_course_data[i].ALG_Eligible + `</p>
-                    </div>
+            <div id=\"coordinator_table` + i + `\">
+                <div class=\"table_base alg_row\">
+                    <a class=\"data_row table_data\" href=\"./Viewer.html?course=` + all_course_data[i].Prefix + all_course_data[i].Course_Number + `\" onclick=\"store_course(` + i + `);\">` + all_course_data[i].Prefix + ` ` + all_course_data[i].Course_Number + `: ` + all_course_data[i].Course_Name + `</a>
+                    <p class=\"data_row table_data\">` + all_course_data[i].ALG_Eligible + `</p>
+                    <p class=\"data_row table_data\">` + all_course_data[i].History_Round_And_Developer + `</p>
+                    <p class=\"data_row table_data\">` + all_course_data[i].ALG_Developer + `</p>
+                    <p class=\"data_row table_data\">` + all_course_data[i].Latest_ALG_Round + `</p>
+                    <p class=\"data_row table_data\">` + all_course_data[i].Latest_Developer + `</p>
                 </div>
-                <div id=\"alg_round_history` + i + `\">
-                    <p></p>
-                    <div class=\"side_by_side\">
-                        <p class=\"bold\">ALG Round History: </p>
-                        <p class=\"list_paragraph_spacer\">` + all_course_data[i].History_Round_And_Developer + `</p>
-                    </div>
-                </div>
-                <div id=\"alg_developer` + i + `\">
-                    <p></p>
-                    <div class=\"side_by_side\">
-                        <p class=\"bold\">ALG Developer: </p>
-                        <p class=\"list_paragraph_spacer\">` + all_course_data[i].ALG_Developer + `</p>
-                    </div>
-                </div>
-                <div id=\"latest_alg_round` + i + `\">
-                    <p></p>
-                    <div class=\"side_by_side\">
-                        <p class=\"bold\">Latest ALG Round: </p>
-                        <p class=\"list_paragraph_spacer\">` + all_course_data[i].Latest_ALG_Round + `</p>
-                    </div>
-                </div>
-                <div id=\"latest_alg_developer` + i + `\">
-                    <p></p>
-                    <div class=\"side_by_side\">
-                        <p class=\"bold\">Latest ALG Developer: </p>
-                        <p class=\"list_paragraph_spacer\">` + all_course_data[i].Latest_Developer + `</p>
-                    </div>
-                </div
             </div>
         </div>`;
 
-        list_body.appendChild(htmlObj);
+        list_body.appendChild(html_obj);
     }
 }
 

@@ -31,9 +31,8 @@
 
         <!-- Left Floating Sidebar -->
         <div id="left_sidebar" class="floating_sidebar_left">
-            <div class="sidebar_width background_color background_padding">
-                <button onclick="reset_filters();" class="tab_button">Reset Filters</button>
-                <p></p>
+            <div class="background_color background_padding">
+                <p class="title_size bold">Search:</p>
                 <div class="filter_table table_base">
                     <label class="center_text_verticle">Keywords:</label>
                     <div class="side_by_side">
@@ -61,15 +60,34 @@
                         <option value="ALG">ALG</option>
                     </select>
                 </div>
+                <p></p>
+                <button onclick="reset_filters();" class="tab_button">Reset Filters</button>
             </div>
-            <button class="sidebar_button" onclick="hide_sidebar('left',  '340');">
-                Filters
-            </button>
+        </div>
+
+        <!-- Table Header -->
+        <div class="center_list">
+            <div class="main_list">
+                <div id="coordinator_header" class="list_header">
+                    <div>
+                        <div class="table_base alg_row">
+                            <p class="header_row table_data">Course</p>
+                            <p class="header_row table_data">ALG Eligibility</p>
+                            <p class="header_row table_data">ALG Round History</p>
+                            <p class="header_row table_data">ALG Developer</p>
+                            <p class="header_row table_data">Latest ALG Round</p>
+                            <p class="header_row table_data">Latest ALG Developer</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <!-- Main List -->
-        <div id="list_body" class="main_list">
-            
-        </div>  
+        <div class="center_list">
+            <div id="list_body" class="main_list">
+                
+            </div>
+        </div>
     </body>
 </html>

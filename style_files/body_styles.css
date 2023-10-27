@@ -1,9 +1,15 @@
+.center_list
+{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
+
 .main_list
 {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    width: 100%;
+    width: 60vw;
 }
 
 .list_element
@@ -16,8 +22,7 @@
 
 .list_header
 {
-    width: 90%;
-    max-width: 1000px;
+    width: 100%;
 }
 
 .list_header.contained,
@@ -34,6 +39,7 @@
 .background_padding
 {
     padding: 10px;
+    width: 100%;
 }
 
 .animate_open
@@ -41,8 +47,7 @@
     display: grid;
     grid-template-rows: 0fr;
     transition: grid-template-rows 0.5s;
-    width: 90%;
-    max-width: 1000px;
+    width: 100%;
 }
 
 .animate_open > div
@@ -55,8 +60,7 @@
     display: grid;
     grid-template-rows: 1fr;
     transition: grid-template-rows 0.5s;
-    width: 90%;
-    max-width: 1000px;
+    width: 100%;
 }
 
 .animate_open_default > div
@@ -86,6 +90,31 @@
 .tab_button.tab_active
 {
     background-color: #c07a10;
+}
+
+.order_button
+{
+    background-color: #4e59d0;
+    color: white;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-color: #4e59d0;
+    cursor: pointer;
+    height: 60px;
+    width: 100%;
+    padding: 0px 20px;
+    transition: background-color 0.25s;
+}
+
+.order_button:hover
+{
+    background-color: #6974eb;
+}
+
+.order_button.tab_active
+{
+    background-color: #313ba5;
 }
 
 .list_paragraph_spacer

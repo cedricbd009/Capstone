@@ -2,12 +2,12 @@ function load_list_element()
 {
     for (i = 0; i < all_course_data.length; i++)
     {
-        var htmlObj = document.createElement('div');
+        var html_obj = document.createElement('div');
 
-        htmlObj.classList.add("animate_open_default");
-        htmlObj.id = "course" + i;
+        html_obj.classList.add("animate_open_default");
+        html_obj.id = "course" + i;
 
-        htmlObj.innerHTML = `
+        html_obj.innerHTML = `
         <div>
             <div class=\"list_element\">
                 <a id=\"course_number` + i + `\" class=\"title_size space_before\" href=\"./Viewer.html?course=` + all_course_data[i].Prefix + all_course_data[i].Course_Number + `\" onclick=\"store_course(` + i + `);\">` + all_course_data[i].Prefix + ` ` + all_course_data[i].Course_Number + `: ` + all_course_data[i].Course_Name + `</a>
@@ -16,12 +16,12 @@ function load_list_element()
 
         if (document.getElementById(all_course_data[0].Track) != null)
         {    
-            document.getElementById(all_course_data[i].Track).appendChild(htmlObj);
+            document.getElementById(all_course_data[i].Track).appendChild(html_obj);
         }
         else
         {
-            htmlObj.classList.add("background_color");
-            list_body.appendChild(htmlObj);
+            html_obj.classList.add("background_color");
+            list_body.appendChild(html_obj);
         }
     }
 }
@@ -31,12 +31,12 @@ function create_groups()
 {
     for (i = 0; i < tracks.length; i++)
     {
-        htmlObj = document.createElement('div');
+        html_obj = document.createElement('div');
 
-        htmlObj.classList.add("animate_open_default");
-        htmlObj.id = tracks[i] + " top";
+        html_obj.classList.add("animate_open_default");
+        html_obj.id = tracks[i] + " top";
 
-        htmlObj.innerHTML = `
+        html_obj.innerHTML = `
         <div>
             <div class=\"list_element background_color\">  
                 <p class=\"title_size bold\">` + tracks[i] + `:</p>
@@ -44,7 +44,32 @@ function create_groups()
             </div>
         </div>`;
 
-        list_body.appendChild(htmlObj);
+        if  (tracks_certificates.includes(tracks[i])) 
+        {
+            if (document.getElementById("track_certificate_group") == null)
+            {
+                html_obj_tracks = document.createElement('div');
+
+                html_obj_tracks.classList.add("animate_open_default");
+                html_obj_tracks.id = "track_certificate_group_top";
+
+                html_obj_tracks.innerHTML = `
+                <div>
+                    <div class=\"list_element background_color\">  
+                        <p class=\"title_size bold\">Tracks:</p>
+                        <div id=\"track_certificate_group\"></div>
+                    </div>
+                </div>`;
+
+                list_body.appendChild(html_obj_tracks);
+            }
+
+            document.getElementById("track_certificate_group").appendChild(html_obj);
+        }
+        else
+        {
+            list_body.appendChild(html_obj);
+        }
     }
 }
 

@@ -29,27 +29,24 @@ function load_list_element()
 {
     for (i = 0; i < all_course_data.length; i++)
     {
-        var htmlObj = document.createElement('div');
+        var html_obj = document.createElement('div');
 
-        htmlObj.classList.add("animate_open_default");
-        htmlObj.id = "course" + i;
+        html_obj.classList.add("animate_open_default");
+        html_obj.id = "course" + i;
 
-        htmlObj.innerHTML = `
+        html_obj.innerHTML = `
         <div>
-            <div class=\"list_element_no_bg\">  
-                <div id=\"coordinator_table` + i + `\">
-                    <div class=\"table_base five_row\">
-                        <a class=\"data_row table_data\" href=\"./Viewer.html?course=` + all_course_data[i].Prefix + all_course_data[i].Course_Number + `\" onclick=\"store_course(` + i + `);\">` + all_course_data[i].Prefix + ` ` + all_course_data[i].Course_Number + `</a>
-                        <p class=\"data_row table_data\">` + all_course_data[i].Coordinator_Name + `</p>
-                        <p class=\"data_row table_data\">` + all_course_data[i].Co_Coordinator_Name + `</p>
-                        <p class=\"data_row table_data\">` + all_course_data[i].Email + `</p>
-                        <a class=\"data_row table_data center_text_verticle list_link\" href=\"` + all_course_data[i].D2L_Master_Link + `\" target=\"_blank\">` + all_course_data[i].D2L_Master_Link + `</a>
-                    </div>
+            <div id=\"coordinator_table` + i + `\">
+                <div class=\"table_base coord_row\">
+                    <a class=\"data_row table_data\" href=\"./Viewer.html?course=` + all_course_data[i].Prefix + all_course_data[i].Course_Number + `\" onclick=\"store_course(` + i + `);\">` + all_course_data[i].Prefix + ` ` + all_course_data[i].Course_Number + `: ` + all_course_data[i].Course_Name + `</a>
+                    <p class=\"data_row table_data\">` + all_course_data[i].Coordinator_Name + `</p>
+                    <p class=\"data_row table_data\">` + all_course_data[i].Co_Coordinator_Name + `</p>
+                    <a class=\"data_row table_data center_text_verticle list_link\" href=\"` + all_course_data[i].D2L_Master_Link + `\" target=\"_blank\">` + all_course_data[i].D2L_Master_Link + `</a>
                 </div>
             </div>
         </div>`;
 
-        list_body.appendChild(htmlObj);
+        list_body.appendChild(html_obj);
     }
 }
 

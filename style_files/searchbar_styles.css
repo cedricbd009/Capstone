@@ -6,6 +6,7 @@
     top: 122px;
     left: 0px;
     transition: left 0.5s;
+    width: 19vw;
 }
 
 .floating_sidebar_right
@@ -16,16 +17,13 @@
     top: 122px;
     right: 0px;
     transition: right 0.5s;
-}
-
-.sidebar_width
-{
-    width: 320px;
+    width: 19vw;
 }
 
 .searchbar_height
 {
     height: 44px;
+    min-width: 0;
 }
 
 .searchbar_width

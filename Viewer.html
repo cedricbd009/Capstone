@@ -31,7 +31,7 @@
 
         <!-- Left Floating Sidebar -->
         <div id="left_sidebar" class="floating_sidebar_left">
-            <div class="sidebar_width background_color background_padding">
+            <div class="background_color background_padding">
                 <select id="course_selector" onchange="select_course()" class="course_selector">
                 </select>
                 <div id="tabs_row" class="floating_tabs">
@@ -41,17 +41,11 @@
                     <button id="development_info" onclick="swap_tab('development_info', true);" class="tab_button">Development Information</button>
                 </div>
             </div>
-            <button class="sidebar_button" onclick="hide_sidebar('left',  '340');">
-                Info Tabs
-            </button>
         </div>
 
         <!-- Right Floating Sidebar -->
         <div id="right_sidebar" class="floating_sidebar_right">
-            <button class="sidebar_button" onclick="hide_sidebar('right',  '340');">
-                Legend
-            </button>
-            <div class="sidebar_width background_color background_padding">
+            <div class="background_color background_padding">
                 <div class="table_base two_row">
                     <p class="header_row table_data">Symbol</p>
                     <p class="header_row table_data">Meaning</p>
@@ -74,8 +68,10 @@
         </div>
 
         <!-- Course Page -->
-        <div id="course_page" class="main_list">
-            
+        <div class="center_list">
+            <div id="course_page" class="main_list">
+                
+            </div>
         </div>
     </body>
 </html>

@@ -163,7 +163,7 @@ function build_offering_history(year)
     }
 
     return `
-    <div class=\"side_by_side list_indent\">
+    <div class=\"side_by_side\">
         <p class=\"bold\">` + year + `: </p>
         ` + offering_history_spring + `
         ` + offering_history_summer + `
@@ -192,7 +192,7 @@ function load_page_element()
     {
         learning_outcomes_list = `
         <div class=\"side_by_side\">
-            <p class=\"list_paragraph_spacer list_indent\">` + course.Course_Learning_Outcomes[0] + `</p>
+            <p>` + course.Course_Learning_Outcomes[0] + `</p>
         </div>`
     }
     else
@@ -201,7 +201,7 @@ function load_page_element()
         {
             learning_outcomes_list += `
             <div class=\"side_by_side\">
-                <p class=\"list_indent\">` + (k + 1) + `. </p>
+                <p>` + (k + 1) + `. </p>
                 <p class=\"list_paragraph_spacer\">` + course.Course_Learning_Outcomes[k] + `</p>
             </div>`
         }
@@ -211,69 +211,63 @@ function load_page_element()
     offering_history_list += build_offering_history("2022");
     offering_history_list += build_offering_history("2021");
 
-    var htmlObj = document.createElement('div');
+    var html_obj = document.createElement('div');
 
-    htmlObj.classList.add("animate_open_default");
+    html_obj.classList.add("animate_open_default");
 
-    htmlObj.id = "course"
+    html_obj.id = "course"
     
-    htmlObj.innerHTML = `
+    html_obj.innerHTML = `
     <div class=\"list_element background_color\">
         <p id=\"course_number\" class=\"bold title_size\">` + course.Prefix + ` ` + course.Course_Number + `: ` + course.Course_Name + `</p>
         <div id=\"course_body\" class=\"animate_open_default contained\">
             <div>
                 <div id=\"credit_hours\" class=\"hide_overflow\">
-                    <p></p>
-                    <div class=\"side_by_side\">
+                    <div class=\"table_base list_element_row\">
                         <p class=\"bold\">Credit Hours: </p>
-                        <p class=\"list_paragraph_spacer\">` + course.Credit_Hours + `</p>
-                    </div>
-                </div>
-                <div id=\"prerequisite\" class=\"hide_overflow\">
-                    <p></p>
-                    <div class=\"side_by_side\">
-                        <p class=\"bold\">Prerequisite: </p>
-                        <p class=\"list_paragraph_spacer\">` + course.Prerequisite + `</p>
+                        <p>` + course.Credit_Hours + `</p>
                     </div>
                 </div>
                 <div id=\"description\" class=\"hide_overflow\">
-                    <p></p>
-                    <div class=\"side_by_side\">
+                    <div class=\"table_base list_element_row\">
                         <p class=\"bold\">Description: </p>
-                        <p class=\"list_paragraph_spacer\">` + course.Description + `</p>
+                        <p>` + course.Description + `</p>
                     </div>
                 </div>
                 <div id=\"learning_outcomes\" class=\"hide_overflow\">
-                    <p></p>
-                    <div class=\"side_by_side\">
+                    <div class=\"table_base list_element_row\">
                         <p class=\"bold\">Learning Outcomes: </p>
+                        <div>
+                            ` + learning_outcomes_list + `
+                        </div>
                     </div>
-                    ` + learning_outcomes_list + `
+                </div>
+                <div id=\"prerequisite\" class=\"hide_overflow\">
+                    <div class=\"table_base list_element_row\">
+                        <p class=\"bold\">Prerequisite: </p>
+                        <p>` + course.Prerequisite + `</p>
+                    </div>
                 </div>
                 <div id=\"syllabus_link\" class=\"hide_overflow\">
-                    <p></p>
-                    <div class=\"side_by_side\">
+                    <div class=\"table_base list_element_row\">
                         <p class=\"bold\">Syllabus Link: </p>
-                        <a class=\"list_paragraph_spacer list_link center_text_verticle\" href=\"` + course.Syllabus_Link + `\" target=\"_blank\">` + course.Syllabus_Link + `</a>
+                        <a class=\"list_link center_text_verticle\" href=\"` + course.Syllabus_Link + `\" target=\"_blank\">` + course.Syllabus_Link + `</a>
                     </div>
                 </div>
                 <div id=\"catalog_link\" class=\"hide_overflow\">
-                    <p></p>
-                    <div class=\"side_by_side\">
+                    <div class=\"table_base list_element_row\">
                         <p class=\"bold\">Course Catalog Link: </p>
-                        <a class=\"list_paragraph_spacer list_link center_text_verticle\" href=\"` + course.Course_Catalog_Link + `\" target=\"_blank\">` + course.Course_Catalog_Link + `</a>
+                        <a class=\"list_link center_text_verticle\" href=\"` + course.Course_Catalog_Link + `\" target=\"_blank\">` + course.Course_Catalog_Link + `</a>
                     </div>
                 </div>
                 <div id=\"memo\" class=\"hide_overflow\">
-                    <p></p>
-                    <div class=\"side_by_side\">
+                    <div class=\"table_base list_element_row\">
                         <p class=\"bold\">Memo: </p>
-                        <p class=\"list_paragraph_spacer\">` + course.Memo + `</p>
+                        <p>` + course.Memo + `</p>
                     </div>
                 </div>
                 <div id=\"schedule\" class=\"hide_overflow\">
-                    <p></p>
-                    <div class=\"side_by_side\">
+                    <div>
                         <p class=\"bold\">Course Permanent Schedule:</p>
                     </div>
                     <div class=\"table_padder_top\">
@@ -296,22 +290,21 @@ function load_page_element()
                     </div>
                 </div>
                 <div id=\"offering_history\" class=\"hide_overflow\">
-                    <p></p>
-                    <div class=\"side_by_side\">
+                    <div class=\"table_base list_element_row\">
                         <p class=\"bold\">Offering History: </p>
+                        <div>
+                            ` + offering_history_list + `
+                        </div>
                     </div>
-                    ` + offering_history_list + `
                 </div>
                 <div id=\"owlexpress_link\" class=\"hide_overflow\">
-                    <p></p>
-                    <div class=\"side_by_side\">
-                        <p class=\"list_pargraph_no_break bold\">OwlExpress Link: </p>
-                        <a class=\"list_paragraph_spacer list_link center_text_verticle\" href=\"` + course.OwlExpress_Link + `\" target=\"_blank\">` + course.OwlExpress_Link + `</a>
+                    <div class=\"table_base list_element_row\">
+                        <p class=\"bold\">OwlExpress Link: </p>
+                        <a class=\"list_link center_text_verticle\" href=\"` + course.OwlExpress_Link + `\" target=\"_blank\">` + course.OwlExpress_Link + `</a>
                     </div>
                 </div>
                 <div id=\"coordinator_table\" class=\"hide_overflow\">
-                    <p></p>
-                    <div id=\"coordinator_label\" class=\"side_by_side\">
+                    <div>
                         <p class=\"bold\">Course Coordinator:</p>
                     </div>
                     <div class=\"table_padder_top\">
@@ -329,53 +322,47 @@ function load_page_element()
                     <div class=\"table_padder_bottom\">
                     </div>
                 </div>
-                <div id=\"curriculog_link\" class=\"hide_overflow\">
-                    <p></p>                
-                    <div class=\"side_by_side\">
+                <div id=\"curriculog_link\" class=\"hide_overflow\">             
+                    <div class=\"table_base list_element_row\">
                         <p class=\"bold\">Curriculog Link: </p>
-                        <a class=\"list_paragraph_spacer list_link center_text_verticle\" href=\"` + course.Curriculog_Link + `\" target=\"_blank\">` + course.Curriculog_Link + `</a>
+                        <a class=\"list_link center_text_verticle\" href=\"` + course.Curriculog_Link + `\" target=\"_blank\">` + course.Curriculog_Link + `</a>
                     </div>
                 </div>
                 <div id=\"alg_eligibility\" class=\"hide_overflow\">
-                    <p></p>
-                    <div class=\"side_by_side\">
+                    <div class=\"table_base list_element_row\">
                         <p class=\"bold\">ALG Eligibility: </p>
-                        <p class=\"list_paragraph_spacer\">` + course.ALG_Eligible + `</p>
+                        <p>` + course.ALG_Eligible + `</p>
                     </div>
                 </div>
                 <div id=\"alg_round_history\" class=\"hide_overflow\">
-                    <p></p>
-                    <div class=\"side_by_side\">
+                    <div class=\"table_base list_element_row\">
                         <p class=\"bold\">ALG Round History: </p>
-                        <p class=\"list_paragraph_spacer\">` + course.History_Round_And_Developer + `</p>
+                        <p>` + course.History_Round_And_Developer + `</p>
                     </div>
                 </div>
                 <div id=\"alg_developer\" class=\"hide_overflow\">
-                    <p></p>
-                    <div class=\"side_by_side\" class=\"hide_overflow\">
+                    <div class=\"table_base list_element_row\">
                         <p class=\"bold\">ALG Developer: </p>
-                        <p class=\"list_paragraph_spacer\">` + course.ALG_Developer + `</p>
+                        <p>` + course.ALG_Developer + `</p>
                     </div>
                 </div>
                 <div id=\"latest_alg_round\" class=\"hide_overflow\">
-                    <p></p>
-                    <div class=\"side_by_side\">
+                    <div class=\"table_base list_element_row\">
                         <p class=\"bold\">Latest ALG Round: </p>
-                        <p class=\"list_paragraph_spacer\">` + course.Latest_ALG_Round + `</p>
+                        <p>` + course.Latest_ALG_Round + `</p>
                     </div>
                 </div>
                 <div id=\"latest_alg_developer\" class=\"hide_overflow\">
-                    <p></p>
-                    <div class=\"side_by_side\">
+                    <div class=\"table_base list_element_row\">
                         <p class=\"bold\">Latest ALG Developer: </p>
-                        <p class=\"list_paragraph_spacer\">` + course.Latest_Developer + `</p>
+                        <p>` + course.Latest_Developer + `</p>
                     </div>
                 </div>
             </div>
         </div>
     </div>`;
 
-    course_page.appendChild(htmlObj);
+    course_page.appendChild(html_obj);
 }
 
 

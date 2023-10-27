@@ -8,11 +8,16 @@ var group_selector = document.getElementById("group_selector");
 var list_body = document.getElementById("list_body");
 var left_sidebar = document.getElementById("left_sidebar");
 var right_sidebar = document.getElementById("right_sidebar");
+var no_group = document.getElementById("no_group");
+var track_group = document.getElementById("track_group");
 
 var tracks = 
-    ["IT Foundation Courses", "Required Core Courses", "Common Electives",
-    "Data Analytics and Intelligent Technology", "Information Technology Security",
-    "Health Information Technology", "Enterprise IT Management"];
+    ["IT Foundation Courses", "Required Core Courses",
+    "Data Analytics and Intelligent Technology", "Enterprise IT Management", "Health Information Technology", "Information Technology Security",
+    "Common Electives"];
+
+var tracks_certificates = 
+    ["Data Analytics and Intelligent Technology", "Enterprise IT Management", "Health Information Technology", "Information Technology Security"];
 
 
 
@@ -97,18 +102,26 @@ function order_by()
 
 
 
-function group_by()
+function group_by(type)
 {
-    list_body.innerHTML = ""
-
-    if (group_selector.value == "Track")
+    if (type == "track" && document.getElementById(tracks[0]) == null)
     {
+        list_body.innerHTML = ""
+
+        no_group.className = no_group.className.replace(" tab_active", "");
+        track_group.className += " tab_active";
+
         create_groups();
         load_list_element();
         filter_results();
     }
-    else
+    else if (type == "none" && document.getElementById(tracks[0]) != null)
     {
+        list_body.innerHTML = ""
+
+        track_group.className = track_group.className.replace(" tab_active", "");
+        no_group.className += " tab_active";
+
         load_list_element();
         filter_results();
     }
@@ -141,12 +154,6 @@ function reset_filters()
     if (degree_selector != null)
     {
         degree_selector.selectedIndex = 0;
-    }
-
-    if (group_selector != null && group_selector.selectedIndex != 0)
-    {
-        group_selector.selectedIndex = 0;
-        group_by();
     }
 
     if (order_by_selector != null && order_by_selector.selectedIndex != 0)
@@ -211,6 +218,28 @@ function hide_empty_tracks()
         else
         {
             document.getElementById(tracks[i] + " top").style.gridTemplateRows = "1fr";
+        }
+    }
+
+    for (i = 0; i < tracks_certificates.length; i++)
+    {
+        var hide = true;
+        
+        for (j = 0; j < document.getElementById("track_certificate_group").children.length; j++)
+        {
+            if (document.getElementById("track_certificate_group").children[j].style.gridTemplateRows === "1fr")
+            {
+                hide = false;
+            }
+        }
+
+        if (hide == true)
+        {
+            document.getElementById("track_certificate_group_top").style.gridTemplateRows = "0fr";
+        }
+        else
+        {
+            document.getElementById("track_certificate_group_top").style.gridTemplateRows = "1fr";
         }
     }
 }
