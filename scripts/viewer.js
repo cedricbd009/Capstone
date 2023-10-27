@@ -141,7 +141,7 @@ function build_offering_history(year)
     }
     else
     {
-        offering_history_fall = `<a class=\"list_paragraph_spacer list_link center_text_verticle\" href=\"` + course.Offering_History["Fall_" + year] + `\" target=\"_blank\">Fall ` + year + `</a>`;
+        offering_history_fall = `<a class=\"list_paragraph_spacer list_link\" href=\"` + course.Offering_History["Fall_" + year] + `\" target=\"_blank\">Fall ` + year + `</a>`;
     }
 
     if (course.Offering_History["Summer_" + year].toLowerCase() == "not offered")
@@ -150,7 +150,7 @@ function build_offering_history(year)
     }
     else
     {
-        offering_history_summer = `<a class=\"list_paragraph_spacer list_link center_text_verticle\" href=\"` + course.Offering_History["Summer_" + year] + `\" target=\"_blank\">Summer ` + year + `,</a>`;
+        offering_history_summer = `<a class=\"list_paragraph_spacer list_link\" href=\"` + course.Offering_History["Summer_" + year] + `\" target=\"_blank\">Summer ` + year + `,</a>`;
     }
 
     if (course.Offering_History["Spring_" + year].toLowerCase() == "not offered")
@@ -159,7 +159,7 @@ function build_offering_history(year)
     }
     else
     {
-        offering_history_spring = `<a class=\"list_paragraph_spacer list_link center_text_verticle\" href=\"` + course.Offering_History["Spring_" + year] + `\" target=\"_blank\">Spring ` + year + `,</a>`;
+        offering_history_spring = `<a class=\"list_paragraph_spacer list_link\" href=\"` + course.Offering_History["Spring_" + year] + `\" target=\"_blank\">Spring ` + year + `,</a>`;
     }
 
     return `
@@ -251,13 +251,13 @@ function load_page_element()
                 <div id=\"syllabus_link\" class=\"hide_overflow\">
                     <div class=\"table_base list_element_row\">
                         <p class=\"bold\">Syllabus Link: </p>
-                        <a class=\"list_link center_text_verticle\" href=\"` + course.Syllabus_Link + `\" target=\"_blank\">` + course.Syllabus_Link + `</a>
+                        <a class=\"list_link\" href=\"` + course.Syllabus_Link + `\" target=\"_blank\">` + course.Syllabus_Link + `</a>
                     </div>
                 </div>
                 <div id=\"catalog_link\" class=\"hide_overflow\">
                     <div class=\"table_base list_element_row\">
                         <p class=\"bold\">Course Catalog Link: </p>
-                        <a class=\"list_link center_text_verticle\" href=\"` + course.Course_Catalog_Link + `\" target=\"_blank\">` + course.Course_Catalog_Link + `</a>
+                        <a class=\"list_link\" href=\"` + course.Course_Catalog_Link + `\" target=\"_blank\">` + course.Course_Catalog_Link + `</a>
                     </div>
                 </div>
                 <div id=\"memo\" class=\"hide_overflow\">
@@ -300,7 +300,7 @@ function load_page_element()
                 <div id=\"owlexpress_link\" class=\"hide_overflow\">
                     <div class=\"table_base list_element_row\">
                         <p class=\"bold\">OwlExpress Link: </p>
-                        <a class=\"list_link center_text_verticle\" href=\"` + course.OwlExpress_Link + `\" target=\"_blank\">` + course.OwlExpress_Link + `</a>
+                        <a class=\"list_link\" href=\"` + course.OwlExpress_Link + `\" target=\"_blank\">` + course.OwlExpress_Link + `</a>
                     </div>
                 </div>
                 <div id=\"coordinator_table\" class=\"hide_overflow\">
@@ -317,7 +317,7 @@ function load_page_element()
                         <p class=\"data_row table_data\">` + course.Coordinator_Name + `</p>
                         <p class=\"data_row table_data\">` + course.Co_Coordinator_Name + `</p>
                         <p class=\"data_row table_data\">` + course.Email + `</p>
-                        <a class=\"data_row table_data list_link center_text_verticle\" href=\"` + course.D2L_Master_Link + `\" target=\"_blank\">` + course.D2L_Master_Link + `</a>
+                        <a class=\"data_row table_data list_link\" href=\"` + course.D2L_Master_Link + `\" target=\"_blank\">` + course.D2L_Master_Link + `</a>
                     </div>
                     <div class=\"table_padder_bottom\">
                     </div>
@@ -325,7 +325,7 @@ function load_page_element()
                 <div id=\"curriculog_link\" class=\"hide_overflow\">             
                     <div class=\"table_base list_element_row\">
                         <p class=\"bold\">Curriculog Link: </p>
-                        <a class=\"list_link center_text_verticle\" href=\"` + course.Curriculog_Link + `\" target=\"_blank\">` + course.Curriculog_Link + `</a>
+                        <a class=\"list_link\" href=\"` + course.Curriculog_Link + `\" target=\"_blank\">` + course.Curriculog_Link + `</a>
                     </div>
                 </div>
                 <div id=\"alg_eligibility\" class=\"hide_overflow\">

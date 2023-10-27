@@ -9,7 +9,8 @@
 
 .table_base.list_element_row
 {
-    grid-template-columns: minmax(100px, 1fr) minmax(0, 9fr);
+    column-gap: 5px;
+    grid-template-columns: minmax(115px, 1fr) minmax(0, 9fr);
 }
 
 .two_row
