@@ -13,7 +13,16 @@ var track_group = document.getElementById("track_group");
 
 var link_list =
 {
-    Syllabus_Repository: "./Syllabus/"
+    Syllabus_Repository: "./Syllabus/",
+    Course_List: "./index.html",
+    Course_Description: "./Description.html",
+    Permanent_Schedule: "./Schedule.html",
+    Course_Coordinator: "./Coordinator.html",
+    ALG_Information: "./ALG.html",
+    Curriculum_Resources: "./Curriculum.html",
+    MSIT_Flowchart: "./Flowchart.html",
+    MSIT_Flowchart_Printable: "./Print_Flowchart.html",
+    Course_Information: "./Viewer.html?course="
 }
 
 var tracks = 

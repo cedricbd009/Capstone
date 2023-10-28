@@ -32,7 +32,7 @@ function load_list_element()
         <div>
             <div id=\"coordinator_table` + i + `\">
                 <div class=\"table_base alg_row\">
-                    <a class=\"data_row table_data\" href=\"./Viewer.html?course=` + all_course_data[i].Prefix + all_course_data[i].Course_Number + `\" onclick=\"store_course(` + i + `);\">` + all_course_data[i].Prefix + ` ` + all_course_data[i].Course_Number + `: ` + all_course_data[i].Course_Name + `</a>
+                    <a class=\"data_row table_data\" href=\"` + link_list.Course_Information + all_course_data[i].Prefix + all_course_data[i].Course_Number + `\" onclick=\"store_course(` + i + `);\">` + all_course_data[i].Prefix + ` ` + all_course_data[i].Course_Number + `: ` + all_course_data[i].Course_Name + `</a>
                     <p class=\"data_row table_data\">` + all_course_data[i].ALG_Eligible + `</p>
                     <p class=\"data_row table_data\">` + all_course_data[i].History_Round_And_Developer + `</p>
                     <p class=\"data_row table_data\">` + all_course_data[i].ALG_Developer + `</p>

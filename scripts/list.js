@@ -10,7 +10,7 @@ function load_list_element()
         html_obj.innerHTML = `
         <div>
             <div class=\"list_element\">
-                <a id=\"course_number` + i + `\" class=\"title_size space_before\" href=\"./Viewer.html?course=` + all_course_data[i].Prefix + all_course_data[i].Course_Number + `\" onclick=\"store_course(` + i + `);\">` + all_course_data[i].Prefix + ` ` + all_course_data[i].Course_Number + `: ` + all_course_data[i].Course_Name + `</a>
+                <a id=\"course_number` + i + `\" class=\"title_size space_before\" href=\"` + link_list.Course_Information + all_course_data[i].Prefix + all_course_data[i].Course_Number + `\" onclick=\"store_course(` + i + `);\">` + all_course_data[i].Prefix + ` ` + all_course_data[i].Course_Number + `: ` + all_course_data[i].Course_Name + `</a>
             </div>        
         </div>`;
 

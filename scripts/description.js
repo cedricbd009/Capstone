@@ -32,7 +32,7 @@ function load_list_element()
         html_obj.innerHTML = `
         <div>
             <div class=\"list_element background_color\"> 
-                <a id=\"course_number` + i + `\" class=\"list_link title_size\" href=\"./Viewer.html?course=` + all_course_data[i].Prefix + all_course_data[i].Course_Number + `\" onclick=\"store_course(` + i + `);\">` + all_course_data[i].Prefix + ` ` + all_course_data[i].Course_Number + `: ` + all_course_data[i].Course_Name + ` (` + all_course_data[i].Credit_Hours + ` Credit Hours)</a>
+                <a id=\"course_number` + i + `\" class=\"list_link title_size\" href=\"` + link_list.Course_Information + all_course_data[i].Prefix + all_course_data[i].Course_Number + `\" onclick=\"store_course(` + i + `);\">` + all_course_data[i].Prefix + ` ` + all_course_data[i].Course_Number + `: ` + all_course_data[i].Course_Name + ` (` + all_course_data[i].Credit_Hours + ` Credit Hours)</a>
                 <div id=\"description` + i +`\">
                     <div class=\"table_base list_element_row\">
                         <p class=\"bold\">Description: </p>

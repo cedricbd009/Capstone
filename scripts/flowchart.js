@@ -4,8 +4,6 @@ function make_pdf()
 {
     for (i = 0; i < all_course_data.length; i++)
     {
-        var link = "./Viewer.html?course=" + all_course_data[i].Prefix + all_course_data[i].Course_Number;
-
         var prerequisite_element = "";
 
         if (all_course_data[i].Prerequisite.toLowerCase() != "none")
@@ -20,7 +18,42 @@ function make_pdf()
 
         html_obj.innerHTML = `
         <div class=\"solid_border flex_stack\">
-            <a href=\"` + link + `\" onclick=\"store_course(` + i + `);\">` + all_course_data[i].Prefix + ` ` + all_course_data[i].Course_Number + `: ` + all_course_data[i].Course_Name + `</a>
+            <a href=\"` + link_list.Course_Information + all_course_data[i].Prefix + all_course_data[i].Course_Number + `\" onclick=\"store_course(` + i + `);\">` + all_course_data[i].Prefix + ` ` + all_course_data[i].Course_Number + `: ` + all_course_data[i].Course_Name + `</a>
+            ` + prerequisite_element + `
+        </div>`;
+
+        if (program_options.includes(all_course_data[i].Prefix + all_course_data[i].Course_Number))
+        {    
+            document.getElementById(all_course_data[i].Prefix + all_course_data[i].Course_Number).appendChild(html_obj);
+        }
+        else
+        {
+            document.getElementById(all_course_data[i].Track).appendChild(html_obj);
+        }
+    }
+}
+
+
+
+function make_printable_pdf()
+{
+    for (i = 0; i < all_course_data.length; i++)
+    {
+        var prerequisite_element = "";
+
+        if (all_course_data[i].Prerequisite.toLowerCase() != "none")
+        {
+            prerequisite_element = "<p class=\"zero_margin\">(" + all_course_data[i].Prerequisite + ")</p>"
+        }
+
+        var html_obj = document.createElement('div');
+
+        html_obj.classList.add("animate_open_default");
+        html_obj.id = "course" + i;
+
+        html_obj.innerHTML = `
+        <div class=\"solid_border flex_stack\">
+            <p class=\"zero_margin\">` + all_course_data[i].Prefix + ` ` + all_course_data[i].Course_Number + `: ` + all_course_data[i].Course_Name + `</p>
             ` + prerequisite_element + `
         </div>`;
 
@@ -104,5 +137,13 @@ function print_pdf()
 // The data_getter file has to have the SAME or lower load priority than this file. If this file is DEFER, data_getter MUST be DEFER.
 function load_page()
 {
-    make_pdf();
+    if (document.getElementById("print_page_button") != null)
+    {
+        document.getElementById("print_page_button").href = link_list.MSIT_Flowchart_Printable;
+        make_pdf();
+    }
+    else
+    {
+        make_printable_pdf();
+    }
 }
