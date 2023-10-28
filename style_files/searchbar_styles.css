@@ -71,3 +71,15 @@
     background-color: white;
     margin-bottom: 20px;
 }
+
+.checkbox_img
+{
+    height: 40%;
+    aspect-ratio: 1/1;
+    margin: 5px;
+}
+
+.checkbox_img.hidden
+{
+    display: none;
+}

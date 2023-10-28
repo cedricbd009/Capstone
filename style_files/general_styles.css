@@ -54,6 +54,14 @@ body
     align-items: center;
 }
 
+.center_text_verticle_horizontal
+{
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+}
+
 .picture_button
 {
     cursor: pointer;
@@ -97,4 +105,21 @@ body
 .hide_overflow
 {
     overflow-y: hidden;
+}
+
+.zero_margin
+{
+    margin: 0px;
+}
+
+.inner_list_margin
+{
+    margin-top: 2px;
+    margin-bottom: 2px;
+}
+
+.outter_list_margin
+{
+    margin-top: 14px;
+    margin-bottom: 14px;
 }

@@ -32,8 +32,14 @@
         <!-- Left Floating Sidebar -->
         <div id="left_sidebar" class="floating_sidebar_left">
             <div class="background_color background_padding">
-                <button id="no_group" onclick="group_by('none');" class="order_button title_size">Simple List View</button>
-                <button id="track_group" onclick="group_by('track');" class="order_button title_size tab_active">View In Groups</button>
+                <button id="no_group" onclick="group_by('none');" class="order_button title_size side_by_side center_text_verticle_horizontal">
+                    <img id="no_group_img" class="checkbox_img hidden" src="resources\checkbox.png" alt="*">
+                    Simple List View
+                </button>
+                <button id="track_group" onclick="group_by('track');" class="order_button title_size tab_active side_by_side center_text_verticle_horizontal">
+                    <img id="track_group_img" class="checkbox_img" src="resources\checkbox.png" alt="*">
+                    View In Groups
+                </button>
                 <p class="title_size bold">Search:</p>
                 <div class="filter_table table_base">
                     <label class="center_text_verticle">Keywords:</label>
@@ -53,7 +59,7 @@
                     <label class="center_text_verticle">Degree:</label>
                     <select id="degree_selector" onchange="filter_results()" class="searchbar_height">
                         <option value="All Degrees" selected>All Degrees</option>
-                        <option value="MSCSE">MSCSE</option>
+                        <option value="BSIT">BSIT</option>
                         <option value="MSIT">MSIT</option>
                     </select>
                 </div>

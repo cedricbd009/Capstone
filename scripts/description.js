@@ -9,7 +9,7 @@ function load_list_element()
         {
             learning_outcomes_list = `
             <div class=\"side_by_side\">
-                <p>` + all_course_data[i].Course_Learning_Outcomes[0] + `</p>
+                <p class=\"inner_list_margin\">` + all_course_data[i].Course_Learning_Outcomes[0] + `</p>
             </div>`
         }
         else
@@ -18,8 +18,8 @@ function load_list_element()
             {
                 learning_outcomes_list += `
                 <div class=\"side_by_side\">
-                    <p>` + (k + 1) + `. </p>
-                    <p class=\"list_paragraph_spacer\">` + all_course_data[i].Course_Learning_Outcomes[k] + `</p>
+                    <p class=\"inner_list_margin\">` + (k + 1) + `. </p>
+                    <p class=\"list_paragraph_spacer inner_list_margin\">` + all_course_data[i].Course_Learning_Outcomes[k] + `</p>
                 </div>`
             }
         }
@@ -42,7 +42,7 @@ function load_list_element()
                 <div id=\"learning_outcomes` + i + `\">
                     <div class=\"table_base list_element_row\">
                         <p class=\"bold\">Learning Outcomes: </p>
-                        <div>
+                        <div class=\"outter_list_margin\">
                             ` + learning_outcomes_list + `
                         </div>
                     </div>

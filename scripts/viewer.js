@@ -192,7 +192,7 @@ function load_page_element()
     {
         learning_outcomes_list = `
         <div class=\"side_by_side\">
-            <p>` + course.Course_Learning_Outcomes[0] + `</p>
+            <p class=\"inner_list_margin\">` + course.Course_Learning_Outcomes[0] + `</p>
         </div>`
     }
     else
@@ -201,8 +201,8 @@ function load_page_element()
         {
             learning_outcomes_list += `
             <div class=\"side_by_side\">
-                <p>` + (k + 1) + `. </p>
-                <p class=\"list_paragraph_spacer\">` + course.Course_Learning_Outcomes[k] + `</p>
+                <p class=\"inner_list_margin\">` + (k + 1) + `. </p>
+                <p class=\"list_paragraph_spacer inner_list_margin\">` + course.Course_Learning_Outcomes[k] + `</p>
             </div>`
         }
     }
@@ -237,7 +237,7 @@ function load_page_element()
                 <div id=\"learning_outcomes\" class=\"hide_overflow\">
                     <div class=\"table_base list_element_row\">
                         <p class=\"bold\">Learning Outcomes: </p>
-                        <div>
+                        <div class=\"outter_list_margin\">
                             ` + learning_outcomes_list + `
                         </div>
                     </div>

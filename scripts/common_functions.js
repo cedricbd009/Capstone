@@ -10,6 +10,8 @@ var left_sidebar = document.getElementById("left_sidebar");
 var right_sidebar = document.getElementById("right_sidebar");
 var no_group = document.getElementById("no_group");
 var track_group = document.getElementById("track_group");
+var no_group_img = document.getElementById("no_group_img");
+var track_group_img = document.getElementById("track_group_img");
 
 var link_list =
 {
@@ -133,7 +135,9 @@ function group_by(type)
         list_body.innerHTML = ""
 
         no_group.className = no_group.className.replace(" tab_active", "");
+        track_group_img.className = track_group_img.className.replace(" hidden", "");
         track_group.className += " tab_active";
+        no_group_img.className += " hidden";
 
         create_groups();
         load_list_element();
@@ -144,7 +148,9 @@ function group_by(type)
         list_body.innerHTML = ""
 
         track_group.className = track_group.className.replace(" tab_active", "");
+        no_group_img.className = no_group_img.className.replace(" hidden", "");
         no_group.className += " tab_active";
+        track_group_img.className += " hidden";
 
         load_list_element();
         filter_results();
