@@ -11,6 +11,11 @@ var right_sidebar = document.getElementById("right_sidebar");
 var no_group = document.getElementById("no_group");
 var track_group = document.getElementById("track_group");
 
+var link_list =
+{
+    Syllabus_Repository: "./Syllabus/"
+}
+
 var tracks = 
     ["IT Foundation Courses", "Required Core Courses",
     "Data Analytics and Intelligent Technology", "Enterprise IT Management", "Health Information Technology", "Information Technology Security",
