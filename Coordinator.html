@@ -36,7 +36,7 @@
                 <div class="filter_table table_base">
                     <label class="center_text_verticle">Keywords:</label>
                     <div class="side_by_side">
-                        <input id="search_bar" onchange="filter_results()" class="searchbar_height searchbar_width" type="text" name="" placeholder="Keywords">
+                        <input id="search_bar" onkeypress="check_key(event);" class="searchbar_height searchbar_width" type="text" name="" placeholder="Keywords">
                         <div onclick="filter_results()" class="picture_button search_button_size" title="Search">
                             <div class="picture_button_bg"></div>
                             <img class="picture_button_img" src="resources\search.webp" alt="Search">

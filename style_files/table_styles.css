@@ -30,7 +30,7 @@
 
 .alg_row
 {
-    grid-template-columns: minmax(0, 4fr) minmax(0, 1fr) minmax(0, 1fr) minmax(0, 2fr) minmax(0, 2fr) minmax(0, 2fr);
+    grid-template-columns: minmax(0, 3fr) minmax(0, 1fr) minmax(0, 1fr) minmax(0, 2fr) minmax(0, 2fr) minmax(0, 2fr);
 }
 
 .six_row
@@ -70,7 +70,7 @@
 .header_row
 {
     background-color: #ffc629;
-    border: 2px;
+    border: 1px;
     border-style: solid;
     border-color: #aa841b;
 }
@@ -78,7 +78,7 @@
 .data_row
 {
     background-color: #ffffff;
-    border: 2px;
+    border: 1px;
     border-style: solid;
     border-color: rgb(190, 190, 190);
     display: inline-block;

@@ -22,6 +22,9 @@ function main()
         <a href=\"./Curriculum.html\" class=\"page_button center_text\">
             Curriculum Resources
         </a>
+        <a href=\"./Flowchart.html\" class=\"page_button center_text\">
+            MSIT Flowchart
+        </a>
     </div>`;
 }
 

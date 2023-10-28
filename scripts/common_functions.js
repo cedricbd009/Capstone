@@ -28,6 +28,16 @@ function store_course(id)
 
 
 
+function check_key(event)
+{
+    if (event.key == "Enter")
+    {
+        filter_results();
+    }
+}
+
+
+
 function hide_sidebar(side, displacement)
 {
     if (side == "left")
