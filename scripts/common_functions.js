@@ -12,10 +12,11 @@ var no_group = document.getElementById("no_group");
 var track_group = document.getElementById("track_group");
 var no_group_img = document.getElementById("no_group_img");
 var track_group_img = document.getElementById("track_group_img");
+var program_catalogs_table = document.getElementById("program_catalogs_table");
 
 var link_list =
 {
-    Syllabus_Repository: "./Syllabus/",
+    Syllabus_Repository: "https://cedricbd009.github.io/Capstone/Syllabus/",
     Course_List: "./index.html",
     Course_Description: "./Description.html",
     Permanent_Schedule: "./Schedule.html",

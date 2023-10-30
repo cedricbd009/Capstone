@@ -86,9 +86,7 @@ function higlight_course()
     {
         if ((all_course_data[i].Course_Number.toLowerCase().includes(search_bar.value.toLowerCase()) == true ||
             all_course_data[i].Course_Name.toLowerCase().includes(search_bar.value.toLowerCase()) == true) &&
-            (all_course_data[i].Prefix.toLowerCase().includes(prefix_selector.value.toLowerCase()) == true || prefix_selector.value == "All Prefixes")  &&
-            (all_course_data[i].Degree.toLowerCase().includes(degree_selector.value.toLowerCase()) == true || degree_selector.value == "All Degrees") &&
-            !(search_bar.value == "" && prefix_selector.value == "All Prefixes" && degree_selector.value == "All Degrees"))
+            search_bar.value.toLowerCase() != "")
         {
             document.getElementById("course" + i).style.backgroundColor = "#def434";
         }
@@ -103,19 +101,9 @@ function higlight_course()
 
 function reset_highlight()
 {
-    if (prefix_selector != null)
-    {
-        prefix_selector.selectedIndex = 0;
-    }
-
     if (search_bar != null)
     {
         search_bar.value = "";
-    }
-
-    if (degree_selector != null)
-    {
-        degree_selector.selectedIndex = 0;
     }
 
     higlight_course();
@@ -137,6 +125,8 @@ function print_pdf()
 // The data_getter file has to have the SAME or lower load priority than this file. If this file is DEFER, data_getter MUST be DEFER.
 function load_page()
 {
+    sort_array_by_id(all_course_data);
+    
     if (document.getElementById("print_page_button") != null)
     {
         document.getElementById("print_page_button").href = link_list.MSIT_Flowchart_Printable;

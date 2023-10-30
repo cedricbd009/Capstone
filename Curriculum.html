@@ -19,7 +19,7 @@
         <script src="scripts\common_functions.js" defer></script>
         <script src="scripts\banner.js" defer></script>
         <script src="scripts\curriculum.js" defer></script>
-        <script src="scripts\data_getter.js" defer></script>
+        <script src="scripts\catalog_getter.js" defer></script>
 
         <!-- Fav Icon -->
         <link rel="icon" href="resources\favicon.ico" type="image/x-icon">
@@ -34,81 +34,53 @@
             <div id="list_body" class="main_list">
                 <div class="animate_open_default" id="course">
                     <div class="list_element background_color">
-                        <p class="title_size bold">Program Information:</p>
-                        <div class="table_base list_element_row">
-                            <p class="bold">MSIT Program Requirements: </p>
-                            <a class="list_link" href="https://msit.kennesaw.edu/future-students/program-requirements.php" target="_blank">https://msit.kennesaw.edu/future-students/program-requirements.php</a>
-                        </div>
-                        <div class="table_base list_element_row">
-                            <p class="bold">BSIT Program Requirements: </p>
-                            <a class="list_link" href="https://ccse.kennesaw.edu/it/programs/undergraduate/bsit.php#requirements" target="_blank">https://ccse.kennesaw.edu/it/programs/undergraduate/bsit.php#requirements</a>
-                        </div>
+                        <p class="title_size bold list_header_margin">Program Information:</p>
+                        <ul>
+                            <li class="table_base wide_list_element_row">
+                                <p class="bold tall_list_margin">MSIT Program Requirements: </p>
+                                <a class="tall_list_margin" href="https://msit.kennesaw.edu/future-students/program-requirements.php" target="_blank">https://msit.kennesaw.edu/future-students/program-requirements.php</a>
+                            </li>
+                            <li class="table_base wide_list_element_row">
+                                <p class="bold tall_list_margin">BSIT Program Requirements: </p>
+                                <a class="tall_list_margin" href="https://ccse.kennesaw.edu/it/programs/undergraduate/bsit.php#requirements" target="_blank">https://ccse.kennesaw.edu/it/programs/undergraduate/bsit.php#requirements</a>
+                            </li>
+                        </ul>
                         <p></p>
                         <p class="title_size bold">Catalogs:</p>
                         <div class="table_padder_top">
                         </div>
-                        <div class="table_base eight_row">
-                            <p class="header_row table_data">Year</p>
-                            <p class="header_row table_data">Undergraduate</p>
-                            <p class="header_row table_data">Graduate</p>
-                            <p class="header_row table_data">Foundations</p>
-                            <p class="header_row table_data">Enterprise</p>
-                            <p class="header_row table_data">Health</p>
-                            <p class="header_row table_data">Security</p>
-                            <p class="header_row table_data">Analytics</p>
-                            <a class="data_row table_data">2023-2024</a>
-                            <a class="data_row table_data list_link" href="https://catalog.kennesaw.edu/preview_program.php?catoid=68&poid=8375" target="_blank">BSIT</a>
-                            <a class="data_row table_data list_link" href="https://catalog.kennesaw.edu/preview_program.php?catoid=67&poid=8109" target="_blank">MSIT</a>
-                            <a class="data_row table_data list_link" href="https://catalog.kennesaw.edu/preview_program.php?catoid=67&poid=8108" target="_blank">Certificate</a>
-                            <a class="data_row table_data list_link" href="https://catalog.kennesaw.edu/preview_program.php?catoid=67&poid=8143" target="_blank">Certificate</a>
-                            <a class="data_row table_data list_link" href="https://catalog.kennesaw.edu/preview_program.php?catoid=67&poid=8105" target="_blank">Certificate</a>
-                            <a class="data_row table_data list_link" href="https://catalog.kennesaw.edu/preview_program.php?catoid=67&poid=8104" target="_blank">Certificate</a>
-                            <a class="data_row table_data list_link" href="https://catalog.kennesaw.edu/preview_program.php?catoid=67&poid=8138" target="_blank">Certificate</a>
-                            <a class="data_row table_data">2022-2023</a>
-                            <a class="data_row table_data list_link" href="https://catalog.kennesaw.edu/preview_program.php?catoid=60&poid=6822" target="_blank">BSIT</a>
-                            <a class="data_row table_data list_link" href="https://catalog.kennesaw.edu/preview_program.php?catoid=61&poid=7064" target="_blank">MSIT</a>
-                            <a class="data_row table_data list_link" href="https://catalog.kennesaw.edu/preview_program.php?catoid=61&poid=7063" target="_blank">Certificate</a>
-                            <a class="data_row table_data list_link" href="https://catalog.kennesaw.edu/preview_program.php?catoid=61&poid=7098" target="_blank">Certificate</a>
-                            <a class="data_row table_data list_link" href="https://catalog.kennesaw.edu/preview_program.php?catoid=61&poid=7060" target="_blank">Certificate</a>
-                            <a class="data_row table_data list_link" href="https://catalog.kennesaw.edu/preview_program.php?catoid=61&poid=7059" target="_blank">Certificate</a>
-                            <a class="data_row table_data list_link" href="https://catalog.kennesaw.edu/preview_program.php?catoid=61&poid=7093" target="_blank">Certificate</a>
-                            <a class="data_row table_data">2021-2022</a>
-                            <a class="data_row table_data list_link" href="https://catalog.kennesaw.edu/preview_program.php?catoid=54&poid=6290" target="_blank">BSIT</a>
-                            <a class="data_row table_data list_link" href="https://catalog.kennesaw.edu/preview_program.php?catoid=55&poid=6527" target="_blank">MSIT</a>
-                            <a class="data_row table_data list_link" href="https://catalog.kennesaw.edu/preview_program.php?catoid=55&poid=6526" target="_blank">Certificate</a>
-                            <a class="data_row table_data list_link" href="https://catalog.kennesaw.edu/preview_program.php?catoid=55&poid=6562" target="_blank">Certificate</a>
-                            <a class="data_row table_data list_link" href="https://catalog.kennesaw.edu/preview_program.php?catoid=55&poid=6523" target="_blank">Certificate</a>
-                            <a class="data_row table_data list_link" href="https://catalog.kennesaw.edu/preview_program.php?catoid=55&poid=6522" target="_blank">Certificate</a>
-                            <a class="data_row table_data list_link" href="https://catalog.kennesaw.edu/preview_program.php?catoid=55&poid=6557" target="_blank">Certificate</a>
+                        <div id="program_catalogs_table">
                         </div>
                         <div class="table_padder_bottom">
                         </div>
                         <p></p>
-                        <p class="title_size bold">KSU Apps and Resources:</p>
-                        <div class="table_base list_element_row">
-                            <p class="bold">Latest Graduate Catalog: </p>
-                            <a class="list_link" href="https://catalog.kennesaw.edu/content.php?catoid=67&navoid=5323" target="_blank">https://catalog.kennesaw.edu/content.php?catoid=67&navoid=5323</a>
-                        </div>
-                        <div class="table_base list_element_row">
-                            <p class="bold">Curriculum Homepage: </p>
-                            <a class="list_link" href="https://cia.kennesaw.edu/index.php" target="_blank">https://cia.kennesaw.edu/index.php</a>
-                        </div>
-                        <div class="table_base list_element_row">
-                            <p class="bold">OwlExpress Class Schedule: </p>
-                            <a class="list_link" href="https://owlexpress.kennesaw.edu/prodban/bwckctlg.p_disp_dyn_ctlg" target="_blank">https://owlexpress.kennesaw.edu/prodban/bwckctlg.p_disp_dyn_ctlg</a>
-                        </div>
-                        <div class="table_base list_element_row">
-                            <p class="bold">Curriculog Homepage: </p>
-                            <a class="list_link" href="https://kennesaw.curriculog.com/" target="_blank">https://kennesaw.curriculog.com/</a>
-                        </div>
-                        <div class="table_base list_element_row">
-                            <p class="bold">KSU D2L Homepage: </p>
-                            <a class="list_link" href="https://kennesaw.view.usg.edu" target="_blank">https://kennesaw.view.usg.edu</a>
-                        </div>
-                        <div class="table_base list_element_row">
-                            <p class="bold">Area F Guidelines: </p>
-                            <a class="list_link" href="https://www.usg.edu/curriculum/area_f_guidelines" target="_blank">https://www.usg.edu/curriculum/area_f_guidelines</a>
-                        </div>
+                        <p class="title_size bold list_header_margin">KSU Apps and Resources:</p>
+                        <ul>
+                            <li class="table_base wide_list_element_row">
+                                <p class="bold tall_list_margin">Latest Graduate Catalog: </p>
+                                <a class="tall_list_margin" href="https://catalog.kennesaw.edu/content.php?catoid=67&navoid=5323" target="_blank">https://catalog.kennesaw.edu/content.php?catoid=67&navoid=5323</a>
+                            </li>
+                            <li class="table_base wide_list_element_row">
+                                <p class="bold tall_list_margin">Curriculum Homepage: </p>
+                                <a class="tall_list_margin" href="https://cia.kennesaw.edu/index.php" target="_blank">https://cia.kennesaw.edu/index.php</a>
+                            </li>
+                            <li class="table_base wide_list_element_row">
+                                <p class="bold tall_list_margin">OwlExpress Class Schedule: </p>
+                                <a class="tall_list_margin" href="https://owlexpress.kennesaw.edu/prodban/bwckctlg.p_disp_dyn_ctlg" target="_blank">https://owlexpress.kennesaw.edu/prodban/bwckctlg.p_disp_dyn_ctlg</a>
+                            </li>
+                            <li class="table_base wide_list_element_row">
+                                <p class="bold tall_list_margin">Curriculog Homepage: </p>
+                                <a class="tall_list_margin" href="https://kennesaw.curriculog.com/" target="_blank">https://kennesaw.curriculog.com/</a>
+                            </li>
+                            <li class="table_base wide_list_element_row">
+                                <p class="bold tall_list_margin">KSU D2L Homepage: </p>
+                                <a class="tall_list_margin" href="https://kennesaw.view.usg.edu" target="_blank">https://kennesaw.view.usg.edu</a>
+                            </li>
+                            <li class="table_base wide_list_element_row">
+                                <p class="bold tall_list_margin">Area F Guidelines: </p>
+                                <a class="tall_list_margin" href="https://www.usg.edu/curriculum/area_f_guidelines" target="_blank">https://www.usg.edu/curriculum/area_f_guidelines</a>
+                            </li>
+                        </ul>
                     </div>
                 </div>
             </div>

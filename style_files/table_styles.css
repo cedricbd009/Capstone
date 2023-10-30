@@ -13,6 +13,12 @@
     grid-template-columns: minmax(115px, 1fr) minmax(0, 9fr);
 }
 
+.table_base.wide_list_element_row
+{
+    column-gap: 5px;
+    grid-template-columns: minmax(115px, 1fr) minmax(0, 4fr);
+}
+
 .two_row
 {
     grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
@@ -45,7 +51,7 @@
 
 .eight_row
 {
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr) minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr);
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 0.75fr) minmax(0, 0.75fr) minmax(0, 1fr) minmax(0, 1fr) minmax(0, 0.9fr) minmax(0, 1fr) minmax(0, 1fr);
 }
 
 .table_padder_top

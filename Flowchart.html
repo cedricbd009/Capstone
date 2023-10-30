@@ -28,12 +28,12 @@
     <body>
         <!-- KSU Banner -->
         <div id="banner_container" class="floating_header"></div>
-        <div class="floating_title bold">Course List</div>
+        <div class="floating_title bold">MSIT Flowchart</div>
 
         <!-- Left Floating Sidebar -->
         <div id="left_sidebar" class="floating_sidebar_left">
             <div class="background_color background_padding">
-                <p class="title_size bold">Search:</p>
+                <p class="title_size bold">Highlight Courses With:</p>
                 <div class="filter_table table_base">
                     <label class="center_text_verticle">Keywords:</label>
                     <div class="side_by_side">
@@ -43,27 +43,10 @@
                             <img class="picture_button_img" src="resources\search.webp" alt="Search">
                         </div>
                     </div>
-                    <label class="center_text_verticle">Prefix:</label>
-                    <select id="prefix_selector" onchange="higlight_course()" class="searchbar_height">
-                        <option value="All Prefixes" selected>All Prefixes</option>
-                        <option value="CSE">CSE</option>
-                        <option value="IT">IT</option>
-                    </select>
-                    <label class="center_text_verticle">Degree:</label>
-                    <select id="degree_selector" onchange="higlight_course()" class="searchbar_height">
-                        <option value="All Degrees" selected>All Degrees</option>
-                        <option value="BSIT">BSIT</option>
-                        <option value="MSIT">MSIT</option>
-                    </select>
                 </div>
                 <p></p>
                 <button onclick="reset_highlight();" class="tab_button">Reset Filters</button>
-            </div>
-        </div>
-
-        <!-- Right Floating Sidebar -->
-        <div id="right_sidebar" class="floating_sidebar_right">
-            <div class="background_color background_padding">
+                <p></p>
                 <a id="print_page_button" href="" target="_blank">
                     <button class="tab_button">Print Flowchart</button>
                 </a>
