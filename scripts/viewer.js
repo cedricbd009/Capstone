@@ -18,7 +18,7 @@ var offering_info_enum =
 
 var development_info_enum = 
 [
-    "coordinator_table", "curriculog_link", "alg_eligibility", "alg_round_history", "alg_developer", "latest_alg_round", "latest_alg_developer"
+    "coordinator_table", "curriculog_link", "alg_info"
 ];
 
 
@@ -208,6 +208,26 @@ function load_page_element()
             </div>`
         }
     }
+
+    var oer_links = `<p class=\"tall_list_margin\">None</p>`
+
+    if (course.OER_Links.Website != "None")
+    {
+        oer_links = `<a class=\"tall_list_margin\" href=\"` + course.OER_Links.Website + `\" target=\"_blank\">Website</a>`
+    }
+
+    if (course.OER_Links.OpenALG != "None")
+    {
+        if (oer_links == `<p class=\"tall_list_margin\">None</p>`)
+        {
+            oer_links = `<a class=\"tall_list_margin\" href=\"` + course.OER_Links.OpenALG + `\" target=\"_blank\">OpenALG</a>`;
+        }
+        else
+        {
+            oer_links += `<p class=\"tall_list_margin\">, </p>`;
+            oer_links += `<a class=\"tall_list_margin space_before\" href=\"` + course.OER_Links.OpenALG + `\" target=\"_blank\">OpenALG</a>`;
+        }
+    }
     
     offering_history_list += build_offering_history("2023");
     offering_history_list += build_offering_history("2022");
@@ -318,35 +338,28 @@ function load_page_element()
                         <a class=\"list_link\" href=\"` + course.Curriculog_Link + `\" target=\"_blank\">` + course.Curriculog_Link + `</a>
                     </div>
                 </div>
-                <div id=\"alg_eligibility\" class=\"hide_overflow\">
-                    <div class=\"table_base list_element_row\">
-                        <p class=\"bold\">ALG Eligibility: </p>
-                        <p>` + course.ALG_Eligible + `</p>
-                    </div>
-                </div>
-                <div id=\"alg_round_history\" class=\"hide_overflow\">
-                    <div class=\"table_base list_element_row\">
-                        <p class=\"bold\">ALG Round History: </p>
-                        <p>` + course.History_Round_And_Developer + `</p>
-                    </div>
-                </div>
-                <div id=\"alg_developer\" class=\"hide_overflow\">
-                    <div class=\"table_base list_element_row\">
-                        <p class=\"bold\">ALG Developer: </p>
-                        <p>` + course.ALG_Developer + `</p>
-                    </div>
-                </div>
-                <div id=\"latest_alg_round\" class=\"hide_overflow\">
-                    <div class=\"table_base list_element_row\">
-                        <p class=\"bold\">Latest ALG Round: </p>
-                        <p>` + course.Latest_ALG_Round + `</p>
-                    </div>
-                </div>
-                <div id=\"latest_alg_developer\" class=\"hide_overflow\">
-                    <div class=\"table_base list_element_row\">
-                        <p class=\"bold\">Latest ALG Developer: </p>
-                        <p>` + course.Latest_Developer + `</p>
-                    </div>
+                <div id=\"alg_info\" class=\"hide_overflow\">
+                    <p class="bold list_header_margin">ALG Grants:</p>
+                    <ul>
+                        <li class="table_base list_element_row">
+                        <p class=\"bold tall_list_margin\">Latest Round:</p>
+                        <p class="tall_list_margin">` + course.Latest_ALG_Round + `</p>
+                        </li>
+                        <li class="table_base list_element_row">
+                            <p class=\"bold tall_list_margin\">Developer:</p>
+                            <p class="tall_list_margin">` + course.Latest_Developer + `</p>
+                        </li>
+                        <li class="table_base list_element_row">
+                            <p class="bold tall_list_margin">OER Links:</p>
+                            <div class=\"side_by_side\">
+                                `+ oer_links + `
+                            </div>
+                        </li>
+                        <li class="table_base list_element_row">
+                            <p class=\"bold tall_list_margin\">History:</p>
+                            <p class="tall_list_margin">` + course.History_Round_And_Developer + ` (` + course.ALG_Developer + `)</p>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>

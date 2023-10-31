@@ -42,11 +42,6 @@ function load_list_element()
             }
         }
 
-
-        //Website
-        //OpenALG
-
-
         var html_obj = document.createElement('div');
 
         html_obj.classList.add("animate_open_default");
