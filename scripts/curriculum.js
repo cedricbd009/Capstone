@@ -60,6 +60,8 @@ function load_list_element()
 // The data_getter file has to have the SAME or lower load priority than this file. If this file is DEFER, data_getter MUST be DEFER.
 function load_page()
 {
+    set_site_title(" - Curriculum Resources");
+
     sort_array_by_year(all_catalog_data);
 
     load_list_element();

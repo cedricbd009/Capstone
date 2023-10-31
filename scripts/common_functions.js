@@ -14,6 +14,8 @@ var no_group_img = document.getElementById("no_group_img");
 var track_group_img = document.getElementById("track_group_img");
 var program_catalogs_table = document.getElementById("program_catalogs_table");
 
+var site_title = "KSU IT Curriculum Portal"
+
 var link_list =
 {
     Syllabus_Repository: "https://cedricbd009.github.io/Capstone/Syllabus/",
@@ -35,6 +37,20 @@ var tracks =
 
 var tracks_certificates = 
     ["Data Analytics and Intelligent Technology", "Enterprise IT Management", "Health Information Technology", "Information Technology Security"];
+
+
+
+function set_site_title(title_extension)
+{
+    document.title = site_title + title_extension;
+}
+
+
+
+function set_site_title_course(title_extension)
+{
+    document.title = title_extension;
+}
 
 
 

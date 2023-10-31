@@ -80,6 +80,8 @@ function create_groups()
 // The data_getter file has to have the SAME or lower load priority than this file. If this file is DEFER, data_getter MUST be DEFER.
 function load_page()
 {
+    set_site_title(" - Course List");
+
     sort_array_by_id(all_course_data);
 
     create_groups();

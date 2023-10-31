@@ -2,7 +2,6 @@ function main()
 {
     document.getElementById("banner_container").innerHTML = `
     <img class=\"page_image\" src=\"resources/ksu_banner.png\" alt=\"KSU Banner\">
-    <p class=\"page_title bold list_pargraph_no_break\">IT Curriculum Portal</p>
     <div class=\"banner_tabs\">
         <a href=\"` + link_list.Course_List + `\" class=\"page_button center_text\">
             Course List

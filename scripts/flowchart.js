@@ -129,11 +129,15 @@ function load_page()
     
     if (document.getElementById("print_page_button") != null)
     {
+        set_site_title(" - MSIT Flowchart");
+
         document.getElementById("print_page_button").href = link_list.MSIT_Flowchart_Printable;
         make_pdf();
     }
     else
     {
+        set_site_title(" - MSIT Printable Flowchart");
+
         make_printable_pdf();
     }
 }

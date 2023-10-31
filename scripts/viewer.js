@@ -43,6 +43,8 @@ function select_course()
 
     course = all_course_data[course_selector.value];
 
+    set_site_title_course("Course Profile " + course.Prefix + " " +  course.Course_Number + " " + course.Course_Name);
+
     window.history.replaceState(null, null, "?course=" + course.Prefix + course.Course_Number);
     
     load_page_element();
@@ -311,11 +313,9 @@ function load_page_element()
                     </div>
                     <div class=\"table_base four_row\">
                         <p class=\"header_row table_data\">Course Coordinator</p>
-                        <p class=\"header_row table_data\">Co-Coordinator</p>
                         <p class=\"header_row table_data\">Coordinator Email</p>
                         <p class=\"header_row table_data\">D2L Master Link</p>
-                        <p class=\"data_row table_data\">` + course.Coordinator_Name + `</p>
-                        <p class=\"data_row table_data\">` + course.Co_Coordinator_Name + `</p>
+                        <p class=\"data_row table_data\">` + course.Coordinator_Name + `, ` + course.Co_Coordinator_Name +`</p>
                         <p class=\"data_row table_data\">` + course.Email + `</p>
                         <a class=\"data_row table_data list_link\" href=\"` + course.D2L_Master_Link + `\" target=\"_blank\">` + course.D2L_Master_Link + `</a>
                     </div>
@@ -372,6 +372,7 @@ function load_page_element()
 // The data_getter file has to have the SAME or lower load priority than this file. If this file is DEFER, data_getter MUST be DEFER.
 function load_page()
 {
+
     sort_array_by_id(all_course_data);
 
     query_prefix = query.get("course").replace(/[0-9]*/g, "");
@@ -390,6 +391,8 @@ function load_page()
     }
 
     course = JSON.parse(sessionStorage.getItem("stored_course"));
+
+    set_site_title_course("Course Profile " + course.Prefix + " " +  course.Course_Number + " " + course.Course_Name);
 
     load_page_element();
 

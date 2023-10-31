@@ -1,7 +1,7 @@
 .floating_header
 {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    display: flex;
+    justify-content: space-between;
     height: 60px;
     width: 100%;
     background-color: rgb(0, 0, 0);
@@ -60,6 +60,7 @@
     background-color: rgb(0, 0, 0);
     cursor: pointer;
     height: 100%;
+    width: min-content;
     padding: 0px 10px;
     color: white;
     transition: background-color 0.25s;
