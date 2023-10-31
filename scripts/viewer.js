@@ -306,21 +306,11 @@ function load_page_element()
                     </div>
                 </div>
                 <div id=\"coordinator_table\" class=\"hide_overflow\">
-                    <div>
+                    <div class=\"table_base list_element_row\">
                         <p class=\"bold\">Course Coordinator:</p>
-                    </div>
-                    <div class=\"table_padder_top\">
-                    </div>
-                    <div class=\"table_base four_row\">
-                        <p class=\"header_row table_data\">Course Coordinator</p>
-                        <p class=\"header_row table_data\">Coordinator Email</p>
-                        <p class=\"header_row table_data\">D2L Master Link</p>
-                        <p class=\"data_row table_data\">` + course.Coordinator_Name + `, ` + course.Co_Coordinator_Name +`</p>
-                        <p class=\"data_row table_data\">` + course.Email + `</p>
-                        <a class=\"data_row table_data list_link\" href=\"` + course.D2L_Master_Link + `\" target=\"_blank\">` + course.D2L_Master_Link + `</a>
-                    </div>
-                    <div class=\"table_padder_bottom\">
-                    </div>
+                        <p>` + course.Coordinator_Name + `, ` + course.Co_Coordinator_Name +`</p>
+                        <p class=\"bold\">D2L Master Shell:</p>
+                        <a class=\"list_link\" href=\"` + course.D2L_Master_Link + `\" target=\"_blank\">` + course.D2L_Master_Link + `</a>
                 </div>
                 <div id=\"curriculog_link\" class=\"hide_overflow\">             
                     <div class=\"table_base list_element_row\">
