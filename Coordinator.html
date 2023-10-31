@@ -56,14 +56,24 @@
                         <option value="BSIT">BSIT</option>
                         <option value="MSIT">MSIT</option>
                     </select>
-                    <label class="center_text_verticle">Order By:</label>
-                    <select id="order_by_selector" onchange="order_by()" class="searchbar_height">
-                        <option value="Course Number">Course Number</option>
-                        <option value="Coordinator">Coordinator</option>
-                    </select>
+                </div>
+                <p></p>
+                <div class="table_base double_buttons">
+                    <button id="order_by_course" onclick="order_by('Course Number');" class="order_button  tab_active">Sort By Course</button>
+                    <button id="order_by_coordinator" onclick="order_by('Coordinator');" class="order_button">Sort By Coordinator</button>
                 </div>
                 <p></p>
                 <button onclick="reset_filters();" class="tab_button">Reset Filters</button>
+            </div>
+        </div>
+
+        <!-- Right Floating Sidebar -->
+        <div id="right_sidebar" class="floating_sidebar_right">
+            <div class="background_color background_padding">
+                <div class="side_by_side">
+                    <p>Excel Reference:</p>
+                    <a class="space_before list_link" href="https://kennesawedu.sharepoint.com/:x:/r/sites/CCSE/IT/_layouts/15/Doc.aspx?sourcedoc=%7B3DD8090D-622F-451C-B20A-AAED0183997D%7D" target="_blank">Sharepoint</a>
+                </div>
             </div>
         </div>
 

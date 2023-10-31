@@ -19,6 +19,12 @@
     grid-template-columns: minmax(115px, 1fr) minmax(0, 4fr);
 }
 
+.table_base.double_buttons
+{
+    column-gap: 10px;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+}
+
 .two_row
 {
     grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
@@ -31,7 +37,7 @@
 
 .coord_row
 {
-    grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr) minmax(0, 1.5fr);
+    grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr) minmax(0, 1fr);
 }
 
 .alg_row
@@ -78,7 +84,7 @@
     background-color: #ffc629;
     border: 1px;
     border-style: solid;
-    border-color: #aa841b;
+    border-color: #cfa121;
 }
 
 .data_row
@@ -86,6 +92,6 @@
     background-color: #ffffff;
     border: 1px;
     border-style: solid;
-    border-color: rgb(190, 190, 190);
+    border-color: rgb(224, 224, 224);
     display: inline-block;
 }

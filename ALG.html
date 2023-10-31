@@ -54,11 +54,11 @@
                         <option value="BSIT">BSIT</option>
                         <option value="MSIT">MSIT</option>
                     </select>
-                    <label class="center_text_verticle">Order By:</label>
-                    <select id="order_by_selector" onchange="order_by()" class="searchbar_height">
-                        <option value="Course Number">Course Number</option>
-                        <option value="ALG">ALG</option>
-                    </select>
+                </div>
+                <p></p>
+                <div class="table_base double_buttons">
+                    <button id="order_by_course" onclick="order_by('Course Number');" class="order_button  tab_active">Sort By Course</button>
+                    <button id="order_by_alg" onclick="order_by('ALG');" class="order_button">Sort By ALG</button>
                 </div>
                 <p></p>
                 <button onclick="reset_filters();" class="tab_button">Reset Filters</button>

@@ -40,7 +40,7 @@ function load_list_element()
                 <div class=\"table_base coord_row\">
                     <a class=\"data_row table_data\" href=\"` + link_list.Course_Information + all_course_data[i].Prefix + all_course_data[i].Course_Number + `\" onclick=\"store_course(` + i + `);\">` + all_course_data[i].Prefix + ` ` + all_course_data[i].Course_Number + `: ` + all_course_data[i].Course_Name + `</a>
                     <p class=\"data_row table_data\">` + all_course_data[i].Coordinator_Name + `, ` + all_course_data[i].Co_Coordinator_Name + `</p>
-                    <a class=\"data_row table_data list_link\" href=\"` + all_course_data[i].D2L_Master_Link + `\" target=\"_blank\">` + all_course_data[i].D2L_Master_Link + `</a>
+                    <a class=\"data_row table_data list_link\" href=\"` + all_course_data[i].D2L_Master_Link + `\" target=\"_blank\">D2L Master Shell Link - ` + all_course_data[i].D2L_Master_Link.split("/").at(-1) + `</a>
                 </div>
             </div>
         </div>`;

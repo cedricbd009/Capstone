@@ -3,7 +3,9 @@ var offered_selector = document.getElementById("offered_selector");
 var search_bar = document.getElementById("search_bar");
 var filter_coodinator = document.getElementById("filter_coodinator");
 var degree_selector = document.getElementById("degree_selector");
-var order_by_selector = document.getElementById("order_by_selector");
+var order_by_course = document.getElementById("order_by_course");
+var order_by_coordinator = document.getElementById("order_by_coordinator");
+var order_by_alg = document.getElementById("order_by_alg");
 var group_selector = document.getElementById("group_selector");
 var list_body = document.getElementById("list_body");
 var left_sidebar = document.getElementById("left_sidebar");
@@ -121,20 +123,36 @@ function sort_array_by_id(array)
 
 
 
-function order_by()
+function order_by(order_style)
 {
     list_body.innerHTML = ""
 
-    if (order_by_selector.value == "Coordinator")
+    if (order_by_course != null)
+    {
+        order_by_course.className = order_by_course.className.replace(" tab_active", "");
+    }
+    if (order_by_coordinator != null)
+    {
+        order_by_coordinator.className = order_by_coordinator.className.replace(" tab_active", "");
+    }
+    if (order_by_alg != null)
+    {
+        order_by_alg.className = order_by_alg.className.replace(" tab_active", "");
+    }
+
+    if (order_style == "Coordinator")
     {  
+        order_by_coordinator.className += " tab_active";
         sort_array_by_coordinator(all_course_data);
     }
-    else if (order_by_selector.value == "ALG")
+    else if (order_style == "ALG")
     {  
+        order_by_alg.className += " tab_active";
         sort_array_by_alg(all_course_data);
     }
     else
     {
+        order_by_course.className += " tab_active";
         sort_array_by_id(all_course_data);
     }
 
@@ -205,8 +223,7 @@ function reset_filters()
 
     if (order_by_selector != null && order_by_selector.selectedIndex != 0)
     {
-        order_by_selector.selectedIndex = 0;
-        order_by();
+        order_by("Course Number");
     }
     else
     {
