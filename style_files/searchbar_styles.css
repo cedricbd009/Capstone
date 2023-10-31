@@ -83,3 +83,10 @@
 {
     display: none;
 }
+
+.excel_img
+{
+    height: 60%;
+    aspect-ratio: 1/1;
+    margin: 5px;
+}

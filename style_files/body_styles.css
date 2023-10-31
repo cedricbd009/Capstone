@@ -117,6 +117,25 @@
     background-color: #313ba5;
 }
 
+.excel_button
+{
+    background-color: white;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-color: rgb(177, 177, 177);
+    cursor: pointer;
+    height: 60px;
+    width: 100%;
+    padding: 0px 0px;
+    transition: background-color 0.25s;
+}
+
+.excel_button:hover
+{
+    background-color: #99a1ff;
+}
+
 .list_paragraph_spacer
 {
     padding-left: 10px;
