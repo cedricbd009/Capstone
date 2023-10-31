@@ -84,7 +84,5 @@ function load_page()
 
     sort_array_by_id(all_course_data);
 
-    create_groups();
-
     load_list_element();
 }

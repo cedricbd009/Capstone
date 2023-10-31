@@ -23,6 +23,30 @@ function load_list_element()
 {
     for (i = 0; i < all_course_data.length; i++)
     {
+        var oer_links = `<p class=\"zero_margin\">None</p>`
+
+        if (all_course_data[i].OER_Links.Website != "None")
+        {
+            oer_links = `<a href=\"` + all_course_data[i].OER_Links.Website + `\" target=\"_blank\">Website</a>`
+        }
+
+        if (all_course_data[i].OER_Links.OpenALG != "None")
+        {
+            if (oer_links == `<p class=\"zero_margin\">None</p>`)
+            {
+                oer_links = `<a href=\"` + all_course_data[i].OER_Links.OpenALG + `\" target=\"_blank\">OpenALG</a>`;
+            }
+            else
+            {
+                oer_links += `<a class=\"list_stack_margin\" href=\"` + all_course_data[i].OER_Links.OpenALG + `\" target=\"_blank\">OpenALG</a>`;
+            }
+        }
+
+
+        //Website
+        //OpenALG
+
+
         var html_obj = document.createElement('div');
 
         html_obj.classList.add("animate_open_default");
@@ -33,11 +57,14 @@ function load_list_element()
             <div id=\"coordinator_table` + i + `\">
                 <div class=\"table_base alg_row\">
                     <a class=\"data_row table_data\" href=\"` + link_list.Course_Information + all_course_data[i].Prefix + all_course_data[i].Course_Number + `\" onclick=\"store_course(` + i + `);\">` + all_course_data[i].Prefix + ` ` + all_course_data[i].Course_Number + `: ` + all_course_data[i].Course_Name + `</a>
-                    <p class=\"data_row table_data\">` + all_course_data[i].ALG_Eligible + `</p>
-                    <p class=\"data_row table_data\">` + all_course_data[i].History_Round_And_Developer + `</p>
-                    <p class=\"data_row table_data\">` + all_course_data[i].ALG_Developer + `</p>
                     <p class=\"data_row table_data\">` + all_course_data[i].Latest_ALG_Round + `</p>
                     <p class=\"data_row table_data\">` + all_course_data[i].Latest_Developer + `</p>
+                    <div class=\"data_row table_data\">
+                        <div class=\"verticle_stack\">
+                            ` + oer_links + `
+                        </div>
+                    </div>
+                    <p class=\"data_row table_data\">` + all_course_data[i].History_Round_And_Developer + `</p>   
                 </div>
             </div>
         </div>`;

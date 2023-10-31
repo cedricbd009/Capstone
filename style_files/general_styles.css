@@ -137,3 +137,14 @@ body
 {
     margin-bottom: 0px;
 }
+
+.list_stack_margin
+{
+    margin-top: 6px;
+}
+
+.verticle_stack
+{
+    display: flex;
+    flex-direction: column;
+}
