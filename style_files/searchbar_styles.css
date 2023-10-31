@@ -34,7 +34,7 @@
 .table_base.filter_table
 {
     display: grid;
-    grid-template-columns: 1fr 1.8fr;
+    grid-template-columns: 1fr 1.5fr;
     row-gap: 10px;
 }
 
