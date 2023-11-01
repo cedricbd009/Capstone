@@ -282,14 +282,7 @@ function reset_filters()
         degree_selector.selectedIndex = 0;
     }
 
-    if (order_by_selector != null && order_by_selector.selectedIndex != 0)
-    {
-        order_by("Course Number");
-    }
-    else
-    {
-        filter_results();
-    }
+    filter_results();
 }
 
 
