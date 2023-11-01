@@ -16,7 +16,8 @@ var no_group_img = document.getElementById("no_group_img");
 var track_group_img = document.getElementById("track_group_img");
 var program_catalogs_table = document.getElementById("program_catalogs_table");
 
-var site_title = "KSU IT Curriculum Portal"
+var site_title = "KSU IT Curriculum Portal";
+var alg_sort = false;
 
 var link_list =
 {
@@ -30,7 +31,7 @@ var link_list =
     MSIT_Flowchart: "./Flowchart.html",
     MSIT_Flowchart_Printable: "./Print_Flowchart.html",
     Course_Information: "./Viewer.html?course="
-}
+};
 
 var tracks = 
     ["IT Foundation Courses", "Required Core Courses",
@@ -123,6 +124,50 @@ function sort_array_by_id(array)
 
 
 
+function sort_array_by_round(array)
+{
+    array.sort(
+        function(in_1, in_2)
+        {
+            var check_1 = in_1.Round.toLowerCase();
+            var check_2 = in_2.Round.toLowerCase();
+            if (check_1 < check_2)
+            {
+                return -1;
+            }
+            if (check_1 > check_2)
+            {
+                return 1;
+            }
+        }
+    );
+}
+
+
+
+function sort_array_by_grant(array)
+{
+    array.sort(
+        function(in_1, in_2)
+        {
+            var check_1 = in_1.Grant.toLowerCase();
+            var check_2 = in_2.Grant.toLowerCase();
+            if (check_1 < check_2)
+            {
+                return -1;
+            }
+            if (check_1 > check_2)
+            {
+                return 1;
+            }
+        }
+    );
+
+    return array;
+}
+
+
+
 function order_by(order_style)
 {
     list_body.innerHTML = ""
@@ -144,11 +189,6 @@ function order_by(order_style)
     {  
         order_by_coordinator.className += " tab_active";
         sort_array_by_coordinator(all_course_data);
-    }
-    else if (order_style == "ALG")
-    {  
-        order_by_alg.className += " tab_active";
-        sort_array_by_alg(all_course_data);
     }
     else
     {
@@ -178,14 +218,35 @@ function group_by(type)
         load_list_element();
         filter_results();
     }
-    else if (type == "none" && document.getElementById(tracks[0]) != null)
+    else if (type == "alg" && alg_sort == false)
     {
         list_body.innerHTML = ""
+        alg_sort = true;
 
-        track_group.className = track_group.className.replace(" tab_active", "");
-        no_group_img.className = no_group_img.className.replace(" hidden", "");
-        no_group.className += " tab_active";
-        track_group_img.className += " hidden";
+        order_by_course.className = order_by_course.className.replace(" tab_active", "");
+        order_by_alg.className += " tab_active";
+
+        create_groups();
+        load_group_list_element();
+        filter_results();
+    }
+    else if (type == "none" && (document.getElementById(tracks[0]) != null || alg_sort == true))
+    {
+        list_body.innerHTML = "";
+        alg_sort = false;
+
+        if (track_group != null)
+        {
+            track_group.className = track_group.className.replace(" tab_active", "");
+            no_group_img.className = no_group_img.className.replace(" hidden", "");
+            no_group.className += " tab_active";
+            track_group_img.className += " hidden";
+        }
+        else if (order_by_alg != null)
+        {
+            order_by_alg.className = order_by_alg.className.replace(" tab_active", "");
+            order_by_course.className += " tab_active";
+        }
 
         load_list_element();
         filter_results();
@@ -245,17 +306,42 @@ function filter_results()
             (filter_coodinator == null || filter_coodinator.value == "" || (all_course_data[i].Coordinator_Name.toLowerCase()  + " " + all_course_data[i].Co_Coordinator_Name.toLowerCase()).includes(filter_coodinator.value.toLowerCase()) == true) &&
             (degree_selector == null || degree_selector.value == "All Degrees" || all_course_data[i].Degree.toLowerCase().includes(degree_selector.value.toLowerCase()) == true))
         {
-            document.getElementById("course" + i).style.gridTemplateRows = "1fr";
+            if (document.getElementById("course" + i) != null)
+            {
+                document.getElementById("course" + i).style.gridTemplateRows = "1fr";
+            }
+            else if (document.getElementsByClassName("course" + i).length > 0)
+            {
+                for (j = 0; j < document.getElementsByClassName("course" + i).length; j++)
+                {
+                    document.getElementsByClassName("course" + i)[j].style.gridTemplateRows = "1fr";
+                }
+            }
         }
         else
         {
-            document.getElementById("course" + i).style.gridTemplateRows = "0fr";
+            if (document.getElementById("course" + i) != null)
+            {
+                document.getElementById("course" + i).style.gridTemplateRows = "0fr";
+            }
+            else if (document.getElementsByClassName("course" + i).length > 0)
+            {
+                for (j = 0; j < document.getElementsByClassName("course" + i).length; j++)
+                {
+                    document.getElementsByClassName("course" + i)[j].style.gridTemplateRows = "0fr";
+                }
+            }
         }
     }
 
     if (document.getElementById(tracks[0]) != null)
     {
         hide_empty_tracks();
+    }
+
+    if (alg_sort == true)
+    {
+        hide_empty_rounds_and_grants();
     }
 }
 
@@ -304,6 +390,52 @@ function hide_empty_tracks()
         else
         {
             document.getElementById("track_certificate_group_top").style.gridTemplateRows = "1fr";
+        }
+    }
+}
+
+
+
+function hide_empty_rounds_and_grants()
+{
+    for (i = 0; i < list_body.children.length; i++)
+    {
+        var hide_round = true;
+        var round = list_body.children[i];
+        var round_number = round.id.replace(" top", "");
+        var grants = document.getElementById(round_number + "_grant_list").children;
+        
+        for (j = 0; j < grants.length; j++)
+        {
+            var hide_grant = true;
+            var grant = grants[j].children[0].children[0].children;
+
+            for (k = 0; k < grant.length; k++)
+            {
+                if (grant[k].style.gridTemplateRows === "1fr")
+                {
+                    hide_round = false;
+                    hide_grant = false;
+                }
+            }
+
+            if (hide_grant == true)
+            {
+                grants[j].style.gridTemplateRows = "0fr";
+            }
+            else
+            {
+                grants[j].style.gridTemplateRows = "1fr";
+            }
+        }
+
+        if (hide_round == true)
+        {
+            round.style.gridTemplateRows = "0fr";
+        }
+        else
+        {
+            round.style.gridTemplateRows = "1fr";
         }
     }
 }
