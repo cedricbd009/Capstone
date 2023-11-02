@@ -175,6 +175,116 @@ function build_offering_history(year)
 
 
 
+function generate_latest_round_info()
+{
+    var round_split = course.Latest_ALG_Round.split("-");
+    var round = "";
+    var grant = "";
+    var grant_type = "";
+    var round_year = "";
+
+    for (i = 0; i < all_grant_data.length; i++)
+    {
+        if (all_grant_data[i].Round == round_split[0])
+        {
+            round = all_grant_data[i];
+
+            if (round_split.length > 1)
+            {
+                for (j = 0; j < round.Grants.length; j++)
+                {
+                    if (round.Grants[j].Grant == round_split[1])
+                    {
+                        grant = round.Grants[j];
+                        grant_type = ` `+ grant.Type + ` Grant`;
+                        break;
+                    }
+                }
+            }
+            break;
+        }
+    }
+
+    if (round_split[0] != "None")
+    {
+        round_year = ` (` + round.Year + `)`;
+    }
+
+    return `
+    <li class="table_base list_element_row">
+        <p class=\"bold tall_list_margin\">Latest Round:</p>
+        <p class="tall_list_margin">` + course.Latest_ALG_Round + round_year + grant_type + `</p>
+    </li>`;
+}
+
+
+
+function generate_history_info()
+{
+    var history = course.History_Round_And_Developer.split("/");
+    var history_list = ""; 
+
+    for (k = 0; k < history.length; k++)
+    {
+        var round_split = history[k].split("-");
+        var round = "";
+        var grant = "";
+        var grant_repo = "";
+        var developer = "";
+
+        for (i = 0; i < all_grant_data.length; i++)
+        {
+            if (all_grant_data[i].Round == round_split[0])
+            {
+                round = all_grant_data[i];
+
+                if (round_split.length > 1)
+                {
+                    for (j = 0; j < round.Grants.length; j++)
+                    {
+                        if (round.Grants[j].Grant == round_split[1])
+                        {
+                            grant = round.Grants[j];
+                            grant_repo = grant.OER_Repo;
+                            break;
+                        }
+                    }
+                }
+                break;
+            }
+        }
+
+        if (history[k] != "None")
+        {
+            developer = ` (` + course.ALG_Developer + `)`;
+        }
+
+        if (grant_repo == "" || grant_repo == "Not Provided")
+        {
+            history_list += `<p class="tall_list_margin">` + history[k] + developer + `</p>`
+        }
+        else
+        {
+            history_list += `<a class="tall_list_margin black_text" href=\"` + grant_repo + `\" target=\"_blank\">` + history[k] + developer + `</a>`
+        }
+        
+        if (history.length > 1 && k < (history.length - 1))
+        {
+            history_list += `<p class="tall_list_margin space_after">,</p>`
+        }
+    }
+    
+    return `
+    <li class="table_base list_element_row">
+        <p class=\"bold tall_list_margin\">History:</p>
+        <div class=\"side_by_side\">
+            ` + history_list + `
+        </div>
+    </li>`;
+}
+
+
+
 function sleep(miliseconds)
 {
     return new Promise(timeout =>
@@ -341,10 +451,7 @@ function load_page_element()
                 <div id=\"alg_info\" class=\"hide_overflow\">
                     <p class="bold list_header_margin">ALG Grants:</p>
                     <ul>
-                        <li class="table_base list_element_row">
-                        <p class=\"bold tall_list_margin\">Latest Round:</p>
-                        <p class="tall_list_margin">` + course.Latest_ALG_Round + `</p>
-                        </li>
+                        ` + generate_latest_round_info() + `
                         <li class="table_base list_element_row">
                             <p class=\"bold tall_list_margin\">Developer:</p>
                             <p class="tall_list_margin">` + course.Latest_Developer + `</p>
@@ -355,10 +462,7 @@ function load_page_element()
                                 `+ oer_links + `
                             </div>
                         </li>
-                        <li class="table_base list_element_row">
-                            <p class=\"bold tall_list_margin\">History:</p>
-                            <p class="tall_list_margin">` + course.History_Round_And_Developer + ` (` + course.ALG_Developer + `)</p>
-                        </li>
+                        ` + generate_history_info() + `
                     </ul>
                 </div>
             </div>

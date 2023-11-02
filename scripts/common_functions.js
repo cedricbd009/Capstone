@@ -348,7 +348,7 @@ function hide_empty_tracks()
         
         for (j = 0; j < document.getElementById(tracks[i]).children.length; j++)
         {
-            if (document.getElementById(tracks[i]).children[j].style.gridTemplateRows === "1fr")
+            if (document.getElementById(tracks[i]).children[j].style.gridTemplateRows == "1fr")
             {
                 hide = false;
             }
@@ -370,7 +370,7 @@ function hide_empty_tracks()
         
         for (j = 0; j < document.getElementById("track_certificate_group").children.length; j++)
         {
-            if (document.getElementById("track_certificate_group").children[j].style.gridTemplateRows === "1fr")
+            if (document.getElementById("track_certificate_group").children[j].style.gridTemplateRows == "1fr")
             {
                 hide = false;
             }

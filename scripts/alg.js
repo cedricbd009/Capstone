@@ -74,8 +74,8 @@ function load_group_list_element()
         html_obj.innerHTML = `
         <div>
             <div class=\"side_by_side list_indent\">
-                <a class=\"list_link\" href=\"` + link_list.Course_Information + all_course_data[i].Prefix + all_course_data[i].Course_Number + `\" onclick=\"store_course(` + i + `);\">` + all_course_data[i].Prefix + ` ` + all_course_data[i].Course_Number + `: ` + all_course_data[i].Course_Name + `</a>
-                <p class=\"space_before\">(` + all_course_data[i].Latest_Developer + `)</p>
+                <a class=\"unbold tall_list_margin\" href=\"` + link_list.Course_Information + all_course_data[i].Prefix + all_course_data[i].Course_Number + `\" onclick=\"store_course(` + i + `);\">` + all_course_data[i].Prefix + ` ` + all_course_data[i].Course_Number + `: ` + all_course_data[i].Course_Name + `</a>
+                <p class=\"space_before unbold tall_list_margin\">(` + all_course_data[i].Latest_Developer + `)</p>
             </div>
         </div>`;
 
@@ -135,14 +135,25 @@ function create_groups()
 
         if (all_grant_data[i].Grants != undefined)
         {
-            round_grants = sort_array_by_grant(all_grant_data[i].Grants)
+            round_grants = sort_array_by_grant(all_grant_data[i].Grants);
 
             for (j = 0; j < round_grants.length; j++)
             {
+                var grant_line = ""
+
+                if (round_grants[j].OER_Repo == "Not Provided")
+                {
+                    grant_line = `<p id=\"` + all_grant_data[i].Round + `-` + round_grants[j].Grant + `\" class=\"bold\">Grant # ` + round_grants[j].Grant + `: ` + round_grants[j].Value + `</p>`
+                }
+                else
+                {
+                    grant_line = `<a id=\"` + all_grant_data[i].Round + `-` + round_grants[j].Grant + `\" class=\"bold list_link black_text\" href=\"` + round_grants[j].OER_Repo + `\" target=\"_blank\">Grant # ` + round_grants[j].Grant + `: ` + round_grants[j].Value + `</a>`
+                }
+
                 grants_list += `
                 <div class=\"animate_open_default\">
                     <div>    
-                        <p id=\"` + all_grant_data[i].Round + `-` + round_grants[j].Grant + `\" class=\"bold\">Grant # ` + round_grants[j].Grant + `: ($Value)</p>
+                        ` + grant_line + `
                     </div>
                 </div>`;
             }
@@ -156,7 +167,7 @@ function create_groups()
         html_obj.innerHTML = `
         <div>
             <div class=\"list_element background_color table_base list_element_row\">  
-                <p class=\"bold\">Round ` + all_grant_data[i].Round.replace("R", "") + `<br>(Year)</p>
+                <p class=\"bold\">Round ` + all_grant_data[i].Round.replace("R", "") + `<br>` + all_grant_data[i].Year + `</p>
                 <div id=\"` + all_grant_data[i].Round + `_grant_list\">
                     ` + grants_list + `
                 </div>
