@@ -299,8 +299,8 @@ function filter_results()
         if ((prefix_selector == null || prefix_selector.value == "All Prefixes" || all_course_data[i].Prefix.toLowerCase().includes(prefix_selector.value.toLowerCase()) == true) &&
             (offered_selector == null || offered_selector.value == "All Semesters" ||  all_course_data[i].Course_Schedule[offered_selector.value].includes("-") == false) &&
             (search_bar == null || search_bar.value == "" || all_course_data[i].Course_Number.toLowerCase().includes(search_bar.value.toLowerCase()) == true ||
-            all_course_data[i].Course_Name.toLowerCase().includes(search_bar.value.toLowerCase()) == true || all_course_data[i].Description.toLowerCase().includes(search_bar.value.toLowerCase()) == true ||
-            all_course_data[i].Latest_Developer.toLowerCase().includes(search_bar.value.toLowerCase()) == true) &&
+            all_course_data[i].Course_Name.toLowerCase().includes(search_bar.value.toLowerCase()) == true || (all_course_data[i].Description.toLowerCase().includes(search_bar.value.toLowerCase()) == true && order_by_alg == null) ||
+            (all_course_data[i].Latest_Developer.toLowerCase().includes(search_bar.value.toLowerCase()) == true && order_by_alg != null)) &&
             (filter_coodinator == null || filter_coodinator.value == "" || (all_course_data[i].Coordinator_Name.toLowerCase()  + " " + all_course_data[i].Co_Coordinator_Name.toLowerCase()).includes(filter_coodinator.value.toLowerCase()) == true) &&
             (degree_selector == null || degree_selector.value == "All Degrees" || all_course_data[i].Degree.toLowerCase().includes(degree_selector.value.toLowerCase()) == true))
         {
