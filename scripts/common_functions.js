@@ -14,6 +14,8 @@ var no_group = document.getElementById("no_group");
 var track_group = document.getElementById("track_group");
 var no_group_img = document.getElementById("no_group_img");
 var track_group_img = document.getElementById("track_group_img");
+var alg_group_img = document.getElementById("alg_group_img");
+var coord_group_img = document.getElementById("coord_group_img");
 var program_catalogs_table = document.getElementById("program_catalogs_table");
 
 var site_title = "KSU IT Curriculum Portal";
@@ -170,35 +172,34 @@ function sort_array_by_grant(array)
 
 function order_by(order_style)
 {
-    list_body.innerHTML = ""
-
-    if (order_by_course != null)
-    {
-        order_by_course.className = order_by_course.className.replace(" tab_active", "");
-    }
-    if (order_by_coordinator != null)
-    {
-        order_by_coordinator.className = order_by_coordinator.className.replace(" tab_active", "");
-    }
-    if (order_by_alg != null)
-    {
-        order_by_alg.className = order_by_alg.className.replace(" tab_active", "");
-    }
-
-    if (order_style == "Coordinator")
+    if (order_style == "Coordinator" && order_by_course.className.includes("tab_active"))
     {  
+        list_body.innerHTML = "";
+
+        order_by_course.className = order_by_course.className.replace(" tab_active", "");
+        coord_group_img.className = coord_group_img.className.replace(" hidden", "");
         order_by_coordinator.className += " tab_active";
+        no_group_img.className += " hidden";
+        
         sort_array_by_coordinator(all_course_data);
+
+        load_list_element();
+        filter_results();
     }
-    else
+    else if (order_style == "Course Number" && order_by_coordinator.className.includes("tab_active"))
     {
+        list_body.innerHTML = "";
+
+        order_by_coordinator.className = order_by_coordinator.className.replace(" tab_active", "");
+        no_group_img.className = no_group_img.className.replace(" hidden", "");
         order_by_course.className += " tab_active";
+        coord_group_img.className += " hidden";
+
         sort_array_by_id(all_course_data);
+
+        load_list_element();
+        filter_results();
     }
-
-    load_list_element();
-
-    filter_results();
 }
 
 
@@ -224,7 +225,9 @@ function group_by(type)
         alg_sort = true;
 
         order_by_course.className = order_by_course.className.replace(" tab_active", "");
+        alg_group_img.className = alg_group_img.className.replace(" hidden", "");
         order_by_alg.className += " tab_active";
+        no_group_img.className += " hidden";
 
         create_groups();
         load_group_list_element();
@@ -245,7 +248,9 @@ function group_by(type)
         else if (order_by_alg != null)
         {
             order_by_alg.className = order_by_alg.className.replace(" tab_active", "");
+            no_group_img.className = no_group_img.className.replace(" hidden", "");
             order_by_course.className += " tab_active";
+            alg_group_img.className += " hidden";
         }
 
         load_list_element();
@@ -295,7 +300,7 @@ function filter_results()
             (offered_selector == null || offered_selector.value == "All Semesters" ||  all_course_data[i].Course_Schedule[offered_selector.value].includes("-") == false) &&
             (search_bar == null || search_bar.value == "" || all_course_data[i].Course_Number.toLowerCase().includes(search_bar.value.toLowerCase()) == true ||
             all_course_data[i].Course_Name.toLowerCase().includes(search_bar.value.toLowerCase()) == true || all_course_data[i].Description.toLowerCase().includes(search_bar.value.toLowerCase()) == true ||
-            all_course_data[i].Course_Learning_Outcomes.includes(search_bar.value.toLowerCase()) == true) &&
+            all_course_data[i].Latest_Developer.toLowerCase().includes(search_bar.value.toLowerCase()) == true) &&
             (filter_coodinator == null || filter_coodinator.value == "" || (all_course_data[i].Coordinator_Name.toLowerCase()  + " " + all_course_data[i].Co_Coordinator_Name.toLowerCase()).includes(filter_coodinator.value.toLowerCase()) == true) &&
             (degree_selector == null || degree_selector.value == "All Degrees" || all_course_data[i].Degree.toLowerCase().includes(degree_selector.value.toLowerCase()) == true))
         {

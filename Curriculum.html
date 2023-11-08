@@ -29,24 +29,55 @@
         <div id="banner_container" class="floating_header"></div>
         <div class="floating_title bold">Curriculum Resources</div>
 
+        <!-- Left Floating Sidebar -->
+        <div id="left_sidebar" class="floating_sidebar_left">
+            <div class="background_color background_padding">
+                <p class="title_size bold">Search:</p>
+                <div class="filter_table table_base">
+                    <label class="center_text_verticle">Keywords:</label>
+                    <div class="side_by_side">
+                        <input id="search_bar" onkeypress="check_key_curr(event);" class="searchbar_height searchbar_width" type="text" name="" placeholder="Keywords">
+                        <div onclick="filter_curr_page()" class="picture_button search_button_size" title="Search">
+                            <div class="picture_button_bg"></div>
+                            <img class="picture_button_img" src="resources\search.webp" alt="Search">
+                        </div>
+                    </div>
+                </div>
+                <p></p>
+                <button onclick="reset_filters();" class="tab_button">Reset Filters</button>
+            </div>
+        </div>
+
         <!-- Main List -->
         <div class="center_list">
             <div id="list_body" class="main_list">
                 <div class="animate_open_default" id="course">
                     <div class="list_element background_color">
                         <p class="title_size bold list_header_margin">Program Information:</p>
-                        <ul>
-                            <li class="table_base wide_list_element_row">
-                                <p class="bold tall_list_margin">MSIT Program Requirements: </p>
-                                <a class="tall_list_margin" href="https://msit.kennesaw.edu/future-students/program-requirements.php" target="_blank">https://msit.kennesaw.edu/future-students/program-requirements.php</a>
+                        <ul id="program_information">
+                            <li class="animate_open_default">
+                                <div class="table_base wide_list_element_row">
+                                    <p class="bold tall_list_margin">MSIT Program Requirements: </p>
+                                    <a class="tall_list_margin" href="https://msit.kennesaw.edu/future-students/program-requirements.php" target="_blank">https://msit.kennesaw.edu/future-students/program-requirements.php</a>
+                                </div>
                             </li>
-                            <li class="table_base wide_list_element_row">
-                                <p class="bold tall_list_margin">BSIT Program Requirements: </p>
-                                <a class="tall_list_margin" href="https://ccse.kennesaw.edu/it/programs/undergraduate/bsit.php#requirements" target="_blank">https://ccse.kennesaw.edu/it/programs/undergraduate/bsit.php#requirements</a>
+                            <li class="animate_open_default">
+                                <div class="table_base wide_list_element_row">
+                                    <p class="bold tall_list_margin">BSIT Program Requirements: </p>
+                                    <a class="tall_list_margin" href="https://ccse.kennesaw.edu/it/programs/undergraduate/bsit.php#requirements" target="_blank">https://ccse.kennesaw.edu/it/programs/undergraduate/bsit.php#requirements</a>
+                                </div>
                             </li>
-                            <li class="table_base wide_list_element_row">
-                                <p class="bold tall_list_margin">Program Outcomes: </p>
-                                <a class="tall_list_margin" href="https://ccse.kennesaw.edu/it/accreditation/outcomes-objectives.php" target="_blank">https://ccse.kennesaw.edu/it/accreditation/outcomes-objectives.php</a>
+                            <li class="animate_open_default">
+                                <div class="table_base wide_list_element_row">
+                                    <p class="bold tall_list_margin">Program Outcomes: </p>
+                                    <a class="tall_list_margin" href="https://ccse.kennesaw.edu/it/accreditation/outcomes-objectives.php" target="_blank">https://ccse.kennesaw.edu/it/accreditation/outcomes-objectives.php</a>
+                                </div>
+                            </li>
+                            <li class="animate_open_default">
+                                <div class="table_base wide_list_element_row">
+                                    <p class="bold tall_list_margin">Courses (Reference): </p>
+                                    <a class="tall_list_margin" href="https://ccse.kennesaw.edu/it/programs/overview/courses.php" target="_blank">https://ccse.kennesaw.edu/it/programs/overview/courses.php</a>
+                                </div>
                             </li>
                         </ul>
                         <p class="title_size bold">Catalogs:</p>
@@ -57,42 +88,54 @@
                         <div class="table_padder_bottom">
                         </div>
                         <p class="title_size bold list_header_margin">KSU Apps and Resources:</p>
-                        <ul>
-                            <li class="table_base wide_list_element_row">
-                                <p class="bold tall_list_margin">Latest Graduate Catalog: </p>
-                                <a class="tall_list_margin" href="https://catalog.kennesaw.edu/content.php?catoid=67&navoid=5323" target="_blank">https://catalog.kennesaw.edu/content.php?catoid=67&navoid=5323</a>
+                        <ul id="apps_information">
+                            <li class="animate_open_default">
+                                <div class="table_base wide_list_element_row">
+                                    <p class="bold tall_list_margin">Latest Graduate Catalog: </p>
+                                    <a class="tall_list_margin" href="https://catalog.kennesaw.edu/content.php?catoid=67&navoid=5323" target="_blank">https://catalog.kennesaw.edu/content.php?catoid=67&navoid=5323</a>
+                                </div>
                             </li>
-                            <li class="table_base wide_list_element_row">
-                                <p class="bold tall_list_margin">Curriculum Homepage: </p>
-                                <a class="tall_list_margin" href="https://cia.kennesaw.edu/index.php" target="_blank">https://cia.kennesaw.edu/index.php</a>
+                            <li class="animate_open_default">
+                                <div class="table_base wide_list_element_row">
+                                    <p class="bold tall_list_margin">Curriculum Homepage: </p>
+                                    <a class="tall_list_margin" href="https://cia.kennesaw.edu/index.php" target="_blank">https://cia.kennesaw.edu/index.php</a>
+                                </div>
                             </li>
-                            <li class="table_base wide_list_element_row">
-                                <p class="bold tall_list_margin">OwlExpress Class Schedule: </p>
-                                <a class="tall_list_margin" href="https://owlexpress.kennesaw.edu/prodban/bwckctlg.p_disp_dyn_ctlg" target="_blank">https://owlexpress.kennesaw.edu/prodban/bwckctlg.p_disp_dyn_ctlg</a>
+                            <li class="animate_open_default">
+                                <div class="table_base wide_list_element_row">
+                                    <p class="bold tall_list_margin">OwlExpress Class Schedule: </p>
+                                    <a class="tall_list_margin" href="https://owlexpress.kennesaw.edu/prodban/bwckctlg.p_disp_dyn_ctlg" target="_blank">https://owlexpress.kennesaw.edu/prodban/bwckctlg.p_disp_dyn_ctlg</a>
+                                </div>
                             </li>
-                            <li class="table_base wide_list_element_row">
-                                <p class="bold tall_list_margin">Curriculog Homepage: </p>
-                                <a class="tall_list_margin" href="https://kennesaw.curriculog.com/" target="_blank">https://kennesaw.curriculog.com/</a>
+                            <li class="animate_open_default">
+                                <div class="table_base wide_list_element_row">
+                                    <p class="bold tall_list_margin">Curriculog Homepage: </p>
+                                    <a class="tall_list_margin" href="https://kennesaw.curriculog.com/" target="_blank">https://kennesaw.curriculog.com/</a>
+                                </div>
                             </li>
-                            <li class="table_base wide_list_element_row">
-                                <p class="bold tall_list_margin">KSU D2L Homepage: </p>
-                                <a class="tall_list_margin" href="https://kennesaw.view.usg.edu" target="_blank">https://kennesaw.view.usg.edu</a>
+                            <li class="animate_open_default">
+                                <div class="table_base wide_list_element_row">
+                                    <p class="bold tall_list_margin">KSU D2L Homepage: </p>
+                                    <a class="tall_list_margin" href="https://kennesaw.view.usg.edu" target="_blank">https://kennesaw.view.usg.edu</a>
+                                </div>
                             </li>
-                            <li class="table_base wide_list_element_row">
-                                <p class="bold tall_list_margin">Area F Guidelines: </p>
-                                <a class="tall_list_margin" href="https://www.usg.edu/curriculum/area_f_guidelines" target="_blank">https://www.usg.edu/curriculum/area_f_guidelines</a>
+                            <li class="animate_open_default">
+                                <div class="table_base wide_list_element_row">
+                                    <p class="bold tall_list_margin">Area F Guidelines: </p>
+                                    <a class="tall_list_margin" href="https://www.usg.edu/curriculum/area_f_guidelines" target="_blank">https://www.usg.edu/curriculum/area_f_guidelines</a>
+                                </div>
                             </li>
-                            <li class="table_base wide_list_element_row">
-                                <p class="bold tall_list_margin">Current Catalog: </p>
-                                <a class="tall_list_margin" href="https://catalog.kennesaw.edu/" target="_blank">https://catalog.kennesaw.edu/</a>
+                            <li class="animate_open_default">
+                                <div class="table_base wide_list_element_row">
+                                    <p class="bold tall_list_margin">Current Catalog: </p>
+                                    <a class="tall_list_margin" href="https://catalog.kennesaw.edu/" target="_blank">https://catalog.kennesaw.edu/</a>
+                                </div>
                             </li>
-                            <li class="table_base wide_list_element_row">
-                                <p class="bold tall_list_margin">Academic Calendar: </p>
-                                <a class="tall_list_margin" href="https://www.kennesaw.edu/registrar/academic-calendars/index.php" target="_blank">https://www.kennesaw.edu/registrar/academic-calendars/index.php</a>
-                            </li>
-                            <li class="table_base wide_list_element_row">
-                                <p class="bold tall_list_margin">Courses: </p>
-                                <a class="tall_list_margin" href="https://ccse.kennesaw.edu/it/programs/overview/courses.php" target="_blank">https://ccse.kennesaw.edu/it/programs/overview/courses.php</a>
+                            <li class="animate_open_default">
+                                <div class="table_base wide_list_element_row">
+                                    <p class="bold tall_list_margin">Academic Calendar: </p>
+                                    <a class="tall_list_margin" href="https://www.kennesaw.edu/registrar/academic-calendars/index.php" target="_blank">https://www.kennesaw.edu/registrar/academic-calendars/index.php</a>
+                                </div>
                             </li>
                         </ul>
                     </div>

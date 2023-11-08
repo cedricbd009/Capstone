@@ -221,12 +221,17 @@ function generate_latest_round_info()
 
 function generate_history_info()
 {
-    var history = course.History_Round_And_Developer.split("/");
+    var history = course.History;
     var history_list = ""; 
+
+    if (history == undefined)
+    {
+        history = [ { Round : "None" } ];
+    }
 
     for (k = 0; k < history.length; k++)
     {
-        var round_split = history[k].split("-");
+        var round_split = history[k].Round.split("-");
         var round = "";
         var grant = "";
         var grant_repo = "";
@@ -254,18 +259,18 @@ function generate_history_info()
             }
         }
 
-        if (history[k] != "None")
+        if (history[k].Round != "None")
         {
-            developer = ` (` + course.ALG_Developer + `)`;
+            developer = ` (` + history[k].Developer + `)`;
         }
 
         if (grant_repo == "" || grant_repo == "Not Provided")
         {
-            history_list += `<p class="tall_list_margin">` + history[k] + developer + `</p>`
+            history_list += `<p class="tall_list_margin">` + history[k].Round + developer + `</p>`
         }
         else
         {
-            history_list += `<a class="tall_list_margin black_text" href=\"` + grant_repo + `\" target=\"_blank\">` + history[k] + developer + `</a>`
+            history_list += `<a class="tall_list_margin black_text" href=\"` + grant_repo + `\" target=\"_blank\">` + history[k].Round + developer + `</a>`
         }
         
         if (history.length > 1 && k < (history.length - 1))

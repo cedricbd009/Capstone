@@ -32,6 +32,14 @@
         <!-- Left Floating Sidebar -->
         <div id="left_sidebar" class="floating_sidebar_left">
             <div class="background_color background_padding">
+                <button id="order_by_course" onclick="group_by('none');" class="order_button title_size side_by_side center_text_verticle_horizontal tab_active">
+                    <img id="no_group_img" class="checkbox_img" src="resources\checkbox.png" alt="*">
+                    Sort By Course
+                </button>
+                <button id="order_by_alg" onclick="group_by('alg');" class="order_button title_size side_by_side center_text_verticle_horizontal">
+                    <img id="alg_group_img" class="checkbox_img hidden" src="resources\checkbox.png" alt="*">
+                    Sort By ALG
+                </button>
                 <p class="title_size bold">Search:</p>
                 <div class="filter_table table_base">
                     <label class="center_text_verticle">Keywords:</label>
@@ -54,11 +62,6 @@
                         <option value="BSIT">BSIT</option>
                         <option value="MSIT">MSIT</option>
                     </select>
-                </div>
-                <p></p>
-                <div class="table_base double_buttons">
-                    <button id="order_by_course" onclick="group_by('none');" class="order_button  tab_active">Sort By Course</button>
-                    <button id="order_by_alg" onclick="group_by('alg');" class="order_button">Sort By ALG</button>
                 </div>
                 <p></p>
                 <button onclick="reset_filters();" class="tab_button">Reset Filters</button>

@@ -1,3 +1,8 @@
+var program_information = document.getElementById("program_information");
+var apps_information = document.getElementById("apps_information");
+
+
+
 function sort_array_by_year(array)
 {
     array.sort(
@@ -54,6 +59,47 @@ function load_list_element()
         program_catalogs_table.appendChild(html_obj);
     }
 }
+
+
+
+function filter_curr_page()
+{
+    for (i = 0; i < program_information.children.length; i++)
+    {
+        if (program_information.children[i].children[0].children[0].innerHTML.toLowerCase().includes(search_bar.value.toLowerCase()) == true)
+        {
+            program_information.children[i].style.gridTemplateRows = "1fr";
+        }
+        else
+        {
+            program_information.children[i].style.gridTemplateRows = "0fr";
+        }
+    }
+
+    for (i = 0; i < apps_information.children.length; i++)
+    {
+        if (apps_information.children[i].children[0].children[0].innerHTML.toLowerCase().includes(search_bar.value.toLowerCase()) == true)
+        {
+            apps_information.children[i].style.gridTemplateRows = "1fr";
+        }
+        else
+        {
+            apps_information.children[i].style.gridTemplateRows = "0fr";
+        }
+    }
+}
+
+
+
+function check_key_curr(event)
+{
+    if (event.key == "Enter")
+    {
+        filter_curr_page();
+    }
+}
+
+
 
 // This only works if this file is loaded before the data_getter file.
 // MAKE SURE that this file is listed ABOVE the data_getter file in the script block.

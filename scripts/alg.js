@@ -5,10 +5,9 @@ function load_list_element()
         <div>
             <div class=\"table_base alg_row\">
                 <p class=\"header_row table_data\">Course</p>
-                <p class=\"header_row table_data\">Latest Round</p>
+                <p class=\"header_row table_data\">Latest Grant</p>
                 <p class=\"header_row table_data\">Latest Developer</p>
                 <p class=\"header_row table_data\">OER Materials</p>
-                <p class=\"header_row table_data\">History</p>
             </div>
         </div>
     </div>`;
@@ -44,19 +43,44 @@ function load_list_element()
             <div id=\"coordinator_table` + i + `\">
                 <div class=\"table_base alg_row\">
                     <a class=\"data_row table_data\" href=\"` + link_list.Course_Information + all_course_data[i].Prefix + all_course_data[i].Course_Number + `\" onclick=\"store_course(` + i + `);\">` + all_course_data[i].Prefix + ` ` + all_course_data[i].Course_Number + `: ` + all_course_data[i].Course_Name + `</a>
-                    <p class=\"data_row table_data\">` + all_course_data[i].Latest_ALG_Round + `</p>
+                    <p class=\"data_row table_data\">` + generate_latest_round() + `</p>
                     <p class=\"data_row table_data\">` + all_course_data[i].Latest_Developer + `</p>
                     <div class=\"data_row table_data\">
                         <div class=\"verticle_stack\">
                             ` + oer_links + `
                         </div>
                     </div>
-                    <p class=\"data_row table_data\">` + all_course_data[i].History_Round_And_Developer + `</p>   
                 </div>
             </div>
         </div>`;
 
         list_body.appendChild(html_obj);
+    }
+}
+
+
+
+function generate_latest_round()
+{
+    if (all_course_data[i].Latest_ALG_Round != "None")
+    {
+        var round = all_course_data[i].Latest_ALG_Round.split("-")[0].replace("R", "");
+        var grant = all_course_data[i].Latest_ALG_Round.split("-")[1];
+        var iterator = 0
+
+        for (iterator = 0; iterator < all_grant_data.length; iterator++)
+        {
+            if (all_grant_data[iterator].Round == "R" + round)
+            {
+                break;
+            }
+        }
+
+        return `Round ` + round + ` (` + all_grant_data[iterator].Year + `)<br># ` + grant;
+    }
+    else
+    {
+        return "None";
     }
 }
 
@@ -79,31 +103,64 @@ function load_group_list_element()
             </div>
         </div>`;
 
-        var course_rounds = all_course_data[i].Latest_ALG_Round.split("/");
-        var course_history = all_course_data[i].History_Round_And_Developer.split("/");
+        var course_rounds = all_course_data[i].Latest_ALG_Round;
+        var course_history = all_course_data[i].History;
 
         push_grant_information(course_rounds, html_obj);
-        push_grant_information(course_history, html_obj);
+        push_array_grant_information(course_history, html_obj);
     }
 }
 
 
 
-function push_grant_information(grants, html_obj)
+function push_grant_information(grant, html_obj)
 {
-    if (grants != "None")
+    if (grant != "None")
     {
-        for (j = 0; j < grants.length; j++)
+        if (grant.includes("-"))
         {
-            if (grants[j].includes("-"))
+            document.getElementById(grant).appendChild(html_obj.cloneNode(true));
+        }
+        else
+        {
+            if (document.getElementById(grant + "no_grant_specified") != null)
             {
-                document.getElementById(grants[j]).appendChild(html_obj.cloneNode(true));
+                document.getElementById(grant + "no_grant_specified").appendChild(html_obj.cloneNode(true));
             }
             else
             {
-                if (document.getElementById(grants[j] + "no_grant_specified") != null)
+                empty_grant = document.createElement('div');
+                empty_grant.classList.add("animate_open_default");
+                
+                empty_grant.innerHTML = `
+                <div>
+                    <p id=\"` + grant + `no_grant_specified\" class=\"bold\">Grant # Not Specified:</p>
+                </div>`;
+
+                document.getElementById(grant + "_grant_list").appendChild(empty_grant);
+                document.getElementById(grant + "no_grant_specified").appendChild(html_obj.cloneNode(true));
+            }
+        }
+    }
+}
+
+
+
+function push_array_grant_information(grants, html_obj)
+{
+    if (grants != undefined)
+    {
+        for (j = 0; j < grants.length; j++)
+        {
+            if (grants[j].Round.includes("-"))
+            {
+                document.getElementById(grants[j].Round).appendChild(html_obj.cloneNode(true));
+            }
+            else
+            {
+                if (document.getElementById(grants[j].Round + "no_grant_specified") != null)
                 {
-                    document.getElementById(grants[j] + "no_grant_specified").appendChild(html_obj.cloneNode(true));
+                    document.getElementById(grants[j].Round + "no_grant_specified").appendChild(html_obj.cloneNode(true));
                 }
                 else
                 {
@@ -112,11 +169,11 @@ function push_grant_information(grants, html_obj)
                     
                     empty_grant.innerHTML = `
                     <div>
-                        <p id=\"` + grants[j] + `no_grant_specified\" class=\"bold\">Grant # Not Specified:</p>
+                        <p id=\"` + grants[j].Round + `no_grant_specified\" class=\"bold\">Grant # Not Specified:</p>
                     </div>`;
 
-                    document.getElementById(grants[j] + "_grant_list").appendChild(empty_grant);
-                    document.getElementById(grants[j] + "no_grant_specified").appendChild(html_obj.cloneNode(true));
+                    document.getElementById(grants[j].Round + "_grant_list").appendChild(empty_grant);
+                    document.getElementById(grants[j].Round + "no_grant_specified").appendChild(html_obj.cloneNode(true));
                 }
             }
         }
