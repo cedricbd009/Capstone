@@ -18,6 +18,12 @@
     grid-template-columns: minmax(80px, 1fr) minmax(0, 9fr);
 }
 
+.table_base.course_row
+{
+    column-gap: 5px;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr);
+}
+
 .table_base.wide_list_element_row
 {
     column-gap: 5px;

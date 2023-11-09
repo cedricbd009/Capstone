@@ -90,3 +90,14 @@
     aspect-ratio: 1/1;
     margin: 5px;
 }
+
+.white_background_box
+{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    background-color: white;
+}
