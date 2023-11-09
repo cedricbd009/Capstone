@@ -158,3 +158,10 @@ body
 {
     color: black;
 }
+
+.special_link
+{
+    text-decoration: underline;
+    cursor: pointer;
+    color: black;
+}

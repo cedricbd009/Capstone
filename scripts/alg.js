@@ -33,6 +33,21 @@ function load_list_element()
             }
         }
 
+        var latest_developers = all_course_data[i].Latest_Developer.split(", ");
+        var latest_developers_list = "";
+
+        for (l = 0; l < latest_developers.length; l++)
+        {
+            if (l < latest_developers.length - 1)
+            {
+                latest_developers_list += `<a onclick=\"filter_by_faculty('` + latest_developers[l] + `');\" class=\"special_link\">` + latest_developers[l] + `, </a>`;
+            }
+            else
+            {
+                latest_developers_list += `<a onclick=\"filter_by_faculty('` + latest_developers[l] + `');\" class=\"special_link\">` + latest_developers[l] + `</a>`;
+            }
+        }
+
         var html_obj = document.createElement('div');
 
         html_obj.classList.add("animate_open_default");
@@ -44,7 +59,7 @@ function load_list_element()
                 <div class=\"table_base alg_row\">
                     <a class=\"data_row table_data\" href=\"` + link_list.Course_Information + all_course_data[i].Prefix + all_course_data[i].Course_Number + `\" onclick=\"store_course(` + i + `);\">` + all_course_data[i].Prefix + ` ` + all_course_data[i].Course_Number + `: ` + all_course_data[i].Course_Name + `</a>
                     <p class=\"data_row table_data\">` + generate_latest_round() + `</p>
-                    <p class=\"data_row table_data\">` + all_course_data[i].Latest_Developer + `</p>
+                    <div class=\"data_row table_data\">` + latest_developers_list + `</div>
                     <div class=\"data_row table_data\">
                         <div class=\"verticle_stack\">
                             ` + oer_links + `
@@ -90,6 +105,20 @@ function load_group_list_element()
 {
     for (i = 0; i < all_course_data.length; i++)
     {
+        var latest_developers = all_course_data[i].Latest_Developer.split(", ");
+        var latest_developers_list = "";
+
+        for (l = 0; l < latest_developers.length; l++)
+        {
+            latest_developers_list += `<a onclick=\"filter_by_faculty('` + latest_developers[l] + `');\" class=\"special_link tall_list_margin unbold\">` + latest_developers[l] + `</a>`;
+
+            if (l < latest_developers.length - 1)
+            {
+                latest_developers_list += `<p class="tall_list_margin space_after">,</p>`
+            }
+        }
+
+
         var html_obj = document.createElement('div');
 
         html_obj.classList.add("animate_open_default");
@@ -99,7 +128,9 @@ function load_group_list_element()
         <div>
             <div class=\"side_by_side list_indent\">
                 <a class=\"unbold tall_list_margin\" href=\"` + link_list.Course_Information + all_course_data[i].Prefix + all_course_data[i].Course_Number + `\" onclick=\"store_course(` + i + `);\">` + all_course_data[i].Prefix + ` ` + all_course_data[i].Course_Number + `: ` + all_course_data[i].Course_Name + `</a>
-                <p class=\"space_before unbold tall_list_margin\">(` + all_course_data[i].Latest_Developer + `)</p>
+                <p class=\"space_before unbold tall_list_margin\">(</p>
+                ` + latest_developers_list + `
+                <p class=\"unbold tall_list_margin\">)</p>
             </div>
         </div>`;
 
@@ -204,7 +235,10 @@ function create_groups()
                 }
                 else
                 {
-                    grant_line = `<a id=\"` + all_grant_data[i].Round + `-` + round_grants[j].Grant + `\" class=\"bold list_link black_text\" href=\"` + round_grants[j].OER_Repo + `\" target=\"_blank\">Grant # ` + round_grants[j].Grant + `: ` + round_grants[j].Value + `</a>`
+                    grant_line = `
+                    <div id=\"` + all_grant_data[i].Round + `-` + round_grants[j].Grant + `\">
+                        <a class=\"bold list_link black_text\" href=\"` + round_grants[j].OER_Repo + `\" target=\"_blank\">Grant # ` + round_grants[j].Grant + `: ` + round_grants[j].Value + `</a>
+                    </div>`;
                 }
 
                 grants_list += `
