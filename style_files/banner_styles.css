@@ -25,6 +25,21 @@
     top: 60px;
 }
 
+.floating_footer
+{
+    display: flex;
+    width: 100%;
+    background-color: #eeeeee;
+    position: sticky;
+    border-top: solid;
+    border-width: 2px;
+    border-color: #bebebe;
+    font-size: 1rem;
+    align-items: center;
+    justify-content: center;
+    bottom: 0px;
+}
+
 .page_image
 {
     height: 60px;

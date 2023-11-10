@@ -33,7 +33,8 @@ var link_list =
     Curriculum_Resources: "./Curriculum.html",
     MSIT_Flowchart: "./Flowchart.html",
     MSIT_Flowchart_Printable: "./Print_Flowchart.html",
-    Course_Information: "./Viewer.html?course="
+    Course_Information: "./Viewer.html?course=",
+    About_Page: "./About.html"
 };
 
 var tracks = 

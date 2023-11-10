@@ -21,7 +21,7 @@
 .table_base.course_row
 {
     column-gap: 5px;
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr);
+    grid-template-columns: minmax(0, max-content) minmax(0, max-content) minmax(0, max-content);
 }
 
 .table_base.wide_list_element_row

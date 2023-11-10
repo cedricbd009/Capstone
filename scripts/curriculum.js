@@ -1,5 +1,7 @@
 var program_information = document.getElementById("program_information");
-var apps_information = document.getElementById("apps_information");
+var class_schedule = document.getElementById("class_schedule");
+var curriculum_apps = document.getElementById("curriculum_apps");
+var course_resources = document.getElementById("course_resources");
 
 
 
@@ -64,28 +66,38 @@ function load_list_element()
 
 function filter_curr_page()
 {
-    for (i = 0; i < program_information.children.length; i++)
+    hide_show_elements(program_information);
+    hide_show_elements(class_schedule);
+    hide_show_elements(curriculum_apps);
+    hide_show_elements(course_resources);
+}
+
+
+
+function hide_show_elements(element)
+{
+    var hide_element = true;
+    
+    for (i = 0; i < element.children.length; i++)
     {
-        if (program_information.children[i].children[0].children[0].innerHTML.toLowerCase().includes(search_bar.value.toLowerCase()) == true)
+        if (element.children[i].children[0].children[0].innerHTML.toLowerCase().includes(search_bar.value.toLowerCase()) == true)
         {
-            program_information.children[i].style.gridTemplateRows = "1fr";
+            element.children[i].style.gridTemplateRows = "1fr";
+            hide_element= false;
         }
         else
         {
-            program_information.children[i].style.gridTemplateRows = "0fr";
+            element.children[i].style.gridTemplateRows = "0fr";
         }
     }
 
-    for (i = 0; i < apps_information.children.length; i++)
+    if (hide_element == true)
     {
-        if (apps_information.children[i].children[0].children[0].innerHTML.toLowerCase().includes(search_bar.value.toLowerCase()) == true)
-        {
-            apps_information.children[i].style.gridTemplateRows = "1fr";
-        }
-        else
-        {
-            apps_information.children[i].style.gridTemplateRows = "0fr";
-        }
+        document.getElementById(element.id + "_header").style.gridTemplateRows = "0fr";
+    }
+    else
+    {
+        document.getElementById(element.id + "_header").style.gridTemplateRows = "1fr";
     }
 }
 

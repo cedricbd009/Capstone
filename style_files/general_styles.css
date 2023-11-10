@@ -217,3 +217,8 @@ body
 {
     opacity: 90%;
 }
+
+.no_bullet_points
+{
+    list-style-type: none;
+}
