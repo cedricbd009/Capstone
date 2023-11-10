@@ -16,6 +16,8 @@ var track_group_img = document.getElementById("track_group_img");
 var alg_group_img = document.getElementById("alg_group_img");
 var coord_group_img = document.getElementById("coord_group_img");
 var program_catalogs_table = document.getElementById("program_catalogs_table");
+var sort_course_arrow = document.getElementById("sort_course_arrow");
+var sort_round_arrow = document.getElementById("sort_round_arrow");
 
 var site_title = "KSU IT Curriculum Portal";
 var alg_sort = false;
@@ -125,6 +127,27 @@ function sort_array_by_id(array)
 
 
 
+function sort_array_by_full_round(array)
+{
+    array.sort(
+        function(in_1, in_2)
+        {
+            var check_1 = in_1.Latest_ALG_Round.toLowerCase() + " " + in_1.Prefix.toLowerCase() + " " + in_1.Course_Number.toLowerCase();
+            var check_2 = in_2.Latest_ALG_Round.toLowerCase() + " " + in_2.Prefix.toLowerCase() + " " + in_2.Course_Number.toLowerCase();
+            if (check_1 < check_2)
+            {
+                return -1;
+            }
+            if (check_1 > check_2)
+            {
+                return 1;
+            }
+        }
+    );
+}
+
+
+
 function sort_array_by_round(array)
 {
     array.sort(
@@ -199,12 +222,32 @@ function order_by(order_style)
         load_list_element();
         filter_results();
     }
+    else if (order_style == "Arrow Round")
+    {
+        list_body.innerHTML = "";
+
+        sort_array_by_full_round(all_course_data)
+
+        load_list_element();
+        filter_results();
+    }
+    else if (order_style == "Arrow Course Number")
+    {
+        list_body.innerHTML = "";
+
+        sort_array_by_id(all_course_data)
+
+        load_list_element();
+        filter_results();
+    }
 }
 
 
 
 function group_by(type)
 {
+    sort_array_by_id(all_course_data);
+
     if (type == "track" && document.getElementById(tracks[0]) == null)
     {
         list_body.innerHTML = ""

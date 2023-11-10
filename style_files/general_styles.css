@@ -115,6 +115,14 @@ body
     margin: 0px;
 }
 
+.zero_margin_with_space
+{
+    margin-top: 0px;
+    margin-left: 0px;
+    margin-bottom: 0px;
+    margin-right: 10px;
+}
+
 .inner_list_margin
 {
     margin-top: 2px;
@@ -164,4 +172,48 @@ body
     text-decoration: underline;
     cursor: pointer;
     color: black;
+    transition: background-color 0.25s,
+    border-radius 0.25s;
+}
+
+.special_link:hover
+{
+    background-color: #ffc629;
+    border-color: #ffc629;
+    border-radius: 5px;
+    border-style: solid;
+    margin-top: -5px;
+    margin-bottom: -5px;
+}
+
+.special_link.tall_list_margin:hover
+{
+    background-color: #ffc629;
+    border-color: #ffc629;
+    border-radius: 5px;
+    border-style: solid;
+    margin-top: 1px;
+    margin-bottom: 1px;
+}
+
+.inline_block
+{
+    display: inline-block;
+}
+
+.sort_arrow_button
+{
+    background-color: transparent;
+    border: none;
+    height: 30px;
+    width: 30px;
+    margin-top: -10px;
+    margin-bottom: -10px;
+    cursor: pointer;
+    transition: opacity 0.25s,
+}
+
+.sort_arrow_button:hover
+{
+    opacity: 90%;
 }

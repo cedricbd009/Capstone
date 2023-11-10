@@ -4,10 +4,21 @@ function load_list_element()
     <div id=\"coordinator_header\" class=\"list_header\">
         <div>
             <div class=\"table_base alg_row\">
-                <p class=\"header_row table_data\">Course</p>
-                <p class=\"header_row table_data\">Latest Grant</p>
+                <p class=\"header_row table_data\">
+                    Course
+                    <button id=\"sort_course_arrow\" class=\"sort_arrow_button\" onclick=\"order_by('Arrow Course Number');\">
+                        <img class=\"sort_arrow_button\" src=\"resources/triangle.webp\" alt=\"Sort\">
+                    </button>
+                </p>
+                <p class=\"header_row table_data\">
+                    Latest Grant
+                    <button id=\"sort_round_arrow\" class=\"sort_arrow_button\" onclick=\"order_by('Arrow Round');\">
+                        <img class=\"sort_arrow_button\" src=\"resources/triangle.webp\" alt=\"Sort\">
+                    </button>
+                </p>
                 <p class=\"header_row table_data\">Latest Developer</p>
                 <p class=\"header_row table_data\">OER Materials</p>
+                <p class=\"header_row table_data\">Course Coordinator</p>
             </div>
         </div>
     </div>`;
@@ -38,13 +49,11 @@ function load_list_element()
 
         for (l = 0; l < latest_developers.length; l++)
         {
+            latest_developers_list += `<a onclick=\"filter_by_faculty('` + latest_developers[l] + `');\" class=\"special_link\">` + latest_developers[l] + `</a>`;
+
             if (l < latest_developers.length - 1)
             {
-                latest_developers_list += `<a onclick=\"filter_by_faculty('` + latest_developers[l] + `');\" class=\"special_link\">` + latest_developers[l] + `, </a>`;
-            }
-            else
-            {
-                latest_developers_list += `<a onclick=\"filter_by_faculty('` + latest_developers[l] + `');\" class=\"special_link\">` + latest_developers[l] + `</a>`;
+                latest_developers_list += `<p class="inline_block zero_margin_with_space">,</p>`
             }
         }
 
@@ -59,12 +68,13 @@ function load_list_element()
                 <div class=\"table_base alg_row\">
                     <a class=\"data_row table_data\" href=\"` + link_list.Course_Information + all_course_data[i].Prefix + all_course_data[i].Course_Number + `\" onclick=\"store_course(` + i + `);\">` + all_course_data[i].Prefix + ` ` + all_course_data[i].Course_Number + `: ` + all_course_data[i].Course_Name + `</a>
                     <p class=\"data_row table_data\">` + generate_latest_round() + `</p>
-                    <div class=\"data_row table_data\">` + latest_developers_list + `</div>
+                    <div class=\"data_row table_data side\">` + latest_developers_list + `</div>
                     <div class=\"data_row table_data\">
                         <div class=\"verticle_stack\">
                             ` + oer_links + `
                         </div>
                     </div>
+                    <div class=\"data_row table_data side\">` + all_course_data[i].Coordinator_Name + `, ` + all_course_data[i].Co_Coordinator_Name + `</div>
                 </div>
             </div>
         </div>`;

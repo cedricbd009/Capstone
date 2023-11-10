@@ -39,9 +39,8 @@ function load_list_element()
             <div id=\"coordinator_table` + i + `\">
                 <div class=\"table_base coord_row\">
                     <a class=\"data_row table_data\" href=\"` + link_list.Course_Information + all_course_data[i].Prefix + all_course_data[i].Course_Number + `\" onclick=\"store_course(` + i + `);\">` + all_course_data[i].Prefix + ` ` + all_course_data[i].Course_Number + `: ` + all_course_data[i].Course_Name + `</a>
-                    <div class=\"data_row table_data side_by_side\">
-                        <a onclick=\"filter_by_faculty('` + all_course_data[i].Coordinator_Name + `');\" class=\"special_link\">` + all_course_data[i].Coordinator_Name + `, ` +`</a>
-                        <a onclick=\"filter_by_faculty('` + all_course_data[i].Co_Coordinator_Name + `');\" class=\"special_link\">` + all_course_data[i].Co_Coordinator_Name + `</a>
+                    <div class=\"data_row table_data\">
+                        <a onclick=\"filter_by_faculty('` + all_course_data[i].Coordinator_Name + `');\" class=\"special_link\">` + all_course_data[i].Coordinator_Name +`</a><p class=\"zero_margin_with_space inline_block\">,</p><a onclick=\"filter_by_faculty('` + all_course_data[i].Co_Coordinator_Name + `');\" class=\"special_link\">` + all_course_data[i].Co_Coordinator_Name + `</a>
                     </div>
                     <a class=\"data_row table_data list_link\" href=\"` + all_course_data[i].D2L_Master_Link + `\" target=\"_blank\">D2L Master Shell Link - ` + all_course_data[i].D2L_Master_Link.split("/").at(-1) + `</a>
                 </div>
