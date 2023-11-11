@@ -30,7 +30,7 @@
     display: flex;
     width: 100%;
     background-color: #eeeeee;
-    position: sticky;
+    position: fixed;
     border-top: solid;
     border-width: 2px;
     border-color: #bebebe;
@@ -38,6 +38,11 @@
     align-items: center;
     justify-content: center;
     bottom: 0px;
+}
+
+.footer_spacer
+{
+    margin: 32px;
 }
 
 .page_image
