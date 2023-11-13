@@ -1,5 +1,7 @@
+// This function creates the main list for the page
 function load_list_element()
 {
+    // If we are not showing the contents by track, create a singular table header
     if (document.getElementById(all_course_data[0].Track) == null)
     {    
         list_body.innerHTML = `
@@ -18,14 +20,17 @@ function load_list_element()
         </div>`;
     }
 
+    // For all courses in the course list, create a new table row showing all of the schedule information and append it to the list
     for (i = 0; i < all_course_data.length; i++)
     {
+        // Create an empty element
         var html_obj = document.createElement('div');
 
         html_obj.classList.add("animate_open_default");
         html_obj.classList.add("contained");
         html_obj.id = "course" + i;
 
+        // Populate the element with the schedule information, turing it into a schedule row element
         html_obj.innerHTML = `
         <div>
             <div id=\"schedule` + i + `\">
@@ -41,6 +46,7 @@ function load_list_element()
             </div>
         </div>`;
 
+        // If we are showing by track, append the row to the proper track table, else append it to the main list body
         if (document.getElementById(all_course_data[0].Track) != null)
         {    
             document.getElementById(all_course_data[i].Track).appendChild(html_obj);
@@ -53,9 +59,10 @@ function load_list_element()
 }
 
 
-
+// This function will create the track headers when we are viewing the content by track
 function create_groups()
 {
+    // For all tracks, create a track element and append it to the main list body
     for (i = 0; i < tracks.length; i++)
     {
         list_element = "list_element ";
@@ -65,11 +72,13 @@ function create_groups()
             list_element = "";
         }
 
+        // Create an empty element
         html_obj = document.createElement('div');
 
         html_obj.classList.add("animate_open_default");
         html_obj.id = tracks[i] + " top";
 
+        // Populate the element with the track header name and the table header
         html_obj.innerHTML = `
         <div>
             <div class=\"`+ list_element + `background_color\">  
@@ -91,15 +100,19 @@ function create_groups()
             </div>
         </div>`;
 
+        // If the track element is a certificate, create the certificate header and append the track to it, else append the track element to the main list body
         if  (tracks_certificates.includes(tracks[i])) 
         {
+            // If the certificate header doesn't exist yet, create it
             if (document.getElementById("track_certificate_group") == null)
             {
+                // Create an empty div
                 html_obj_tracks = document.createElement('div');
 
                 html_obj_tracks.classList.add("animate_open_default");
                 html_obj_tracks.id = "track_certificate_group_top";
 
+                // Make the element into the certificate header
                 html_obj_tracks.innerHTML = `
                 <div>
                     <div class=\"list_element background_color\">  
@@ -108,8 +121,10 @@ function create_groups()
                     </div>
                 </div>`;
 
+                // Append the certificate element to the main list body
                 list_body.appendChild(html_obj_tracks);
             }
+
             document.getElementById("track_certificate_group").appendChild(html_obj);
         }
         else
@@ -118,7 +133,6 @@ function create_groups()
         }
     }
 }
-
 
 
 // This only works if this file is loaded before the data_getter file.

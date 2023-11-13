@@ -1,5 +1,6 @@
 function main()
 {
+    // If the banner elemement is present on the page, costruct the HTML code that should populate it. This code is then added to the element's innerHTML
     if (document.getElementById("banner_container") != null)
     {
         document.getElementById("banner_container").innerHTML = `
@@ -30,6 +31,7 @@ function main()
         </div>`;
     }
 
+    // If the footer element is present on the page, construct the HTML code that should populate it. This code is added to the element's innerHTML
     if (document.getElementById("footer_container") != null)
     {
         document.getElementById("footer_container").innerHTML = `

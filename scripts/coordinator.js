@@ -1,3 +1,4 @@
+// This fucntion allows us to sort the course information by the coordinator names. It sorts by coordinated last name, first name, co-coordinator last name, first name, prefix, course number (in that order)
 function sort_array_by_coordinator(array)
 {
     array.sort(
@@ -24,16 +25,19 @@ function sort_array_by_coordinator(array)
 }
 
 
-
+// This function creates the main list body for the page
 function load_list_element()
 {
+    // For all courses, create the table row and append it to the main list body
     for (i = 0; i < all_course_data.length; i++)
     {
+        // Create an empty element
         var html_obj = document.createElement('div');
 
         html_obj.classList.add("animate_open_default");
         html_obj.id = "course" + i;
 
+        // Populte the elemement with course name information, coordinator information, and D2L link information
         html_obj.innerHTML = `
         <div>
             <div id=\"coordinator_table` + i + `\">
@@ -47,9 +51,11 @@ function load_list_element()
             </div>
         </div>`;
 
+        // Append the element to the main list body
         list_body.appendChild(html_obj);
     }
 }
+
 
 // This only works if this file is loaded before the data_getter file.
 // MAKE SURE that this file is listed ABOVE the data_getter file in the script block.

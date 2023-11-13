@@ -1,3 +1,4 @@
+// Essential variables such as the URL query and elements on the page that will be reffered to in the code
 var query = new URLSearchParams(window.location.search);
 var query_prefix = ""
 var query_course = ""
@@ -6,6 +7,7 @@ var course_page = document.getElementById("course_page");
 var tabs = document.getElementById("tabs_row").children;
 var course_selector = document.getElementById("course_selector");
 
+// These arrays are used to determine which elements should show under which tabs
 var essential_info_enum = 
 [
     "description", "credit_hours", "prerequisite", "learning_outcomes", "syllabus_link", "catalog_link", "memo"
@@ -22,11 +24,12 @@ var development_info_enum =
 ];
 
 
-
+// This function loads all course numbers and names into the quick selector dropdown menu
 function load_course_quick_select()
 {
     var course_select_html = "<option value=\"none\" disabled selected>Select an Item</option>"
 
+    // For all courses add the prefix, number, and name to the course selector
     for (i = 0; i < all_course_data.length; i++)
     {
         course_select_html += "<option value=\"" + i + "\">" + all_course_data[i].Prefix + " " + all_course_data[i].Course_Number + ": " + all_course_data[i].Course_Name + "</option>"
@@ -36,47 +39,56 @@ function load_course_quick_select()
 }
 
 
-
+// This function loads a new course if one is selected though the quick select dopdown
 function select_course()
 {
+    // Clear the page
     course_page.innerHTML = "";
 
+    // get the new course
     course = all_course_data[course_selector.value];
 
+    // Set the page title
     set_site_title_course("Course Profile " + course.Prefix + " " +  course.Course_Number + " " + course.Course_Name);
 
+    // Change the page URL
     window.history.replaceState(null, null, "?course=" + course.Prefix + course.Course_Number);
     
     load_page_element();
 }
 
 
-
+// This function hides or show information based on which tab is currently selected
 async function swap_tab(switch_tab, animate)
 {
     var body = document.getElementById("course_body").children[0].children;
 
+    // Swap the highlight to the most recently clicked tab button
     for (j = 0; j < tabs.length; j ++)
     {
+        // Clear active tabs
         tabs[j].className = tabs[j].className.replace(" tab_active", "");
 
+        // If we are the new active tab, add the proper class name
         if (tabs[j].getAttribute("id") == switch_tab)
         {
             tabs[j].className += " tab_active";
         }
     }
 
+    // If we should animate, perform the animation and delay for half a second to allow the animation to play out
     if (animate == true)
     {
         document.getElementById("course_body").style.gridTemplateRows = "0fr";
         await sleep(500);
     }
 
-
+    // Hide or show information based on which tab was clicked and if the infomration is in the enum related to that tab
     if (switch_tab == "essential_info")
     {
         for (i = 0; i < body.length; i++)
         {
+            // Show elements that are in the essential infromation enum, hide the rest
             if (essential_info_enum.includes(body[i].getAttribute("id"))) 
             {
                 body[i].style.height = "auto";
@@ -91,6 +103,7 @@ async function swap_tab(switch_tab, animate)
     {
         for (i = 0; i < body.length; i++)
         {
+            // Show elements that are in the offering information enum, hide the rest
             if (offering_info_enum.includes(body[i].getAttribute("id")))
             {
                 body[i].style.height = "auto";
@@ -105,6 +118,7 @@ async function swap_tab(switch_tab, animate)
     {
         for (i = 0; i < body.length; i++)
         {
+            // Show elements that are in the development information enum, hide the rest
             if (development_info_enum.includes(body[i].getAttribute("id")))
             {
                 body[i].style.height = "auto";
@@ -117,12 +131,14 @@ async function swap_tab(switch_tab, animate)
     }
     else
     {
+        // Show all elements as this is the all information tab
         for (i = 0; i < body.length; i++)
         {
             body[i].style.height = "auto";
         }
     }
 
+    // If we should animate, show the opening animation
     if (animate == true)
     {
         document.getElementById("course_body").style.gridTemplateRows = "1fr";
@@ -130,13 +146,14 @@ async function swap_tab(switch_tab, animate)
 }
 
 
-
+// Create the offering history for the specified year
 function build_offering_history(year)
 {
     var offering_history_fall
     var offering_history_summer
     var offering_history_spring
 
+    // If fall does not have history, show simple text that says not offered, otherwise create a link that says fall + the year and links to the owl express for that semester
     if (course.Offering_History["Fall_" + year].toLowerCase() == "not offered")
     {
         offering_history_fall = `<p class=\"list_paragraph_spacer\">` + course.Offering_History["Fall_" + year] + `</p>`;
@@ -146,6 +163,7 @@ function build_offering_history(year)
         offering_history_fall = `<a class=\"list_paragraph_spacer list_link\" href=\"` + course.Offering_History["Fall_" + year] + `\" target=\"_blank\">Fall ` + year + `</a>`;
     }
 
+    // If summer does not have history, show simple text that says not offered, otherwise create a link that says summer + the year and links to the owl express for that semester
     if (course.Offering_History["Summer_" + year].toLowerCase() == "not offered")
     {
         offering_history_summer = `<p class=\"list_paragraph_spacer\">` + course.Offering_History["Summer_" + year] + `,</p>`;
@@ -155,6 +173,7 @@ function build_offering_history(year)
         offering_history_summer = `<a class=\"list_paragraph_spacer list_link\" href=\"` + course.Offering_History["Summer_" + year] + `\" target=\"_blank\">Summer ` + year + `,</a>`;
     }
 
+    // If spring does not have history, show simple text that says not offered, otherwise create a link that says spring + the year and links to the owl express for that semester
     if (course.Offering_History["Spring_" + year].toLowerCase() == "not offered")
     {
         offering_history_spring = `<p class=\"list_paragraph_spacer\">` + course.Offering_History["Spring_" + year] + `,</p>`;
@@ -164,6 +183,7 @@ function build_offering_history(year)
         offering_history_spring = `<a class=\"list_paragraph_spacer list_link\" href=\"` + course.Offering_History["Spring_" + year] + `\" target=\"_blank\">Spring ` + year + `,</a>`;
     }
 
+    // Return a formatted list of the semesters
     return `
     <div class=\"side_by_side\">
         <p class=\"bold\">` + year + `: </p>
@@ -174,15 +194,17 @@ function build_offering_history(year)
 }
 
 
-
+// This function generates the latest round information for the latest ALG round
 function generate_latest_round_info()
 {
+    // Split the round into round and grant so it can be used
     var round_split = course.Latest_ALG_Round.split("-");
     var round = "";
     var grant = "";
     var grant_type = "";
     var round_year = "";
 
+    // Find the round and grant infromation
     for (i = 0; i < all_grant_data.length; i++)
     {
         if (all_grant_data[i].Round == round_split[0])
@@ -205,11 +227,13 @@ function generate_latest_round_info()
         }
     }
 
+    // If we have a round grab and format the round year
     if (round_split[0] != "None")
     {
         round_year = ` (` + round.Year + `)`;
     }
 
+    // Return the round, year, and grant type
     return `
     <li class="table_base list_element_row">
         <p class=\"bold tall_list_margin\">Latest Round:</p>
@@ -218,25 +242,30 @@ function generate_latest_round_info()
 }
 
 
-
+// This function creates the ALG history for the course
 function generate_history_info()
 {
+    // Here we grab the history and get ready to store the history list
     var history = course.History;
     var history_list = ""; 
 
+    // If we do not have hsitory, we create a blank round element
     if (history == undefined)
     {
         history = [ { Round : "None" } ];
     }
 
+    // For all elements in the history, create the formatted history element
     for (k = 0; k < history.length; k++)
     {
+        // Split the round so we can easily get the round and grant information
         var round_split = history[k].Round.split("-");
         var round = "";
         var grant = "";
         var grant_repo = "";
         var developer = "";
 
+        // For all grants, find the round and grant that we have
         for (i = 0; i < all_grant_data.length; i++)
         {
             if (all_grant_data[i].Round == round_split[0])
@@ -259,11 +288,13 @@ function generate_history_info()
             }
         }
 
+        // if we have history, store the developer's name in the proper format
         if (history[k].Round != "None")
         {
             developer = ` (` + history[k].Developer + `)`;
         }
 
+        // If we do not have a grant repo, create a text element to show the round, else create a link element to show the round and link to the repo when clicked
         if (grant_repo == "" || grant_repo == "Not Provided")
         {
             history_list += `<p class="tall_list_margin">` + history[k].Round + developer + `</p>`
@@ -273,12 +304,14 @@ function generate_history_info()
             history_list += `<a class="tall_list_margin black_text" href=\"` + grant_repo + `\" target=\"_blank\">` + history[k].Round + developer + `</a>`
         }
         
+        // Add commas when needed
         if (history.length > 1 && k < (history.length - 1))
         {
             history_list += `<p class="tall_list_margin space_after">,</p>`
         }
     }
     
+    // Return the formatted history list
     return `
     <li class="table_base list_element_row">
         <p class=\"bold tall_list_margin\">History:</p>
@@ -289,7 +322,7 @@ function generate_history_info()
 }
 
 
-
+// This is a custom sleep function that will delay operations until the timeout is reached. This is mainly used as a way to let animations resolve before more animations attempt to play
 function sleep(miliseconds)
 {
     return new Promise(timeout =>
@@ -299,12 +332,14 @@ function sleep(miliseconds)
 }
 
 
-
+// This function loads all information for this course into an HTML element that is then appended to the page's main body
 function load_page_element()
 {
+    // Store the learning outcomes and offering history when we create them
     var learning_outcomes_list = ""
     var offering_history_list = ""
 
+    // If we do not have any learning outcomes, store an element saying they were not provided, else create an element showing them
     if (course.Course_Learning_Outcomes[0] == "None")
     {
         learning_outcomes_list = `
@@ -314,6 +349,7 @@ function load_page_element()
     }
     else
     {
+        // For all learning outcomes, create an element that stores the outcome and its number. This is added to the learning outcomes list
         for (k = 0; k < course.Course_Learning_Outcomes.length; k ++)
         {
             learning_outcomes_list += `
@@ -324,13 +360,16 @@ function load_page_element()
         }
     }
 
+    // Store the OER links when we create them
     var oer_links = `<p class=\"tall_list_margin\">None</p>`
 
+    // If we have a website link, populate it
     if (course.OER_Links.Website != "None")
     {
         oer_links = `<a class=\"tall_list_margin\" href=\"` + course.OER_Links.Website + `\" target=\"_blank\">Website</a>`
     }
 
+    // If we have an OpenALG link, populate it
     if (course.OER_Links.OpenALG != "None")
     {
         if (oer_links == `<p class=\"tall_list_margin\">None</p>`)
@@ -344,16 +383,19 @@ function load_page_element()
         }
     }
     
+    // Create the offering history for the past three years
     offering_history_list += build_offering_history("2023");
     offering_history_list += build_offering_history("2022");
     offering_history_list += build_offering_history("2021");
 
+    // Create an empty object
     var html_obj = document.createElement('div');
 
     html_obj.classList.add("animate_open_default");
 
     html_obj.id = "course"
-    
+
+    // Populate the object with all the course information and the created elements
     html_obj.innerHTML = `
     <div class=\"list_element background_color\">
         <p id=\"course_number\" class=\"bold title_size\">` + course.Prefix + ` ` + course.Course_Number + `: ` + course.Course_Name + `</p>
@@ -474,9 +516,9 @@ function load_page_element()
         </div>
     </div>`;
 
+    // Append the element to the main body
     course_page.appendChild(html_obj);
 }
-
 
 
 // This only works if this file is loaded before the data_getter file.
@@ -484,12 +526,13 @@ function load_page_element()
 // The data_getter file has to have the SAME or lower load priority than this file. If this file is DEFER, data_getter MUST be DEFER.
 function load_page()
 {
-
     sort_array_by_id(all_course_data);
 
+    // Figure out which course we are dealing with
     query_prefix = query.get("course").replace(/[0-9]*/g, "");
     query_course = query.get("course").replace(/[A-Z]*/g, "");
 
+    // If we were not sent the course information, retrieve it from the course data array and put it into session storage
     if (sessionStorage.getItem("stored_course") == null || (JSON.parse(sessionStorage.getItem("stored_course")).Prefix + JSON.parse(sessionStorage.getItem("stored_course")).Course_Number) != (query_prefix + query_course))
     {
         for (id = 0; id < all_course_data.length; id++)
